@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import BentoGrid from './components/BentoGrid';
-import SlicedSections from './components/SlicedSections';
+import WebflowHome from './components/WebflowHome';
 import BottomCTA from './components/BottomCTA';
 import AboutUs from './pages/AboutUs';
 import ServiceDetail from './pages/ServiceDetail';
@@ -24,8 +22,24 @@ function App() {
   useEffect(() => {
     const handleHashChange = () => setHash(window.location.hash || '#home');
     window.addEventListener('hashchange', handleHashChange);
+    
+    // Toggle Webflow styles based on current page
+    const isHome = (window.location.hash || '#home') === '#home';
+    const wfLinks = ['wf-normalize', 'wf-main', 'wf-site'];
+    wfLinks.forEach(id => {
+      const el = document.getElementById(id) as HTMLLinkElement | null;
+      if (el) el.disabled = !isHome;
+    });
+
+    // Add/remove class to body for scoped overrides
+    if (isHome) {
+      document.body.classList.add('is-webflow');
+    } else {
+      document.body.classList.remove('is-webflow');
+    }
+
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  }, [hash]);
 
   const renderPage = () => {
     if (hash === '#about') return <AboutUs />;
@@ -38,11 +52,7 @@ function App() {
     if (hash === '#blog') return <Blog />;
     if (hash.startsWith('#blog/')) return <BlogDetail />;
     return (
-      <>
-        <Hero />
-        <BentoGrid />
-        <SlicedSections />
-      </>
+      <WebflowHome />
     );
   };
 

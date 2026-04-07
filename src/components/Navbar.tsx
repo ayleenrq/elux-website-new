@@ -332,14 +332,14 @@ export default function Navbar() {
                             onMouseEnter={() => handleMenuEnter('services')}
                             onMouseLeave={handleMenuLeave}
                         >
-                            <button
-                                className={`text-[13px] uppercase tracking-[0.15em] font-medium transition-colors duration-200 flex items-center gap-1.5 ${activeMenu === 'services' ? 'text-white' : 'text-gray-300 hover:text-white'}`}
+                            <a
+                                className={`text-[13px] text-gray-300 uppercase tracking-[0.15em] font-medium transition-colors duration-200 flex items-center gap-1.5 \${activeMenu === 'services' ? 'text-white' : 'text-gray-300 hover:text-white'}`}
                             >
-                                Services
-                                <svg className={`w-3 h-3 transition-transform duration-200 ${activeMenu === 'services' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                SERVICES
+                                <svg className={`w-3 h-3 transition-transform duration-200 \${activeMenu === 'services' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
-                            </button>
+                            </a>
                         </div>
 
                         {/* Industries dropdown trigger */}
@@ -347,14 +347,14 @@ export default function Navbar() {
                             onMouseEnter={() => handleMenuEnter('industries')}
                             onMouseLeave={handleMenuLeave}
                         >
-                            <button
-                                className={`text-[13px] uppercase tracking-[0.15em] font-medium transition-colors duration-200 flex items-center gap-1.5 ${activeMenu === 'industries' ? 'text-white' : 'text-gray-300 hover:text-white'}`}
+                            <a
+                                className={`text-[13px] text-gray-300 uppercase tracking-[0.15em] font-medium transition-colors duration-200 flex items-center gap-1.5 \${activeMenu === 'industries' ? 'text-white' : 'text-gray-300 hover:text-white'}`}
                             >
-                                Industries
-                                <svg className={`w-3 h-3 transition-transform duration-200 ${activeMenu === 'industries' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                INDUSTRIES
+                                <svg className={`w-3 h-3 transition-transform duration-200 \${activeMenu === 'industries' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
-                            </button>
+                            </a>
                         </div>
 
                         {navLinks.slice(1).map(link => (
