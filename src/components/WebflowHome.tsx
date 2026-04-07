@@ -3,323 +3,217 @@ import React, { useEffect } from 'react';
 
 export default function WebflowHome() {
   useEffect(() => {
+    let lenisInst: any = null;
+    let rafId: number | null = null;
+    let resizeHandler: any = null;
+    let checkT1: any, checkT2: any, checkT3: any, checkT4: any;
+
     const loadExternalScripts = async () => {
-      const scriptUrls = ["https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6989896e1913ef45a770138a","/js/webflow.js","https://unpkg.com/lenis@1.1.2/dist/lenis.min.js","https://unpkg.com/split-type","https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js","https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"];
+      const scriptUrls = [
+        "https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6989896e1913ef45a770138a",
+        "/js/webflow.js",
+        "https://unpkg.com/lenis@1.1.2/dist/lenis.min.js",
+        "https://unpkg.com/split-type",
+        "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js",
+        "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"
+      ];
+
       for (const url of scriptUrls) {
-        if (document.querySelector('script[src="' + url + '"]')) continue;
-        const s = document.createElement('script');
-        s.src = url.startsWith('http') ? url : (url.startsWith('/') ? url : '/' + url);
-        s.async = false;
-        document.body.appendChild(s);
-        await new Promise(res => { s.onload = res; s.onerror = res; });
+        if (!document.querySelector(`script[src="${url}"]`)) {
+          const s = document.createElement('script');
+          s.src = url.startsWith('http') ? url : (url.startsWith('/') ? url : '/' + url);
+          s.async = false;
+          document.body.appendChild(s);
+          await new Promise(res => { s.onload = res; s.onerror = res; });
+        }
       }
 
-      if (window.Webflow && window.Webflow.destroy && window.Webflow.ready && window.Webflow.require) {
-        window.Webflow.destroy();
-        window.Webflow.ready();
-        window.Webflow.require('ix2').init();
-      }
-
-      
-  var tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  var player;
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('video-player', {
-      events: {
-        'onReady': onPlayerReady
-      }
-    });
-  }
-  function onPlayerReady(event) {
-    var btn = document.getElementById('toggle-btn');
-    var iconPlay = document.getElementById('icon-play');
-    var iconPause = document.getElementById('icon-pause');
-    var isPlaying = true;
-    btn.addEventListener('click', function() {
-      if (isPlaying) {
-        player.pauseVideo();
-        iconPause.style.display = 'none';
-        iconPlay.style.display = 'block';
-      } else {
-        player.playVideo();
-        iconPlay.style.display = 'none';
-        iconPause.style.display = 'block';
-      }
-      isPlaying = !isPlaying;
-    });
-    // Hover effect
-    btn.onmouseover = function() { this.style.background = "rgba(255, 255, 255, 0.25)"; this.style.transform = "scale(1.05)"; };
-    btn.onmouseout = function() { this.style.background = "rgba(255, 255, 255, 0.1)"; this.style.transform = "scale(1)"; };
-    btn.parentElement.style.pointerEvents = "auto";
-  }
-
-
-  // Kita bungkus dalam fungsi sendiri agar variable tidak tabrakan
-  (function() {
-    // Cek API, load jika belum ada
-    if (!window.YT) {
-      var tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    }
-    var player2; // Variable player dibedakan
-    // Fungsi inisialisasi khusus player 2
-    // Kita gunakan teknik interval check karena onYouTubeIframeAPIReady global mungkin sudah dipakai kode 1
-    var checkYT = setInterval(function () {
-        if (window.YT && window.YT.Player) {
-            initPlayer2();
-            clearInterval(checkYT);
+      // Initialize everything after scripts are loaded
+      const initAll = () => {
+        // 1. Webflow Init
+        if (window.Webflow) {
+          try {
+            window.Webflow.destroy();
+            window.Webflow.ready();
+            if (window.Webflow.require('ix2')) window.Webflow.require('ix2').init();
+          } catch (e) { console.error('Webflow init error:', e); }
         }
-    }, 100);
-    function initPlayer2() {
-      player2 = new YT.Player('video-player-2', { // Target ID baru
-        events: {
-          'onReady': onPlayerReady2
-        }
-      });
-    }
-    function onPlayerReady2(event) {
-      var btn = document.getElementById('toggle-btn-2'); // Target ID baru
-      var iconPlay = document.getElementById('icon-play-2');
-      var iconPause = document.getElementById('icon-pause-2');
-      var isPlaying = true; // Default true karena autoplay
-      // Pastikan video jalan & mute
-      event.target.mute();
-      event.target.playVideo();
-      btn.addEventListener('click', function() {
-        // Cek status langsung dari player agar akurat
-        var state = player2.getPlayerState();
-        if (state == 1) { // Jika Playing
-          player2.pauseVideo();
-          iconPause.style.display = 'none';
-          iconPlay.style.display = 'block';
-        } else { // Jika Pause/Ended
-          player2.playVideo();
-          iconPlay.style.display = 'none';
-          iconPause.style.display = 'block';
-        }
-      });
-      // Hover effect
-      btn.onmouseover = function() { this.style.background = "rgba(255, 255, 255, 0.25)"; this.style.transform = "scale(1.05)"; };
-      btn.onmouseout = function() { this.style.background = "rgba(255, 255, 255, 0.1)"; this.style.transform = "scale(1)"; };
-      // Aktifkan pointer events
-      btn.parentElement.style.pointerEvents = "auto";
-    }
-  })();
 
+        // 2. YouTube API Players
+        const initYT = () => {
+          if (!window.YT) {
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            document.head.appendChild(tag);
+          }
 
-  // Menggunakan Scope (function(){}) agar variable tidak bentrok dengan video lain
-  (function() {
-    // Load YouTube API jika belum ada (Safe check)
-    if (!window.YT) {
-      var tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    }
-    var player3; // Variable khusus player 3
-    // Cek berulang sampai API YouTube siap, baru jalankan player 3
-    var checkYT3 = setInterval(function () {
-        if (window.YT && window.YT.Player) {
-            initPlayer3();
-            clearInterval(checkYT3);
+          const setupPlayer = (id: string, btnId: string, playIconId: string, pauseIconId: string, mute = false) => {
+            let player: any;
+            const check = setInterval(() => {
+              if (window.YT && window.YT.Player) {
+                clearInterval(check);
+                player = new window.YT.Player(id, {
+                  events: {
+                    'onReady': (event: any) => {
+                      if (mute) event.target.mute();
+                      event.target.playVideo();
+                      const btn = document.getElementById(btnId);
+                      const iconPlay = document.getElementById(playIconId);
+                      const iconPause = document.getElementById(pauseIconId);
+                      if (btn) {
+                        btn.addEventListener('click', () => {
+                          const state = player.getPlayerState();
+                          if (state === 1) {
+                            player.pauseVideo();
+                            if (iconPause) iconPause.style.display = 'none';
+                            if (iconPlay) iconPlay.style.display = 'block';
+                          } else {
+                            player.playVideo();
+                            if (iconPlay) iconPlay.style.display = 'none';
+                            if (iconPause) iconPause.style.display = 'block';
+                          }
+                        });
+                        btn.onmouseover = () => { btn.style.background = "rgba(255, 255, 255, 0.25)"; btn.style.transform = "scale(1.05)"; };
+                        btn.onmouseout = () => { btn.style.background = "rgba(255, 255, 255, 0.1)"; btn.style.transform = "scale(1)"; };
+                        if (btn.parentElement) btn.parentElement.style.pointerEvents = "auto";
+                      }
+                    }
+                  }
+                });
+              }
+            }, 100);
+            return check;
+          };
+
+          checkT1 = setupPlayer('video-player', 'toggle-btn', 'icon-play', 'icon-pause');
+          checkT2 = setupPlayer('video-player-2', 'toggle-btn-2', 'icon-play-2', 'icon-pause-2', true);
+          checkT3 = setupPlayer('video-player-3', 'toggle-btn-3', 'icon-play-3', 'icon-pause-3', true);
+          checkT4 = setupPlayer('video-player-4', 'toggle-btn-4', 'icon-play-4', 'icon-pause-4', true);
+        };
+        initYT();
+
+        // 3. Lenis Smooth Scroll
+        if (window.Lenis) {
+          lenisInst = new window.Lenis({
+            lerp: 0.1,
+            smoothWheel: true,
+            wheelMultiplier: 1,
+            autoResize: true
+          });
+
+          const raf = (time: number) => {
+            lenisInst?.raf(time);
+            rafId = requestAnimationFrame(raf);
+          };
+          rafId = requestAnimationFrame(raf);
+
+          document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e: any) => {
+              e.preventDefault();
+              const target = document.querySelector(e.currentTarget.getAttribute('href'));
+              if (target) lenisInst.scrollTo(target);
+            });
+          });
         }
-    }, 100);
-    function initPlayer3() {
-      player3 = new YT.Player('video-player-3', { // Target ID video-player-3
-        events: {
-          'onReady': onPlayerReady3
+
+        // 4. Counter Animation
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const target = parseInt(el.textContent || '0', 10);
+              const duration = parseInt(el.getAttribute('duration') || '2000', 10);
+              let startTime: number;
+              const animate = (time: number) => {
+                if (!startTime) startTime = time;
+                const t = Math.min((time - startTime) / duration, 1);
+                const eased = 1 - Math.pow(1 - t, 4);
+                el.textContent = Math.round(target * eased).toString();
+                if (t < 1) requestAnimationFrame(animate);
+                else el.textContent = target.toString();
+              };
+              requestAnimationFrame(animate);
+              observer.unobserve(el);
+            }
+          });
+        });
+        document.querySelectorAll('[counter-element="number"]').forEach(el => observer.observe(el));
+
+        // 5. GSAP & SplitType
+        if (window.gsap && window.ScrollTrigger && window.SplitType) {
+          const gsap = window.gsap;
+          const ScrollTrigger = window.ScrollTrigger;
+          const SplitType = window.SplitType;
+
+          gsap.registerPlugin(ScrollTrigger);
+          const splitTexts = new SplitType('.split-text', { types: 'words' });
+
+          const $ = (window as any).jQuery;
+          if ($) {
+            $(".word-animation").each(function(this: any) {
+              const triggerElement = $(this);
+              const targetElement = triggerElement.find(".word");
+              gsap.timeline({
+                scrollTrigger: {
+                  trigger: triggerElement,
+                  start: "top 85%",
+                  toggleActions: "play none none reverse"
+                }
+              }).from(targetElement, {
+                duration: 1.5,
+                y: "100%",
+                rotationX: -90,
+                opacity: 0,
+                ease: "power3.out",
+                stagger: 0.05
+              });
+            });
+          }
+
+          let windowWidth = window.innerWidth;
+          resizeHandler = () => {
+            if (windowWidth !== window.innerWidth) {
+              windowWidth = window.innerWidth;
+              splitTexts.revert();
+              ScrollTrigger.refresh();
+            }
+          };
+          window.addEventListener('resize', resizeHandler);
+          ScrollTrigger.refresh();
         }
-      });
-    }
-    function onPlayerReady3(event) {
-      var btn = document.getElementById('toggle-btn-3');      // Target btn-3
-      var iconPlay = document.getElementById('icon-play-3');  // Target icon-3
-      var iconPause = document.getElementById('icon-pause-3'); // Target icon-3
-      // Pastikan video jalan & mute
-      event.target.mute();
-      event.target.playVideo();
-      btn.addEventListener('click', function() {
-        var state = player3.getPlayerState();
-        if (state == 1) { // Jika Playing -> Pause
-          player3.pauseVideo();
-          iconPause.style.display = 'none';
-          iconPlay.style.display = 'block';
-        } else { // Jika Pause/Stop -> Play
-          player3.playVideo();
-          iconPlay.style.display = 'none';
-          iconPause.style.display = 'block';
-        }
-      });
-      // Hover effect manual
-      btn.onmouseover = function() { this.style.background = "rgba(255, 255, 255, 0.25)"; this.style.transform = "scale(1.05)"; };
-      btn.onmouseout = function() { this.style.background = "rgba(255, 255, 255, 0.1)"; this.style.transform = "scale(1)"; };
-      // Aktifkan pointer
-      btn.parentElement.style.pointerEvents = "auto";
-    }
-  })();
+      };
 
-
-  // Bungkus dalam fungsi tertutup agar variabel tidak bentrok dengan video lain
-  (function() {
-    // Cek apakah API YouTube sudah ada, jika belum, load scriptnya
-    if (!window.YT) {
-      var tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    }
-    var player4; // Variabel khusus untuk player 4
-    // Cek berulang sampai API YouTube siap, baru jalankan inisialisasi player 4
-    var checkYT4 = setInterval(function () {
-        if (window.YT && window.YT.Player) {
-            initPlayer4();
-            clearInterval(checkYT4);
-        }
-    }, 100);
-    function initPlayer4() {
-      player4 = new YT.Player('video-player-4', { // Target ID video-player-4
-        events: {
-          'onReady': onPlayerReady4
-        }
-      });
-    }
-    function onPlayerReady4(event) {
-      var btn = document.getElementById('toggle-btn-4');      // Target btn-4
-      var iconPlay = document.getElementById('icon-play-4');  // Target icon-4
-      var iconPause = document.getElementById('icon-pause-4'); // Target icon-4
-      // Pastikan video jalan & mute
-      event.target.mute();
-      event.target.playVideo();
-      btn.addEventListener('click', function() {
-        var state = player4.getPlayerState(); // Cek status player 4
-        if (state == 1) { // Jika Playing -> Pause
-          player4.pauseVideo();
-          iconPause.style.display = 'none';
-          iconPlay.style.display = 'block';
-        } else { // Jika Pause/Stop -> Play
-          player4.playVideo();
-          iconPlay.style.display = 'none';
-          iconPause.style.display = 'block';
-        }
-      });
-      // Hover effect manual
-      btn.onmouseover = function() { this.style.background = "rgba(255, 255, 255, 0.25)"; this.style.transform = "scale(1.05)"; };
-      btn.onmouseout = function() { this.style.background = "rgba(255, 255, 255, 0.1)"; this.style.transform = "scale(1)"; };
-      // Aktifkan pointer events
-      btn.parentElement.style.pointerEvents = "auto";
-    }
-  })();
-
-
-const lenis = new Lenis({
-  lerp: 0.2,
-  smoothWheel: true,
-  wheelMultiplier: 1,
-  autoResize: true
-});
-function raf(time) {
-  lenis.raf(time);
-  requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if(target){
-      lenis.scrollTo(target);
-    }
-  });
-});
-
-
-(function() {
-  const animateNumber = (element, target, duration) => {
-    let startTime;
-    const initialNumber = 0;
-    const easingFunction = t => 1 - Math.pow(1 - t, 4);
-    const animate = time => {
-      if (!startTime) startTime = time;
-      const elapsedTime = time - startTime;
-      const t = Math.min(elapsedTime / duration, 1);
-      const newValue = initialNumber + (target - initialNumber) * easingFunction(t);
-      element.textContent = Math.round(newValue);
-      if (elapsedTime < duration) {
-        requestAnimationFrame(animate);
-      } else {
-        element.textContent = target;
-      }
+      initAll();
+      // Webflow metadata
+      document.documentElement.setAttribute('data-wf-page', '6989896f1913ef45a7701396');
+      document.documentElement.setAttribute('data-wf-site', '6989896e1913ef45a770138a');
     };
-    requestAnimationFrame(animate);
-  };
-  const onIntersection = entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const finalNumber = parseInt(el.textContent, 10);
-        const animDuration = parseInt(el.getAttribute('duration'), 10) || 2000;
-        animateNumber(el, finalNumber, animDuration);
-        observer.unobserve(el);
-      }
-    });
-  };
-  const observer = new IntersectionObserver(onIntersection);
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('[counter-element="number"]').forEach(el => {
-      observer.observe(el);
-    });
-  });
-})();
 
-
-// Tunggu sampai Webflow siap
-window.addEventListener("DOMContentLoaded", (event) => {
-  // Register GSAP
-  gsap.registerPlugin(ScrollTrigger);
-  // Jalankan SplitType pada elemen dengan class .split-text
-  const text = new SplitType('.split-text', { types: 'words' });
-  // Animasi untuk setiap kata
-  $(".word-animation").each(function (index) {
-    let triggerElement = $(this);
-    let targetElement = $(this).find(".word"); // SplitType pakai class .word, bukan .split-words
-    let tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: triggerElement,
-        start: "top 85%", 
-        end: "bottom top",
-        toggleActions: "play none none reverse"
-      }
-    });
-    tl.from(targetElement, {
-      duration: 1.5,
-      y: "100%",       // Gerak dari bawah
-      rotationX: -90,  // Efek putar
-      opacity: 0,
-      ease: "power3.out",
-      stagger: 0.05    // Jeda antar kata
-    });
-  });
-  // Perbaiki bug saat resize layar (Reset SplitType)
-  let windowWidth = window.innerWidth;
-  window.addEventListener('resize', function() {
-    if (windowWidth !== window.innerWidth) {
-        windowWidth = window.innerWidth;
-        text.revert();
-        location.reload(); // Reload agar kalkulasi ulang
-    }
-  });
-});
-
-
-      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
-    };
     loadExternalScripts();
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      if (lenisInst) lenisInst.destroy();
+      if (resizeHandler) window.removeEventListener('resize', resizeHandler);
+      [checkT1, checkT2, checkT3, checkT4].forEach(c => c && clearInterval(c));
+      
+      if (window.ScrollTrigger) {
+        window.ScrollTrigger.getAll().forEach((t: any) => t.kill());
+      }
+      
+      // Clear Webflow attributes
+      document.documentElement.removeAttribute('data-wf-page');
+      document.documentElement.removeAttribute('data-wf-site');
+      
+      // Critical: Clear styles and classes that cause lag/scrolling issues
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      document.documentElement.classList.remove('lenis', 'lenis-smooth', 'lenis-stopped');
+      document.body.classList.remove('lenis', 'lenis-smooth', 'lenis-stopped');
+    };
   }, []);
+
+
 
   return (
     <div className="webflow-wrapper body">
@@ -327,6 +221,20 @@ window.addEventListener("DOMContentLoaded", (event) => {
   /* Hide the Webflow exported navbar if using React navbar */
   .webflow-wrapper .navbar.w-nav {
     display: none !important;
+  }
+  
+  /* Ensure Hero content starts correctly below the React Navbar */
+  .webflow-wrapper .section.dark {
+    padding-top: clamp(80px, 10vh, 120px) !important;
+    min-height: 100vh !important;
+  }
+
+  /* Center the content horizontally as intended in Webflow */
+  .webflow-wrapper .v-flex-xxl.center,
+  .webflow-wrapper .v-flex-lg.center {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
   }
 ` }} />
       
