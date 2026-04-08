@@ -55,9 +55,15 @@ function Logo() {
         <a
             href="#home"
             onClick={() => { window.location.hash = '#home'; }}
-            className="text-white text-xl font-bold tracking-tight"
+            className="flex items-center shrink-0"
+            aria-label="eluxspace home"
         >
-            eluxspace
+            <img
+                src="/images/Frame-117.webp"
+                alt="eluxspace"
+                loading="lazy"
+                className="block h-auto w-[160px] object-contain"
+            />
         </a>
     );
 }
@@ -373,7 +379,7 @@ export default function Navbar() {
                     <div className="flex items-center gap-4">
                         <a
                             href="mailto:hello@elux.space"
-                            className="hidden lg:inline-flex items-center gap-2 bg-[#2563EB] text-white text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-[#1d4ed8] transition-colors duration-200"
+                            className="navbar-cta hidden lg:inline-flex items-center gap-2 bg-[#2563EB] text-white text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-[#1d4ed8] transition-colors duration-200"
                         >
                             Book Discovery Call
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -463,7 +469,7 @@ export default function Navbar() {
 
                         <a
                             href="mailto:hello@elux.space"
-                            className="mt-8 flex items-center justify-center gap-2 bg-[#2563EB] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-[#1d4ed8] transition-colors w-full"
+                            className="navbar-cta mt-8 flex items-center justify-center gap-2 bg-[#2563EB] text-white text-sm font-semibold px-6 py-3 rounded-full hover:bg-[#1d4ed8] transition-colors w-full"
                         >
                             Book Discovery Call
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
