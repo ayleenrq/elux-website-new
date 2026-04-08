@@ -62,7 +62,7 @@ function Logo() {
                 src="/images/Frame-117.webp"
                 alt="eluxspace"
                 loading="lazy"
-                className="block h-auto w-[160px] object-contain"
+                className="block h-auto w-[140px] object-contain md:w-[160px]"
             />
         </a>
     );

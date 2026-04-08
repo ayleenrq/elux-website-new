@@ -2648,6 +2648,488 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   .webflow-wrapper .grid-4x2 .card-wrap.outer { transition: transform 0.4s ease; }
   .webflow-wrapper .grid-4x2 .card-content:hover .card-wrap.outer { transform: scale(1.05); }
+  @media (max-width: 767px) {
+    .webflow-wrapper .section {
+      padding-top: 56px !important;
+      padding-bottom: 56px !important;
+    }
+    .webflow-wrapper .section.sticky-bottom {
+      position: relative !important;
+      top: auto !important;
+      margin-bottom: 20px !important;
+      padding-bottom: 0 !important;
+      overflow: visible !important;
+      z-index: 3 !important;
+    }
+    .webflow-wrapper .benefit-section > .v-flex-default.sapce {
+      row-gap: 24px !important;
+    }
+    .webflow-wrapper .benefit-section .v-flex-lg.align-left {
+      margin-bottom: 16px !important;
+    }
+    .webflow-wrapper .section.dark-2 {
+      background-color: transparent !important;
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+      z-index: 0 !important;
+      margin-top: 0 !important;
+    }
+    .webflow-wrapper .heading-1 {
+      font-size: 52px !important;
+      line-height: 1.04 !important;
+      letter-spacing: -0.04em !important;
+    }
+    .webflow-wrapper .text-7xl,
+    .webflow-wrapper .text-7xl._2,
+    .webflow-wrapper .text-7xl._w-full,
+    .webflow-wrapper .text-7xl._w-100,
+    .webflow-wrapper .text-7xl._100,
+    .webflow-wrapper .text-7xl.color-white,
+    .webflow-wrapper .text-7xl.white {
+      font-size: 42px !important;
+      line-height: 1.08 !important;
+      letter-spacing: -0.03em !important;
+    }
+    .webflow-wrapper .text-4xl,
+    .webflow-wrapper .text-4xl.black,
+    .webflow-wrapper .text-4xl._w-70,
+    .webflow-wrapper .text-4xl._w-80,
+    .webflow-wrapper .text-4xl._w-90 {
+      font-size: 28px !important;
+      line-height: 1.15 !important;
+    }
+    .webflow-wrapper .text-3xl,
+    .webflow-wrapper .text-3xl.black,
+    .webflow-wrapper .text-3xl.white,
+    .webflow-wrapper .text-3xl._w-80 {
+      font-size: 22px !important;
+      line-height: 1.2 !important;
+    }
+    .webflow-wrapper .text-2xl,
+    .webflow-wrapper .text-2xl.white,
+    .webflow-wrapper .text-2xl.center,
+    .webflow-wrapper .text-2xl.color-white,
+    .webflow-wrapper .text-2xl.color-neu-30,
+    .webflow-wrapper .text-2xl._w-52 {
+      font-size: 18px !important;
+      line-height: 1.45 !important;
+    }
+    .webflow-wrapper .text-xl,
+    .webflow-wrapper .text-xl.white,
+    .webflow-wrapper .text-xl.color-blue,
+    .webflow-wrapper .text-xl.heading-text,
+    .webflow-wrapper .text-xl.semibold,
+    .webflow-wrapper .text-xl-2 {
+      font-size: 16px !important;
+      line-height: 1.45 !important;
+    }
+    .webflow-wrapper .text-lg,
+    .webflow-wrapper .text-lg.black,
+    .webflow-wrapper .text-lg.color-inverse,
+    .webflow-wrapper .text-lg.color-neu-70,
+    .webflow-wrapper .text-lg.blue-color,
+    .webflow-wrapper .text-lg.uppercase {
+      font-size: 15px !important;
+      line-height: 1.5 !important;
+    }
+    .webflow-wrapper .text-base,
+    .webflow-wrapper .text-sm,
+    .webflow-wrapper .text-sm.regular,
+    .webflow-wrapper .text-sm.testimonial-text {
+      font-size: 13px !important;
+      line-height: 1.5 !important;
+    }
+    .webflow-wrapper .text-xs {
+      font-size: 12px !important;
+      line-height: 1.45 !important;
+    }
+    .webflow-wrapper .label-text,
+    .webflow-wrapper .label-text.black,
+    .webflow-wrapper .label-text.color-black,
+    .webflow-wrapper .label-text-2,
+    .webflow-wrapper .menu-text {
+      font-size: 12px !important;
+      line-height: 1.35 !important;
+      letter-spacing: 0.04em !important;
+    }
+    .webflow-wrapper .content-wrap > .grid-2xl {
+      grid-template-columns: 1fr !important;
+      grid-template-rows: auto auto !important;
+      gap: 20px !important;
+    }
+    .webflow-wrapper .grid-4x2 {
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: auto !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-content {
+      height: 260px !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-wrap.inner {
+      padding: 14px !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .text-2xl,
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .text-2xl.white {
+      font-size: 15px !important;
+      line-height: 1.3 !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .text-xl,
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .text-xl.white {
+      font-size: 14px !important;
+      line-height: 1.35 !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .text-sm,
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .text-xs {
+      font-size: 11px !important;
+      line-height: 1.35 !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .card-label {
+      padding: 4px 10px !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-grid {
+      gap: 8px !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-wrap.outer img {
+      width: 72% !important;
+      height: auto !important;
+      max-height: 68% !important;
+      object-fit: contain !important;
+    }
+    .webflow-wrapper .grid-1x3 {
+      grid-template-columns: 1fr 1fr !important;
+      grid-template-rows: auto !important;
+    }
+    .webflow-wrapper .grid-2xl.card-wrapper,
+    .webflow-wrapper .grid-2xl.key-industries,
+    .webflow-wrapper .grid-2xl.benefit-section,
+    .webflow-wrapper .grid-1x6,
+    .webflow-wrapper .service-content-grid,
+    .webflow-wrapper .service-content-grid._1,
+    .webflow-wrapper .service-content-grid._2,
+    .webflow-wrapper .service-content-grid._3,
+    .section-relative .grid-2xl.cta,
+    .section-relative .form-grid,
+    .webflow-wrapper .grdi-3x1 {
+      grid-template-columns: 1fr !important;
+    }
+    .webflow-wrapper .grid-2xl,
+    .webflow-wrapper .grid-2x2 {
+      gap: 24px !important;
+    }
+    .webflow-wrapper .benefit-card,
+    .webflow-wrapper .card-content-wrap,
+    .section-relative .form-block,
+    .section-relative .cta-card-wrap {
+      padding: 20px !important;
+    }
+    .webflow-wrapper .image,
+    .webflow-wrapper .image-2 {
+      max-width: 68% !important;
+    }
+    .webflow-wrapper .image-5 {
+      inset: auto 0 0 auto !important;
+      width: 140px !important;
+      height: auto !important;
+      opacity: 0.65 !important;
+    }
+    .webflow-wrapper .image-6 {
+      height: 42px !important;
+    }
+    .webflow-wrapper .image-10 {
+      width: 88px !important;
+    }
+    .webflow-wrapper .image-13 {
+      max-height: 220px !important;
+      width: 100% !important;
+      object-fit: cover !important;
+      border-radius: 16px !important;
+    }
+    .webflow-wrapper .image-14 {
+      width: 150px !important;
+    }
+    .webflow-wrapper .grdi-3x1 > img,
+    .webflow-wrapper .grdi-3x1 .image {
+      max-width: 88px !important;
+      max-height: 88px !important;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
+    }
+    .webflow-wrapper .logo-image,
+    .webflow-wrapper .logo-image._2 {
+      max-width: 84px !important;
+      max-height: 28px !important;
+      margin-bottom: 12px !important;
+    }
+    .webflow-wrapper .carousel-image {
+      height: 220px !important;
+      width: auto !important;
+    }
+    .webflow-wrapper .carousel-image._1 {
+      width: 320px !important;
+      height: auto !important;
+    }
+    .webflow-wrapper .carousel-image._2 {
+      width: 240px !important;
+      height: 220px !important;
+    }
+    .webflow-wrapper .carousel-image._3 {
+      width: 240px !important;
+      height: 160px !important;
+    }
+    .webflow-wrapper .card-testimonial {
+      width: 410px !important;
+      min-height: 0 !important;
+      height: 286px !important;
+      padding: 18px !important;
+      align-items: center !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      gap: 12px !important;
+    }
+    .webflow-wrapper .card-testimonial > .v-flex-default {
+      width: 100% !important;
+      min-width: 0 !important;
+      flex: 1 1 auto !important;
+      max-width: calc(100% - 112px) !important;
+      gap: 12px !important;
+    }
+    .webflow-wrapper .card-testimonial .v-flex-xl {
+      gap: 10px !important;
+    }
+    .webflow-wrapper .card-testimonial .v-flex-xs {
+      gap: 6px !important;
+    }
+    .webflow-wrapper .card-testimonial .testimonial-text {
+      width: 100% !important;
+      overflow-wrap: anywhere !important;
+      word-break: break-word !important;
+      white-space: normal !important;
+      max-height: none !important;
+      overflow: visible !important;
+      line-height: 1.45 !important;
+    }
+    .webflow-wrapper .card-testimonial .image-14 {
+      flex: 0 0 auto !important;
+      width: 100px !important;
+      max-width: 100px !important;
+      max-height: 132px !important;
+      height: auto !important;
+      object-fit: contain !important;
+      object-position: center right !important;
+      align-self: flex-end !important;
+      margin-top: auto !important;
+    }
+    .webflow-wrapper .video-wrap {
+      max-width: 320px !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .webflow-wrapper .bg-image {
+      inset: auto -6% -2% auto !important;
+      width: 88% !important;
+      max-width: 360px !important;
+      opacity: 0.48 !important;
+      display: block !important;
+      visibility: visible !important;
+    }
+    .webflow-wrapper .section.dark > .bg-image {
+      position: absolute !important;
+      top: 40px !important;
+      left: 50% !important;
+      right: auto !important;
+      bottom: auto !important;
+      transform: translateX(-50%) !important;
+      z-index: 0 !important;
+      opacity: 0.5 !important;
+      width: 96% !important;
+      max-width: 440px !important;
+      display: block !important;
+      visibility: visible !important;
+      pointer-events: none !important;
+    }
+  }
+  @media (max-width: 479px) {
+    .webflow-wrapper .section {
+      padding-top: 48px !important;
+      padding-bottom: 48px !important;
+    }
+    .webflow-wrapper .section.sticky-bottom {
+      margin-bottom: 16px !important;
+      padding-bottom: 0 !important;
+    }
+    .webflow-wrapper .benefit-section > .v-flex-default.sapce {
+      row-gap: 20px !important;
+    }
+    .webflow-wrapper .benefit-section .v-flex-lg.align-left {
+      margin-bottom: 12px !important;
+    }
+    .webflow-wrapper .section.dark-2 {
+      background-color: transparent !important;
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+    }
+    .webflow-wrapper .heading-1 {
+      font-size: 40px !important;
+    }
+    .webflow-wrapper .content-wrap > .grid-2xl {
+      gap: 16px !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-content {
+      height: 220px !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-wrap.inner {
+      padding: 12px !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .text-2xl,
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .text-2xl.white {
+      font-size: 14px !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .text-xl,
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .text-xl.white {
+      font-size: 13px !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .text-sm,
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .text-xs {
+      font-size: 10px !important;
+      line-height: 1.3 !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-wrap.inner .card-label {
+      padding: 4px 8px !important;
+    }
+    .webflow-wrapper .text-7xl,
+    .webflow-wrapper .text-7xl._2,
+    .webflow-wrapper .text-7xl._w-full,
+    .webflow-wrapper .text-7xl._w-100,
+    .webflow-wrapper .text-7xl._100,
+    .webflow-wrapper .text-7xl.color-white,
+    .webflow-wrapper .text-7xl.white {
+      font-size: 34px !important;
+    }
+    .webflow-wrapper .text-4xl,
+    .webflow-wrapper .text-4xl.black,
+    .webflow-wrapper .text-4xl._w-70,
+    .webflow-wrapper .text-4xl._w-80,
+    .webflow-wrapper .text-4xl._w-90 {
+      font-size: 24px !important;
+    }
+    .webflow-wrapper .text-3xl,
+    .webflow-wrapper .text-3xl.black,
+    .webflow-wrapper .text-3xl.white,
+    .webflow-wrapper .text-3xl._w-80 {
+      font-size: 20px !important;
+    }
+    .webflow-wrapper .text-2xl,
+    .webflow-wrapper .text-2xl.white,
+    .webflow-wrapper .text-2xl.center,
+    .webflow-wrapper .text-2xl.color-white,
+    .webflow-wrapper .text-2xl.color-neu-30,
+    .webflow-wrapper .text-2xl._w-52 {
+      font-size: 16px !important;
+    }
+    .webflow-wrapper .text-xl,
+    .webflow-wrapper .text-xl.white,
+    .webflow-wrapper .text-xl.color-blue,
+    .webflow-wrapper .text-xl.heading-text,
+    .webflow-wrapper .text-xl.semibold,
+    .webflow-wrapper .text-xl-2,
+    .webflow-wrapper .text-lg,
+    .webflow-wrapper .text-lg.black,
+    .webflow-wrapper .text-lg.color-inverse,
+    .webflow-wrapper .text-lg.color-neu-70,
+    .webflow-wrapper .text-lg.blue-color,
+    .webflow-wrapper .text-lg.uppercase {
+      font-size: 14px !important;
+    }
+    .webflow-wrapper .text-base,
+    .webflow-wrapper .text-sm,
+    .webflow-wrapper .text-sm.regular,
+    .webflow-wrapper .text-sm.testimonial-text,
+    .webflow-wrapper .text-xs,
+    .webflow-wrapper .label-text,
+    .webflow-wrapper .label-text.black,
+    .webflow-wrapper .label-text.color-black,
+    .webflow-wrapper .label-text-2,
+    .webflow-wrapper .menu-text {
+      font-size: 12px !important;
+    }
+    .webflow-wrapper .grid-4x2 .card-wrap.outer img {
+      width: 64% !important;
+      max-height: 60% !important;
+    }
+    .webflow-wrapper .image,
+    .webflow-wrapper .image-2 {
+      max-width: 60% !important;
+    }
+    .webflow-wrapper .image-5 {
+      width: 110px !important;
+    }
+    .webflow-wrapper .image-6 {
+      height: 36px !important;
+    }
+    .webflow-wrapper .image-13 {
+      max-height: 180px !important;
+    }
+    .webflow-wrapper .image-14 {
+      width: 120px !important;
+    }
+    .webflow-wrapper .grdi-3x1 > img,
+    .webflow-wrapper .grdi-3x1 .image {
+      max-width: 72px !important;
+      max-height: 72px !important;
+    }
+    .webflow-wrapper .logo-image,
+    .webflow-wrapper .logo-image._2 {
+      max-width: 72px !important;
+      max-height: 24px !important;
+    }
+    .webflow-wrapper .carousel-image {
+      height: 180px !important;
+    }
+    .webflow-wrapper .carousel-image._1 {
+      width: 260px !important;
+    }
+    .webflow-wrapper .carousel-image._2 {
+      width: 200px !important;
+      height: 180px !important;
+    }
+    .webflow-wrapper .carousel-image._3 {
+      width: 200px !important;
+      height: 132px !important;
+    }
+    .webflow-wrapper .card-testimonial {
+      width: 356px !important;
+      min-height: 0 !important;
+      height: 272px !important;
+      padding: 16px !important;
+    }
+    .webflow-wrapper .card-testimonial > .v-flex-default {
+      max-width: calc(100% - 96px) !important;
+    }
+    .webflow-wrapper .card-testimonial .image-14 {
+      width: 88px !important;
+      max-width: 88px !important;
+      max-height: 112px !important;
+    }
+    .webflow-wrapper .video-wrap {
+      max-width: 260px !important;
+    }
+    .webflow-wrapper .bg-image {
+      right: -10% !important;
+      width: 92% !important;
+      max-width: 300px !important;
+      opacity: 0.42 !important;
+    }
+    .webflow-wrapper .section.dark > .bg-image {
+      top: 32px !important;
+      left: 50% !important;
+      right: auto !important;
+      bottom: auto !important;
+      transform: translateX(-50%) !important;
+      width: 98% !important;
+      max-width: 360px !important;
+      opacity: 0.46 !important;
+    }
+  }
 html.lenis, html.lenis body {
   height: auto;
 }
