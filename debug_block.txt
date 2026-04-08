@@ -1,0 +1,78 @@
+               <div className="text-xl">Listed by Clutch as a top Webflow development partner for building fast, maintainable, and launch-ready Webflow products.</div>
+              </div>
+            </div>
+            <div className="line"></div>
+            <div className="awward-content">
+              <div className="w-layout-grid grdi-3x1"><img src="/images/Image-Container-2.png" loading="lazy" alt="" className="image" />
+                <div className="text-2xl white">Clutch Top Web Design Company Indonesia 2026</div>
+                <div className="text-xl">Nominated by Clutch as a top company in Indonesia, based on verified client reviews, delivery quality, and consistent product outcomes.</div>
+              </div>
+            </div>
+            <div className="line"></div>
+            <div className="awward-content">
+              <div className="w-layout-grid grdi-3x1"><img src="/images/Image-Container_1.png" loading="lazy" alt="" className="image" />
+                <div className="text-2xl white">Dribbble Top Product Design Company Select</div>
+                <div className="text-xl">Selected by Dribbble as a Top Product Design Company, recognizing excellence in crafting visually compelling, high-impact digital product experiences.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div className="section-relative">
+    <section className="section dark-3">
+      <div className="w-layout-blockcontainer container w-container">
+        <div className="v-flex-2xl">
+          <div className="v-flex-lg center">
+            <div data-w-id="2753b1f8-1dd2-5770-99e8-54755ce9c19d" style={{opacity: "0"}} className="label">
+              <div className="dot"></div>
+              <div className="label-text">CALL TO ACTION</div>
+            </div>
+            <div className="word-animation">
+              <h2 className="text-7xl _100"><span className="white split-text">Great Product dies <br />in bad interfaces and experiences</span></h2>
+            </div>
+            <div className="v-flex-2xl">
+              <div className="text-xl">Let&#x27;s start to create and fix yours. Book a discovery call today!</div>
+            </div>
+          </div>
+          <div className="w-layout-grid grid-2xl cta">
+            <div id="w-node-ddb07485-992f-57db-bdfb-f0a71b2709ff-a7701396" className="v-flex-xl bootm">
+              <div className="v-flex-lg">
+                <div className="text-2xl white">Have a project to discuss?</div>
+                <div className="cta-card-wrap">
+                  <div className="h-flex-md"><img src="/images/Profile-Image.png" loading="lazy" alt="" className="image-10" />
+                    <div className="v-flex-md _w-100">
+                      <div className="v-flex-xxs">
+                        <div className="text-2xl white">Kseniia Shalia</div>
+                        <div className="text-lg color-inverse">Account Executive</div>
+                      </div>
+                      <div className="line"></div>
+                      <div className="h-flex-xxs">
+                        <div className="text-lg color-inverse">hello@elux.space</div>
+                        <div className="code-embed-2 w-embed"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.75 5.25L5.25 12.75M12.75 5.25H6M12.75 5.25V12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                          </svg></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="v-flex-lg">
+                <div className="text-2xl white">Have a partnership in mind?</div>
+                <div className="cta-card-wrap">
+                  <div className="h-flex-md"><img src="/images/Profile-Image-1.png" loading="lazy" alt="" className="image-10" />
+                    <div className="v-flex-md _w-100">
+                      <div className="v-flex-xxs">
+                        <div className="text-2xl white">Kseniia Shalia</div>
+                        <div className="text-lg color-inverse">Account Executive</div>
+                      </div>
+                      <div className="line"></div>
+                      <div className="h-flex-xxs">
+                        <div className="text-lg color-inverse">hello@elux.space</div>
+                        <div className="code-embed-2 w-embed"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12.75 5.25L5.25 12.75M12.75 5.25H6M12.75 5.25V12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                          </svg></div>
+                      </div>
+                    </div>
+               

@@ -36,6 +36,12 @@ function App() {
       document.body.classList.add('is-webflow');
     } else {
       document.body.classList.remove('is-webflow');
+      document.documentElement.classList.remove('lenis', 'lenis-smooth', 'lenis-stopped');
+      document.body.classList.remove('lenis', 'lenis-smooth', 'lenis-stopped');
+      document.documentElement.style.removeProperty('scroll-behavior');
+      document.body.style.removeProperty('scroll-behavior');
+      document.body.style.removeProperty('overflow');
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }
 
     return () => window.removeEventListener('hashchange', handleHashChange);
@@ -61,9 +67,9 @@ function App() {
       <Navbar />
       <main>
         {renderPage()}
-        {hash !== '#contact' && <BottomCTA />}
+        {hash !== '#home' && hash !== '#contact' && <BottomCTA />}
       </main>
-      <Footer />
+      {hash !== '#home' && <Footer />}
     </div>
   );
 }

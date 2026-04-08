@@ -3,6 +3,10 @@ import React, { useEffect } from 'react';
 
 export default function WebflowHome() {
   useEffect(() => {
+    let isMounted = true;
+    let lenisInstance = null;
+    let lenisRafId = null;
+
     const loadExternalScripts = async () => {
       const scriptUrls = ["https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6989896e1913ef45a770138a","/js/webflow.js","https://unpkg.com/lenis@1.1.2/dist/lenis.min.js","https://unpkg.com/split-type","https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js","https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"];
       for (const url of scriptUrls) {
@@ -13,6 +17,8 @@ export default function WebflowHome() {
         document.body.appendChild(s);
         await new Promise(res => { s.onload = res; s.onerror = res; });
       }
+
+      if (!isMounted) return;
 
       if (window.Webflow && window.Webflow.destroy && window.Webflow.ready && window.Webflow.require) {
         window.Webflow.destroy();
@@ -222,11 +228,12 @@ const lenis = new Lenis({
   wheelMultiplier: 1,
   autoResize: true
 });
+lenisInstance = lenis;
 function raf(time) {
   lenis.raf(time);
-  requestAnimationFrame(raf);
+  lenisRafId = requestAnimationFrame(raf);
 }
-requestAnimationFrame(raf);
+lenisRafId = requestAnimationFrame(raf);
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -319,6 +326,24 @@ window.addEventListener("DOMContentLoaded", (event) => {
       if (window.ScrollTrigger) window.ScrollTrigger.refresh();
     };
     loadExternalScripts();
+
+    return () => {
+      isMounted = false;
+
+      if (lenisRafId !== null) {
+        cancelAnimationFrame(lenisRafId);
+      }
+
+      if (lenisInstance && typeof lenisInstance.destroy === 'function') {
+        lenisInstance.destroy();
+      }
+
+      document.documentElement.classList.remove('lenis', 'lenis-smooth', 'lenis-stopped');
+      document.body.classList.remove('lenis', 'lenis-smooth', 'lenis-stopped');
+      document.documentElement.style.removeProperty('scroll-behavior');
+      document.body.style.removeProperty('scroll-behavior');
+      document.body.style.removeProperty('overflow');
+    };
   }, []);
 
   return (
@@ -2366,7 +2391,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 </div>
               </div>
             </div>
-            <div className="form-block w-form">
+            <div className="form-block w-form p-8">
               <form id="wf-form-" name="wf-form-" data-name="form" method="get" className="from-wrap" data-wf-page-id="6989896f1913ef45a7701396" data-wf-element-id="56f6f423-6941-da6e-9274-a24f0bfca33e">
                 <div className="w-layout-grid grid-2x2 form-grid">
                   <div className="v-flex-md">
@@ -2382,19 +2407,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     <div className="text-lg color-inverse">Your Title</div><input className="text-form w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your Title in Company" type="text" id="name" />
                   </div>
                 </div>
-                <div className="v-flex-md p-32">
+                <div className="v-flex-md pt-6">
                   <div className="text-lg color-inverse">Message</div><input className="text-form w-input" maxlength="256" name="name" data-name="Name" placeholder="Tell us about your project" type="text" id="name" />
                 </div>
-                <div className="v-flex-lg p-32">
+                <div className="v-flex-lg pt-6">
                   <div className="text-lg color-inverse">Project type</div>
                   <div className="grid"><label className="radio-field w-radio"><input type="radio" data-name="project type" id="UX" name="project-type" className="w-form-formradioinput hidden w-radio-input" value="UX" /><span className="text-xl white w-form-label" htmlFor="UX"><span className="medium">UI/UX Design</span></span></label><label className="radio-field w-radio"><input type="radio" data-name="project type" id="Product" name="project-type" className="w-form-formradioinput hidden w-radio-input" value="Product" /><span className="text-xl white w-form-label" htmlFor="Product">Product Design</span></label><label id="w-node-_444aee8f-6fad-e8ab-5a02-28ec465265d5-a7701396" className="radio-field _2 w-radio"><input type="radio" data-name="project type" id="web-dev" name="project-type" className="w-form-formradioinput hidden w-radio-input" value="web dev" /><span className="text-xl white w-form-label" htmlFor="web-dev">Webflow/Framer Development</span></label><label id="w-node-_679c6aac-4804-4a57-5510-9c2782702cee-a7701396" className="radio-field _3 w-radio"><input type="radio" data-name="project type" id="branding" name="project-type" className="w-form-formradioinput hidden w-radio-input" value="branding" /><span className="text-xl white w-form-label" htmlFor="branding">Branding Identity</span></label></div>
                 </div>
-                <div className="v-flex-lg p-32">
+                <div className="v-flex-lg pt-6">
                   <div className="text-lg color-inverse">Your Budget About This Project</div>
                   <div className="grid budget"><label className="radio-field w-radio"><input type="radio" data-name="Radio" id="radio" name="radio" className="w-form-formradioinput hidden w-radio-input" value="Radio" /><span className="text-xl white w-form-label" htmlFor="radio">&lt; $5,000</span></label><label className="radio-field budget w-radio"><input type="radio" data-name="Radio" id="radio" name="radio" className="w-form-formradioinput hidden w-radio-input" value="Radio" /><span className="text-xl white w-form-label" htmlFor="radio">$5-$10k</span></label><label className="radio-field budget w-radio"><input type="radio" data-name="Radio" id="radio" name="radio" className="w-form-formradioinput hidden w-radio-input" value="Radio" /><span className="text-xl white w-form-label" htmlFor="radio">$10-$20k</span></label><label className="radio-field budget w-radio"><input type="radio" data-name="Radio" id="radio" name="radio" className="w-form-formradioinput hidden w-radio-input" value="Radio" /><span className="text-xl white w-form-label" htmlFor="radio">$20-$50k</span></label><label className="radio-field budget w-radio"><input type="radio" data-name="Radio" id="radio" name="radio" className="w-form-formradioinput hidden w-radio-input" value="Radio" /><span className="text-xl white w-form-label" htmlFor="radio">$50k+</span></label></div>
                 </div>
                 <div className="v-flex-default left">
-                  <div className="h-flex-lg p-32"><input type="submit" data-wait="Please wait..." className="submit w-button" value="Submit" />
+                  <div className="h-flex-lg pt-16"><input type="submit" data-wait="Please wait..." className="submit w-button" value="Submit" />
                     <div className="_w-50">
                       <div className="text-lg color-inverse">By clicking this button you accept Terms of Service and Privacy Policy.</div>
                     </div>
@@ -2489,7 +2514,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           </div>
           <div className="v-flex-default">
             <div className="line"></div>
-            <div className="h-flex-space p-32">
+            <div className="h-flex-space pt-16">
               <a href="#" className="h-flex-xxs link w-inline-block">
                 <div className="text-xl white">hello@elux.space</div>
                 <div className="code-embed-2 w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
