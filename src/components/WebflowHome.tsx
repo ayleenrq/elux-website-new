@@ -2563,6 +2563,60 @@ window.addEventListener("DOMContentLoaded", (event) => {
   @media (max-width: 991px) {
     .service-image { display: none !important; }
   }
+  .logo-image, .logo-image._2 {
+    max-width: 120px !important;
+    max-height: 40px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    margin-bottom: 20px !important;
+    display: block !important;
+  }
+  .section-relative .grid-2xl.cta {
+    display: grid !important;
+    grid-template-columns: 1fr 1.5fr !important;
+    gap: 60px !important;
+    align-items: start !important;
+  }
+  .section-relative .form-block {
+    background-color: #1a1a1a !important;
+    padding: 40px !important;
+    border-radius: 24px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+  .section-relative .cta-card-wrap {
+    background-color: #1a1a1a !important;
+    padding: 24px !important;
+    border-radius: 16px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    margin-bottom: 20px !important;
+  }
+  .section-relative .form-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px !important;
+  }
+  .section-relative .grid.budget, .section-relative .grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+  }
+  .section-relative .radio-field {
+    padding: 12px 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 100px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+  }
+  .section-relative .submit {
+    background-color: #2853ff !important;
+    padding: 16px 40px !important;
+    border-radius: 100px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    border: none !important;
+  }
+
 
 
   .scroll-close-wrap:has(.sticky-wrap:empty), .scroll-close-wrap:not(:has(section)), .scroll-close-wrap:not(:has(div)) { display: none !important; }
