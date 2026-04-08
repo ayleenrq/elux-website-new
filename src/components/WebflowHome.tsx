@@ -2538,6 +2538,35 @@ window.addEventListener("DOMContentLoaded", (event) => {
     transition-delay: 200ms;
   }
   .webflow-wrapper .grid-4x2 .card-wrap.inner * { color: white !important; }
+  .sticky-section.empty-space { display: none !important; }
+  .scroll-close-wrap { min-height: auto !important; height: auto !important; padding-bottom: 0 !important; margin-bottom: 0 !important; }
+  .sticky-wrap { position: relative !important; height: auto !important; }
+  .sticky-section { position: relative !important; height: auto !important; }
+  .service-wrapper { position: relative !important; }
+  .service-image {
+    position: absolute !important;
+    top: 50% !important;
+    right: -40% !important;
+    transform: translateY(-50%) !important;
+    width: 350px !important;
+    height: auto !important;
+    z-index: 100 !important;
+    pointer-events: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3) !important;
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+  }
+  .service-content:hover .service-image {
+    opacity: 1 !important;
+  }
+  @media (max-width: 991px) {
+    .service-image { display: none !important; }
+  }
+
+
+  .scroll-close-wrap:has(.sticky-wrap:empty), .scroll-close-wrap:not(:has(section)), .scroll-close-wrap:not(:has(div)) { display: none !important; }
+
   .webflow-wrapper .grid-4x2 .card-wrap.outer { transition: transform 0.4s ease; }
   .webflow-wrapper .grid-4x2 .card-content:hover .card-wrap.outer { transform: scale(1.05); }
 html.lenis, html.lenis body {
