@@ -3,49 +3,49 @@ import { useState, useRef, useEffect } from 'react';
 // ─── Data with descriptions ───────────────────────────────────────────────────
 const servicesMenu = {
     SEED: [
-        { title: 'MVP UX & UI Design', desc: 'From zero to a fundable, shippable product interface.' },
-        { title: 'Clickable Prototype', desc: 'Validated, interactive prototypes for demos or user testing.' },
-        { title: 'Launch-Ready Landing Page', desc: 'High-converting landing pages built to capture and retain.' },
-        { title: 'No-Code MVP Build', desc: 'Full product launched without a single line of custom code.' },
-        { title: 'Pitch & Demo Readiness', desc: 'Investor-facing decks, flows, and screen presentations.' },
+        { title: 'MVP UX & UI Design', desc: 'From zero to a fundable, shippable product interface.', hash: '#services-seed' },
+        { title: 'Clickable Prototype', desc: 'Validated, interactive prototypes for demos or user testing.', hash: '#services-seed' },
+        { title: 'Launch-Ready Landing Page', desc: 'High-converting landing pages built to capture and retain.', hash: '#services-seed' },
+        { title: 'No-Code MVP Build', desc: 'Full product launched without a single line of custom code.', hash: '#services-seed' },
+        { title: 'Pitch & Demo Readiness', desc: 'Investor-facing decks, flows, and screen presentations.', hash: '#services-seed' },
     ],
     GROWTH: [
-        { title: 'UX Audit & Priorities', desc: 'Identify friction points and a clear roadmap to fix them.' },
-        { title: 'Brand & Visual Enhancement', desc: 'Elevate your product identity without a full redesign.' },
-        { title: 'Product Redesign', desc: 'Modernise and restructure existing products for better outcomes.' },
-        { title: 'Dashboard & Data UX', desc: 'Turn complex data into clear, decision-driving interfaces.' },
-        { title: 'Team Extension', desc: 'Senior designers embedded into your existing product team.' },
+        { title: 'UX Audit & Priorities', desc: 'Identify friction points and a clear roadmap to fix them.', hash: '#services-growth' },
+        { title: 'Brand & Visual Enhancement', desc: 'Elevate your product identity without a full redesign.', hash: '#services-growth' },
+        { title: 'Product Redesign', desc: 'Modernise and restructure existing products for better outcomes.', hash: '#services-growth' },
+        { title: 'Dashboard & Data UX', desc: 'Turn complex data into clear, decision-driving interfaces.', hash: '#services-growth' },
+        { title: 'Team Extension', desc: 'Senior designers embedded into your existing product team.', hash: '#services-growth' },
     ],
     SCALE: [
-        { title: 'Design System Build', desc: 'A living system of components, tokens, and documentation.' },
-        { title: 'Enterprise UX Redesign', desc: 'Scalable design architecture for complex, multi-team products.' },
-        { title: 'Website Redesign', desc: 'Editorial-quality web presence that converts and retains.' },
-        { title: 'Ongoing Design Partnership', desc: 'A long-term design team that grows with your product.' },
-        { title: 'UX Research & Strategy', desc: 'User interviews, workshops, and evidence-based direction.' },
+        { title: 'Design System Build', desc: 'A living system of components, tokens, and documentation.', hash: '#services-scale' },
+        { title: 'Enterprise UX Redesign', desc: 'Scalable design architecture for complex, multi-team products.', hash: '#services-scale' },
+        { title: 'Website Redesign', desc: 'Editorial-quality web presence that converts and retains.', hash: '#services-scale' },
+        { title: 'Ongoing Design Partnership', desc: 'A long-term design team that grows with your product.', hash: '#services-scale' },
+        { title: 'UX Research & Strategy', desc: 'User interviews, workshops, and evidence-based direction.', hash: '#services-scale' },
     ],
 };
 
 const industriesMenu = {
     TECHNOLOGY: [
-        { title: 'SaaS Platforms', desc: 'Dashboards, onboarding flows, and feature-rich product UX.' },
-        { title: 'AI & Machine Learning', desc: 'Making complex AI outputs legible to non-technical users.' },
-        { title: 'Blockchain & Web3', desc: 'Wallets, DeFi interfaces, and NFT platforms.' },
-        { title: 'Cloud & DevOps', desc: 'Infrastructure dashboards for ops teams who move fast.' },
-        { title: 'Developer Tools', desc: 'Precision-first UX for technical, particular audiences.' },
+        { title: 'SaaS Platforms', desc: 'Dashboards, onboarding flows, and feature-rich product UX.', hash: '#industries-saas' },
+        { title: 'AI & Machine Learning', desc: 'Making complex AI outputs legible to non-technical users.', hash: '#industries-ai' },
+        { title: 'Blockchain & Web3', desc: 'Wallets, DeFi interfaces, and NFT platforms.', hash: '#industries-blockchain' },
+        { title: 'Cloud & DevOps', desc: 'Infrastructure dashboards for ops teams who move fast.', hash: '#industries-cloud' },
+        { title: 'Developer Tools', desc: 'Precision-first UX for technical, particular audiences.', hash: '#industries-devtools' },
     ],
     FINANCE: [
-        { title: 'Fintech & Payments', desc: 'Payment flows that inspire trust and reduce drop-off.' },
-        { title: 'Banking & Insurance', desc: 'Compliance-first UX with excellent accessibility.' },
-        { title: 'Crypto & DeFi', desc: 'Decentralised exchanges and staking interfaces.' },
-        { title: 'Investment Platforms', desc: 'Portfolio trackers and trade execution UX.' },
-        { title: 'Regulatory Compliance', desc: 'KYC flows and audit dashboards as a competitive edge.' },
+        { title: 'Fintech & Payments', desc: 'Payment flows that inspire trust and reduce drop-off.', hash: '#industries-fintech' },
+        { title: 'Banking & Insurance', desc: 'Compliance-first UX with excellent accessibility.', hash: '#industries-banking' },
+        { title: 'Crypto & DeFi', desc: 'Decentralised exchanges and staking interfaces.', hash: '#industries-crypto' },
+        { title: 'Investment Platforms', desc: 'Portfolio trackers and trade execution UX.', hash: '#industries-investment' },
+        { title: 'Regulatory Compliance', desc: 'KYC flows and audit dashboards as a competitive edge.', hash: '#industries-compliance' },
     ],
     LIFESTYLE: [
-        { title: 'Health & Wellness', desc: 'Empathetic UX for sensitive healthcare contexts.' },
-        { title: 'E-Commerce & Retail', desc: 'Checkout flows and product pages that convert.' },
-        { title: 'EdTech & Learning', desc: 'LMS platforms that keep students engaged and progressing.' },
-        { title: 'Travel & Hospitality', desc: 'Booking flows that make travel feel effortless.' },
-        { title: 'Media & Entertainment', desc: 'Content discovery and streaming UX audiences return to.' },
+        { title: 'Health & Wellness', desc: 'Empathetic UX for sensitive healthcare contexts.', hash: '#industries-health' },
+        { title: 'E-Commerce & Retail', desc: 'Checkout flows and product pages that convert.', hash: '#industries-ecommerce' },
+        { title: 'EdTech & Learning', desc: 'LMS platforms that keep students engaged and progressing.', hash: '#industries-edtech' },
+        { title: 'Travel & Hospitality', desc: 'Booking flows that make travel feel effortless.', hash: '#industries-travel' },
+        { title: 'Media & Entertainment', desc: 'Content discovery and streaming UX audiences return to.', hash: '#industries-media' },
     ],
 };
 
@@ -126,9 +126,6 @@ function MegaMenuPanel({
                         {/* ── Left: grouped service/industry links ── */}
                         <div className="col-span-8 grid grid-cols-3 gap-10">
                             {Object.entries(items).map(([category, links]) => {
-                                const sectionId = type === 'services' 
-                                    ? `#services-${category.toLowerCase()}` 
-                                    : `#industries`;
                                 return (
                                     <div key={category}>
                                         {/* Category header */}
@@ -139,9 +136,9 @@ function MegaMenuPanel({
                                             {links.map((item) => (
                                                 <li key={item.title}>
                                                     <a
-                                                        href={sectionId}
+                                                        href={item.hash}
                                                         onClick={() => {
-                                                            window.location.hash = sectionId;
+                                                            window.location.hash = item.hash;
                                                             onClose();
                                                         }}
                                                         className="group block py-2.5 px-3 rounded-xl hover:bg-white/5 transition-all duration-200"
@@ -250,7 +247,6 @@ function MobileAccordion({
     onClose: () => void;
 }) {
     const items = type === 'services' ? servicesMenu : industriesMenu;
-    const targetHash = type === 'services' ? '#services' : '#industries';
 
     return (
         <div className="border-b border-white/5">
@@ -268,18 +264,15 @@ function MobileAccordion({
             </button>
             <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[900px] pb-4' : 'max-h-0'}`}>
                 {Object.entries(items).map(([category, links]) => {
-                    const sectionId = type === 'services' 
-                        ? `#services-${category.toLowerCase()}` 
-                        : `#industries`;
                     return (
                         <div key={category} className="mb-5">
                             <h5 className="text-[9px] tracking-[0.25em] text-gray-600 uppercase mb-3 px-2 font-bold">{category}</h5>
                             {links.map((item) => (
                                 <a
                                     key={item.title}
-                                    href={sectionId}
+                                    href={item.hash}
                                     onClick={() => {
-                                        window.location.hash = sectionId;
+                                        window.location.hash = item.hash;
                                         onClose();
                                     }}
                                     className="block px-2 py-2.5 rounded-xl hover:bg-white/5 transition-colors"
@@ -315,6 +308,16 @@ export default function Navbar() {
     useEffect(() => {
         return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); };
     }, []);
+
+    // Lock body scroll when mobile menu is open
+    useEffect(() => {
+        if (mobileOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => { document.body.style.overflow = ''; };
+    }, [mobileOpen]);
 
     const navLinks = [
         { label: 'About', href: '#about' },
@@ -435,7 +438,7 @@ export default function Navbar() {
             <div className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-300 ${mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                 <div className="absolute inset-0 bg-black/60" onClick={() => setMobileOpen(false)} />
                 <div className={`absolute right-0 top-0 h-full w-[88%] max-w-sm bg-[#0a0a0a] border-l border-white/8 transform transition-transform duration-300 ease-out overflow-y-auto ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                    <div className="pt-20 px-5 pb-10">
+                    <div className="pt-24 px-5 pb-10">
 
                         <a
                             href="#about"
