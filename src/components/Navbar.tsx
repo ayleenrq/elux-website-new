@@ -125,43 +125,48 @@ function MegaMenuPanel({
 
                         {/* ── Left: grouped service/industry links ── */}
                         <div className="col-span-8 grid grid-cols-3 gap-10">
-                            {Object.entries(items).map(([category, links]) => (
-                                <div key={category}>
-                                    {/* Category header */}
-                                    <p className="text-[10px] font-bold tracking-[0.25em] text-gray-600 uppercase mb-5">
-                                        {category}
-                                    </p>
-                                    <ul className="space-y-1">
-                                        {links.map((item) => (
-                                            <li key={item.title}>
-                                                <a
-                                                    href={targetHash}
-                                                    onClick={() => {
-                                                        window.location.hash = targetHash;
-                                                        onClose();
-                                                    }}
-                                                    className="group block py-2.5 px-3 rounded-xl hover:bg-white/5 transition-all duration-200"
-                                                >
-                                                    <div className="flex items-center gap-2 mb-0.5">
-                                                        <span className="text-[13px] font-medium text-gray-200 group-hover:text-white transition-colors">
-                                                            {item.title}
-                                                        </span>
-                                                        <svg
-                                                            className="w-3 h-3 text-gray-700 group-hover:text-white opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200"
-                                                            fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                        >
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                                        </svg>
-                                                    </div>
-                                                    <p className="text-[11px] text-gray-600 group-hover:text-gray-400 transition-colors leading-snug">
-                                                        {item.desc}
-                                                    </p>
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
+                            {Object.entries(items).map(([category, links]) => {
+                                const sectionId = type === 'services' 
+                                    ? `#services-${category.toLowerCase()}` 
+                                    : `#industries`;
+                                return (
+                                    <div key={category}>
+                                        {/* Category header */}
+                                        <p className="text-[10px] font-bold tracking-[0.25em] text-gray-600 uppercase mb-5">
+                                            {category}
+                                        </p>
+                                        <ul className="space-y-1">
+                                            {links.map((item) => (
+                                                <li key={item.title}>
+                                                    <a
+                                                        href={sectionId}
+                                                        onClick={() => {
+                                                            window.location.hash = sectionId;
+                                                            onClose();
+                                                        }}
+                                                        className="group block py-2.5 px-3 rounded-xl hover:bg-white/5 transition-all duration-200"
+                                                    >
+                                                        <div className="flex items-center gap-2 mb-0.5">
+                                                            <span className="text-[13px] font-medium text-gray-200 group-hover:text-white transition-colors">
+                                                                {item.title}
+                                                            </span>
+                                                            <svg
+                                                                className="w-3 h-3 text-gray-700 group-hover:text-white opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200"
+                                                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                                            >
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                                            </svg>
+                                                        </div>
+                                                        <p className="text-[11px] text-gray-600 group-hover:text-gray-400 transition-colors leading-snug">
+                                                            {item.desc}
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                );
+                            })}
                         </div>
 
                         {/* ── Right: Featured panel ── */}
@@ -262,25 +267,30 @@ function MobileAccordion({
                 </svg>
             </button>
             <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-[900px] pb-4' : 'max-h-0'}`}>
-                {Object.entries(items).map(([category, links]) => (
-                    <div key={category} className="mb-5">
-                        <h5 className="text-[9px] tracking-[0.25em] text-gray-600 uppercase mb-3 px-2 font-bold">{category}</h5>
-                        {links.map((item) => (
-                            <a
-                                key={item.title}
-                                href={targetHash}
-                                onClick={() => {
-                                    window.location.hash = targetHash;
-                                    onClose();
-                                }}
-                                className="block px-2 py-2.5 rounded-xl hover:bg-white/5 transition-colors"
-                            >
-                                <p className="text-sm text-gray-300 font-medium">{item.title}</p>
-                                <p className="text-[11px] text-gray-600 leading-snug mt-0.5">{item.desc}</p>
-                            </a>
-                        ))}
-                    </div>
-                ))}
+                {Object.entries(items).map(([category, links]) => {
+                    const sectionId = type === 'services' 
+                        ? `#services-${category.toLowerCase()}` 
+                        : `#industries`;
+                    return (
+                        <div key={category} className="mb-5">
+                            <h5 className="text-[9px] tracking-[0.25em] text-gray-600 uppercase mb-3 px-2 font-bold">{category}</h5>
+                            {links.map((item) => (
+                                <a
+                                    key={item.title}
+                                    href={sectionId}
+                                    onClick={() => {
+                                        window.location.hash = sectionId;
+                                        onClose();
+                                    }}
+                                    className="block px-2 py-2.5 rounded-xl hover:bg-white/5 transition-colors"
+                                >
+                                    <p className="text-sm text-gray-300 font-medium">{item.title}</p>
+                                    <p className="text-[11px] text-gray-600 leading-snug mt-0.5">{item.desc}</p>
+                                </a>
+                            ))}
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );

@@ -1,7 +1,39 @@
 // @ts-nocheck
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function WebflowHome() {
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const searchParams = new URLSearchParams();
+    
+    for (const [key, value] of formData.entries()) {
+      searchParams.append(key, value as string);
+    }
+    
+    // FINAL FIX: Removing the '/f/' prefix because it's only for Form IDs.
+    // For direct email submission, the URL must be: https://formspree.io/qisthyayleen@gmail.com
+    fetch('https://formspree.io/qisthyayleen@gmail.com', {
+      method: 'POST',
+      body: formData,
+      mode: 'no-cors',
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(() => {
+      setFormStatus('success');
+      form.reset();
+    }).catch((error) => {
+      console.error('Submission Catch:', error);
+      setFormStatus('error');
+    });
+  };
+
   useEffect(() => {
     let isMounted = true;
     let lenisInstance = null;
@@ -71,6 +103,20 @@ export default function WebflowHome() {
         window.Webflow.ready();
         window.Webflow.require('ix2').init();
       }
+
+      // ─── Dynamic Title Update ───
+      const updateTitle = () => {
+        const hash = window.location.hash.replace('#', '');
+        if (!hash || hash === 'home') {
+          document.title = 'Elux Space | Pragmatic Product Design Partner';
+        } else {
+          const formatted = hash.charAt(0).toUpperCase() + hash.slice(1);
+          document.title = `Elux Space | ${formatted}`;
+        }
+      };
+      window.addEventListener('hashchange', updateTitle);
+      updateTitle(); // Initial call
+
 
       
   (function() {
@@ -469,25 +515,23 @@ window.addEventListener("DOMContentLoaded", (event) => {
       </div>
     </div>
   </div>
-  <div data-w-id="3d7902d7-b942-48a0-6a68-4a9b209ac5fe" className="scroll-close-wrap">
-    <div className="sticky-wrap _1">
-      <section className="section dark">
+  <section id="hero" className="section dark">
         <div className="w-layout-blockcontainer container w-container" style={{ marginTop: "60px" }}>
           <div className="v-flex-xxl z-1">
             <div className="v-flex-4xl">
               <div className="v-flex-xxl center">
                 <div className="v-flex-lg center">
-                  <div data-w-id="2defad79-c10b-d9f1-c414-5e50cdbab148" style={{opacity: "0"}} className="label">
+                  <div data-w-id="2defad79-c10b-d9f1-c414-5e50cdbab148" style={{opacity: "1"}} className="label">
                     <div className="dot"></div>
                     <div className="label-text">Accepting 2 New Partners for Q1</div>
                   </div>
                   <div className="word-animation">
                     <h1 className="heading-1"><span className="split-text">The Pragmatic Product Design Partner.</span></h1>
                   </div>
-                  <div data-w-id="ab833106-d74a-995f-0ac7-f5dd54833156" style={{opacity: "0"}} className="text-xl heading-text">We combine enterprise-grade UX frameworks with custom branding to design <span className="white">SaaS, MVPs, and interfaces</span> that convert. No bloat. No endless meetings. Just shipping.</div>
+                  <div data-w-id="ab833106-d74a-995f-0ac7-f5dd54833156" style={{opacity: "1"}} className="text-xl heading-text">We combine enterprise-grade UX frameworks with custom branding to design <span className="white">SaaS, MVPs, and interfaces</span> that convert. No bloat. No endless meetings. Just shipping.</div>
                 </div>
-                <div data-w-id="0470b4bd-1012-faa6-4fda-6b3096a07ab5" style={{opacity: "0"}} className="h-flex-md">
-                  <a data-w-id="d6c1e40d-44c0-01b2-9843-8944f18c491e" href="#" className="primary-button w-inline-block">
+                <div data-w-id="0470b4bd-1012-faa6-4fda-6b3096a07ab5" style={{opacity: "1"}} className="h-flex-md">
+                  <a data-w-id="d6c1e40d-44c0-01b2-9843-8944f18c491e" href="#contact" className="primary-button w-inline-block">
                     <div className="shadow"></div>
                     <div className="button-wrap">
                       <div className="h-flex-sm">
@@ -498,7 +542,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                       </div>
                     </div>
                   </a>
-                  <a data-w-id="2291af21-3e54-efea-c189-15ec27f4d840" href="#" className="secondary-button w-inline-block">
+                  <a data-w-id="2291af21-3e54-efea-c189-15ec27f4d840" href="#case-studies" className="secondary-button w-inline-block">
                     <div className="secondary-button-wrap">
                       <div className="text-lg black"><span className="bold uppercase">See Our Portfolio</span><br /></div>
                     </div>
@@ -509,13 +553,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
               <div className="v-flex-sm">
                 <div data-w-id="291c3e20-6b7d-5bc0-f342-3648d78528d8" className="video-show w-embed"><video src="https://res.cloudinary.com/dhhruv4xd/video/upload/v1770626929/Scene_4_gj66wn.webm" autoPlay muted loop style={{width: "100%", height: "auto", borderRadius: "12px"}}>
                   </video></div>
-                <div data-w-id="9cc985dd-8828-e647-feef-be1e0c24f9f0" style={{opacity: "0"}} className="h-flex-space none">
+                <div data-w-id="9cc985dd-8828-e647-feef-be1e0c24f9f0" style={{opacity: "1"}} className="h-flex-space none">
                   <div className="text-xl semibold"><span className="white">Project Showreel</span></div>
                   <div className="text-lg"><span className="neutral-70">[1:20 Min]</span></div>
                 </div>
               </div>
             </div>
-            <div data-w-id="787f78a9-d4a8-50e4-450e-6e206e3bb5d3" style={{opacity: "0"}} className="content-wrap">
+            <div data-w-id="787f78a9-d4a8-50e4-450e-6e206e3bb5d3" style={{opacity: "1"}} className="content-wrap">
               <div className="w-layout-grid grid-2xl">
                 <div className="v-flex-sm">
                   <div className="text-xl"><span className="white">From MVP to Market Leader, Pragmatic Partner That Gets It Shipped.</span></div>
@@ -554,10 +598,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
               </div>
             </div>
           </div>
-        </div><img src="/images/Vector.svg" loading="lazy" width="954" style={{opacity: "0"}} alt="" data-w-id="8ef8975a-efaf-8dbf-5f0c-256440d53ae7" className="bg-image" />
-      </section>
-    </div>
-    <div className="sticky-section">
+        </div><img src="/images/Vector.svg" loading="lazy" width="954" className="bg-image hero-vector" alt="" data-w-id="8ef8975a-efaf-8dbf-5f0c-256440d53ae7" style={{ opacity: "1" }} />
+  </section>
+
+  <div className="scroll-close-wrap" style={{ height: "auto" }}>
+    <div className="sticky-section" style={{ marginTop: "0", position: "relative" }}>
       <section className="section">
         <div className="w-layout-blockcontainer container w-container">
           <div className="v-flex-2xl">
@@ -880,7 +925,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       </section>
     </div>
   </div>
-  <section className="section sticky-bottom-1">
+  <section className="section">
     <div className="w-layout-blockcontainer container w-container">
       <div className="v-flex-2xl">
         <div className="v-flex-lg center">
@@ -1071,7 +1116,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           </a>
         </div>
         <div className="content-wrapper">
-          <div data-w-id="389f6ffc-c5c9-ae51-dd0f-7c6ba05ed448" style={{opacity: "0"}} className="w-layout-grid service-content-grid _1">
+          <div id="services-seed" data-w-id="389f6ffc-c5c9-ae51-dd0f-7c6ba05ed448" style={{opacity: "0"}} className="w-layout-grid service-content-grid _1">
             <div id="w-node-def83005-1823-8ded-56ad-e5cfaece8d35-a7701396" className="v-flex-default space">
               <div className="v-flex-xs">
                 <div className="label-text">SEED</div>
@@ -1117,7 +1162,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
               </div>
             </div>
           </div>
-          <div className="w-layout-grid service-content-grid _2">
+          <div id="services-growth" className="w-layout-grid service-content-grid _2">
             <div id="w-node-_9b8cd529-b6a2-c75a-e761-d633fd3f5597-a7701396" className="v-flex-default space">
               <div className="v-flex-xs">
                 <div className="label-text">GROWTH</div>
@@ -1163,7 +1208,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
               </div>
             </div>
           </div>
-          <div className="w-layout-grid service-content-grid _3">
+          <div id="services-scale" className="w-layout-grid service-content-grid _3">
             <div id="w-node-cec532d8-e240-5ed5-5716-8a6559bfd7ab-a7701396" className="v-flex-default space">
               <div className="v-flex-xs">
                 <div className="label-text">scale</div>
@@ -1249,7 +1294,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                   <h4 className="text-4xl _w-70"><span className="reguler">End-to-end Webflow redesign and full website build shipped in 3 months.</span></h4>
                   <div className="text-lg color-inverse">We delivered a full website redesign and Webflow build with a modular page system, animations, and complex pricing interactions, optimized for performance and maintainability while elevating credibility and visual polish.</div>
                 </div>
-                <a data-w-id="9548fe05-9cd8-eaeb-c4fd-e30beaddffb0" href="#" className="primary-button w-inline-block">
+                <a data-w-id="9548fe05-9cd8-eaeb-c4fd-e30beaddffb0" href="#contact" className="primary-button w-inline-block">
                   <div className="button-wrap">
                     <div className="h-flex-sm">
                       <div className="text-lg uppercase">view case study</div>
@@ -1295,7 +1340,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                   <h4 className="text-4xl _w-80"><span className="reguler">Fast, audit-led design shipped across multiple engagements for an AI research platform.</span></h4>
                   <div className="text-lg color-inverse">Deliver through audit-led UI/UX improvements and intuitive experiences with zero delivery delays, to achieve a reliable interfaces across both their website and AI product surfaces.</div>
                 </div>
-                <a data-w-id="9548fe05-9cd8-eaeb-c4fd-e30beaddffb0" href="#" className="primary-button w-inline-block">
+                <a data-w-id="9548fe05-9cd8-eaeb-c4fd-e30beaddffb0" href="#contact" className="primary-button w-inline-block">
                   <div className="button-wrap">
                     <div className="h-flex-sm">
                       <div className="text-lg uppercase">view case study</div>
@@ -1379,7 +1424,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
               </div>
               <div data-w-id="43e66dd7-b975-d597-990e-e80119e77673" style={{opacity: "0"}} className="text-xl center">Proven patterns. Real best practices. A pragmatic partner that helps you ship faster and scale with confidence.</div>
             </div>
-            <div data-w-id="7b9ee98e-b34e-5437-a701-67fafc3aca49" style={{opacity: "0"}} className="toggle-button _2">
+            <div data-w-id="7b9ee98e-b34e-5437-a701-67fafc3aca49" style={{opacity: "0"}} className="toggle-button border">
               <a data-w-id="7b9ee98e-b34e-5437-a701-67fafc3aca4a" href="#" className="button _1 w-inline-block">
                 <div className="text-lg uppercase"><span data-w-id="7b9ee98e-b34e-5437-a701-67fafc3aca4c" className="color-white">Fintech</span></div>
               </a>
@@ -2358,40 +2403,40 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div>
           </div>
           <div className="v-flex-xxs">
-            <div className="awward-content">
+            <a href="https://clutch.co/profile/elux-space" target="_blank" rel="noopener noreferrer" className="award-content w-inline-block">
               <div className="w-layout-grid grdi-3x1"><img src="/images/1.-Top-Clutch-Company-Indonesia-2022-Award-1.png" loading="lazy" alt="" className="image" />
                 <div className="text-2xl white">Top Clutch Company Indonesia 2022 Award</div>
                 <div className="text-xl">Nominated by Clutch as a top company in Indonesia, based on verified client reviews, delivery quality, and consistent product outcomes.</div>
               </div>
-            </div>
+            </a>
             <div className="line"></div>
-            <div className="awward-content">
+            <a href="https://www.designrush.com/agency/profile/elux-space" target="_blank" rel="noopener noreferrer" className="award-content w-inline-block">
               <div className="w-layout-grid grdi-3x1"><img src="/images/Image-Container.png" loading="lazy" alt="" className="image" />
                 <div className="text-2xl white">DesignRush Design Awards Nominee 2025</div>
                 <div className="text-xl">Nominated by DesignRush for design excellence in 2025, recognizing Elux Space’s work in delivering pragmatic, build-ready product design for SaaS, MVPs, and scalable digital products.</div>
               </div>
-            </div>
+            </a>
             <div className="line"></div>
-            <div className="awward-content">
+            <a href="https://clutch.co/profile/elux-space" target="_blank" rel="noopener noreferrer" className="award-content w-inline-block">
               <div className="w-layout-grid grdi-3x1"><img src="/images/Image-Container-1.png" loading="lazy" alt="" className="image" />
                 <div className="text-2xl white">Clutch Top Webflow Development Company Indonesia 2026</div>
                 <div className="text-xl">Listed by Clutch as a top Webflow development partner for building fast, maintainable, and launch-ready Webflow products.</div>
               </div>
-            </div>
+            </a>
             <div className="line"></div>
-            <div className="awward-content">
+            <a href="https://clutch.co/profile/elux-space" target="_blank" rel="noopener noreferrer" className="award-content w-inline-block">
               <div className="w-layout-grid grdi-3x1"><img src="/images/Image-Container-2.png" loading="lazy" alt="" className="image" />
                 <div className="text-2xl white">Clutch Top Web Design Company Indonesia 2026</div>
                 <div className="text-xl">Nominated by Clutch as a top company in Indonesia, based on verified client reviews, delivery quality, and consistent product outcomes.</div>
               </div>
-            </div>
+            </a>
             <div className="line"></div>
-            <div className="awward-content">
+            <a href="https://dribbble.com/eluxspace" target="_blank" rel="noopener noreferrer" className="award-content w-inline-block">
               <div className="w-layout-grid grdi-3x1"><img src="/images/Image-Container_1.png" loading="lazy" alt="" className="image" />
                 <div className="text-2xl white">Dribbble Top Product Design Company Select</div>
                 <div className="text-xl">Selected by Dribbble as a Top Product Design Company, recognizing excellence in crafting visually compelling, high-impact digital product experiences.</div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -2418,19 +2463,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
               <div className="v-flex-lg">
                 <div className="text-2xl white">Have a project to discuss?</div>
                 <div className="cta-card-wrap">
-                  <div className="h-flex-md"><img src="/images/Profile-Image.png" loading="lazy" alt="" className="image-10" />
+                  <div className="h-flex-md"><img src="/images/Arya-Profile.jpg" loading="lazy" alt="" className="image-10" style={{ borderRadius: "12px", objectFit: "cover", height: "120px" }} />
                     <div className="v-flex-md _w-100">
                       <div className="v-flex-xxs">
-                        <div className="text-2xl white">Arya</div>
-                        <div className="text-lg color-inverse">Account Executive</div>
+                        <div className="text-2xl white">Arya Pradana</div>
+                        <div className="text-lg color-inverse">Chief Executive Officer & Founder</div>
                       </div>
                       <div className="line"></div>
-                      <div className="h-flex-xxs">
-                        <div className="text-lg color-inverse">hello@elux.space</div>
+                      <a href="mailto:arya.pradana@elux.space" className="h-flex-xxs w-inline-block" style={{ textDecoration: "none" }}>
+                        <div className="text-lg color-inverse">arya.pradana@elux.space</div>
                         <div className="code-embed-2 w-embed"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.75 5.25L5.25 12.75M12.75 5.25H6M12.75 5.25V12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                           </svg></div>
-                      </div>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -2438,60 +2483,185 @@ window.addEventListener("DOMContentLoaded", (event) => {
               <div className="v-flex-lg">
                 <div className="text-2xl white">Have a partnership in mind?</div>
                 <div className="cta-card-wrap">
-                  <div className="h-flex-md"><img src="/images/Profile-Image-1.png" loading="lazy" alt="" className="image-10" />
+                  <div className="h-flex-md"><img src="/images/Lintang-Profile.jpg" loading="lazy" alt="" className="image-10" style={{ borderRadius: "12px", objectFit: "cover", height: "120px" }} />
                     <div className="v-flex-md _w-100">
                       <div className="v-flex-xxs">
-                        <div className="text-2xl white">Arya</div>
-                        <div className="text-lg color-inverse">Account Executive</div>
+                        <div className="text-2xl white">Lintang Fajar Utami</div>
+                        <div className="text-lg color-inverse">Project Manager</div>
                       </div>
                       <div className="line"></div>
-                      <div className="h-flex-xxs">
-                        <div className="text-lg color-inverse">hello@elux.space</div>
+                      <a href="mailto:lintang.utami@elux.space" className="h-flex-xxs w-inline-block" style={{ textDecoration: "none" }}>
+                        <div className="text-lg color-inverse">lintang.utami@elux.space</div>
                         <div className="code-embed-2 w-embed"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12.75 5.25L5.25 12.75M12.75 5.25H6M12.75 5.25V12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                           </svg></div>
-                      </div>
+                      </a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div className="form-block w-form p-8">
-              <form id="wf-form-" name="wf-form-" data-name="form" method="get" className="from-wrap" data-wf-page-id="6989896f1913ef45a7701396" data-wf-element-id="56f6f423-6941-da6e-9274-a24f0bfca33e">
-                <div className="w-layout-grid grid-2x2 form-grid">
-                  <div className="v-flex-md">
-                    <div className="text-lg color-inverse">Your Name</div><input className="text-form w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter Your Name" type="text" id="name" />
+              {/* Hidden Iframe for reliable submission */}
+              <iframe name="hidden_iframe" id="hidden_iframe" style={{ display: 'none' }} />
+              
+              {formStatus === 'success' ? (
+                <div className="success-design-wrap" style={{ 
+                  display: 'flex', 
+                  flexDirection: 'column', 
+                  alignItems: 'center', 
+                  justifyContent: 'center',
+                  textAlign: 'center', 
+                  padding: '60px 20px',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  borderRadius: '24px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(10px)',
+                  animation: 'fadeIn 0.5s ease-out'
+                }}>
+                  <div className="success-icon-wrap" style={{
+                    width: '80px',
+                    height: '80px',
+                    borderRadius: '50%',
+                    background: '#3B6EF5',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '24px',
+                    boxShadow: '0 0 30px rgba(59, 110, 245, 0.4)'
+                  }}>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 13L9 17L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                   </div>
-                  <div className="v-flex-md">
-                    <div className="text-lg color-inverse">Enter Your Email<br /></div><input className="text-form w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter Your Email" type="text" id="name" />
-                  </div>
-                  <div className="v-flex-md">
-                    <div className="text-lg color-inverse">Your Company Name</div><input className="text-form w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter Your Company Name" type="text" id="name" />
-                  </div>
-                  <div className="v-flex-md">
-                    <div className="text-lg color-inverse">Your Title</div><input className="text-form w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your Title in Company" type="text" id="name" />
-                  </div>
+                  <h2 className="text-4xl white mb-4" style={{ fontFamily: '"Bricolage Grotesque", sans-serif', fontWeight: 700 }}>Message Sent!</h2>
+                  <p className="text-lg color-inverse mb-8" style={{ maxWidth: '400px', opacity: 0.8 }}>
+                    Thank you for reaching out. We've received your inquiry and will get back to you within 24 hours.
+                  </p>
+                  <button 
+                    onClick={() => setFormStatus('idle')} 
+                    className="submit w-button" 
+                    style={{ 
+                      backgroundColor: 'transparent', 
+                      border: '1px solid #3B6EF5',
+                      padding: '12px 32px',
+                      borderRadius: '999px',
+                      fontSize: '16px',
+                      fontWeight: 600,
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.backgroundColor = '#3B6EF5';
+                      e.currentTarget.style.color = 'white';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.color = 'white';
+                    }}
+                  >
+                    Send Another Message
+                  </button>
+                  <style dangerouslySetInnerHTML={{ __html: `
+                    @keyframes fadeIn {
+                      from { opacity: 0; transform: translateY(20px); }
+                      to { opacity: 1; transform: translateY(0); }
+                    }
+                  ` }} />
                 </div>
-                <div className="v-flex-md pt-6">
-                  <div className="text-lg color-inverse">Message</div><input className="text-form w-input" maxlength="256" name="name" data-name="Name" placeholder="Tell us about your project" type="text" id="name" />
-                </div>
-                <div className="v-flex-lg pt-6">
-                  <div className="text-lg color-inverse">Project type</div>
-                  <div className="grid"><label className="radio-field w-radio"><input type="radio" data-name="project type" id="UX" name="project-type" className="w-form-formradioinput hidden w-radio-input" value="UX" /><span className="text-xl white w-form-label" htmlFor="UX"><span className="medium">UI/UX Design</span></span></label><label className="radio-field w-radio"><input type="radio" data-name="project type" id="Product" name="project-type" className="w-form-formradioinput hidden w-radio-input" value="Product" /><span className="text-xl white w-form-label" htmlFor="Product">Product Design</span></label><label id="w-node-_444aee8f-6fad-e8ab-5a02-28ec465265d5-a7701396" className="radio-field _2 w-radio"><input type="radio" data-name="project type" id="web-dev" name="project-type" className="w-form-formradioinput hidden w-radio-input" value="web dev" /><span className="text-xl white w-form-label" htmlFor="web-dev">Webflow/Framer Development</span></label><label id="w-node-_679c6aac-4804-4a57-5510-9c2782702cee-a7701396" className="radio-field _3 w-radio"><input type="radio" data-name="project type" id="branding" name="project-type" className="w-form-formradioinput hidden w-radio-input" value="branding" /><span className="text-xl white w-form-label" htmlFor="branding">Branding Identity</span></label></div>
-                </div>
-                <div className="v-flex-lg pt-6">
-                  <div className="text-lg color-inverse">Your Budget About This Project</div>
-                  <div className="grid budget"><label className="radio-field w-radio"><input type="radio" data-name="Radio" id="radio" name="radio" className="w-form-formradioinput hidden w-radio-input" value="Radio" /><span className="text-xl white w-form-label" htmlFor="radio">&lt; $5,000</span></label><label className="radio-field budget w-radio"><input type="radio" data-name="Radio" id="radio" name="radio" className="w-form-formradioinput hidden w-radio-input" value="Radio" /><span className="text-xl white w-form-label" htmlFor="radio">$5-$10k</span></label><label className="radio-field budget w-radio"><input type="radio" data-name="Radio" id="radio" name="radio" className="w-form-formradioinput hidden w-radio-input" value="Radio" /><span className="text-xl white w-form-label" htmlFor="radio">$10-$20k</span></label><label className="radio-field budget w-radio"><input type="radio" data-name="Radio" id="radio" name="radio" className="w-form-formradioinput hidden w-radio-input" value="Radio" /><span className="text-xl white w-form-label" htmlFor="radio">$20-$50k</span></label><label className="radio-field budget w-radio"><input type="radio" data-name="Radio" id="radio" name="radio" className="w-form-formradioinput hidden w-radio-input" value="Radio" /><span className="text-xl white w-form-label" htmlFor="radio">$50k+</span></label></div>
-                </div>
-                <div className="v-flex-default left">
-                  <div className="h-flex-lg pt-16"><input type="submit" data-wait="Please wait..." className="submit w-button" value="Submit" />
-                    <div className="_w-50">
-                      <div className="text-lg color-inverse">By clicking this button you accept Terms of Service and Privacy Policy.</div>
+              ) : (
+                <form 
+                  id="contact-form" 
+                  onSubmit={handleFormSubmit} 
+                  className="from-wrap"
+                >
+                  <input type="hidden" name="_subject" value="New Inquiry from Elux Space Website" />
+                  <input type="hidden" name="_gotcha" style={{ display: 'none' }} />
+                  
+                  <div className="w-layout-grid grid-2x2 form-grid">
+                    <div className="v-flex-md">
+                      <div className="text-lg color-inverse">Your Name</div>
+                      <input className="text-form w-input" maxLength={256} name="name" placeholder="Enter Your Name" type="text" id="form-name" required />
+                    </div>
+                    <div className="v-flex-md">
+                      <div className="text-lg color-inverse">Enter Your Email<br /></div>
+                      <input className="text-form w-input" maxLength={256} name="email" placeholder="Enter Your Email" type="email" id="form-email" required />
+                    </div>
+                    <div className="v-flex-md">
+                      <div className="text-lg color-inverse">Your Company Name</div>
+                      <input className="text-form w-input" maxLength={256} name="company" placeholder="Enter Your Company Name" type="text" id="form-company" />
+                    </div>
+                    <div className="v-flex-md">
+                      <div className="text-lg color-inverse">Your Title</div>
+                      <input className="text-form w-input" maxLength={256} name="title" placeholder="Enter your Title in Company" type="text" id="form-title" />
                     </div>
                   </div>
-                </div>
-                <div className="code-embed-3 w-embed">
-                  <style dangerouslySetInnerHTML={{ __html: `
+                  <div className="v-flex-md pt-6">
+                    <div className="text-lg color-inverse">Message</div>
+                    <input className="text-form w-input" maxLength={256} name="message" placeholder="Tell us about your project" type="text" id="form-message" required />
+                  </div>
+                  <div className="v-flex-lg pt-6">
+                    <div className="text-lg color-inverse">Project type</div>
+                    <div className="grid">
+                      <label className="radio-field w-radio">
+                        <input id="UX" className="w-form-formradioinput hidden w-radio-input" type="radio" value="UI/UX Design" name="project-type" />
+                        <span className="text-xl white w-form-label" htmlFor="UX"><span className="medium">UI/UX Design</span></span>
+                      </label>
+                      <label className="radio-field w-radio">
+                        <input id="Product" className="w-form-formradioinput hidden w-radio-input" type="radio" value="Product Design" name="project-type" />
+                        <span className="text-xl white w-form-label" htmlFor="Product">Product Design</span>
+                      </label>
+                      <label id="w-node-_444aee8f-6fad-e8ab-5a02-28ec465265d5-a7701396" className="radio-field _2 w-radio">
+                        <input id="web-dev" className="w-form-formradioinput hidden w-radio-input" type="radio" value="Webflow/Framer Development" name="project-type" />
+                        <span className="text-xl white w-form-label" htmlFor="web-dev">Webflow/Framer Development</span>
+                      </label>
+                      <label id="w-node-_679c6aac-4804-4a57-5510-9c2782702cee-a7701396" className="radio-field _3 w-radio">
+                        <input id="branding" className="w-form-formradioinput hidden w-radio-input" type="radio" value="Branding Identity" name="project-type" />
+                        <span className="text-xl white w-form-label" htmlFor="branding">Branding Identity</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="v-flex-lg pt-6">
+                    <div className="text-lg color-inverse">Your Budget About This Project</div>
+                    <div className="grid budget">
+                      <label className="radio-field w-radio">
+                        <input id="budget-1" className="w-form-formradioinput hidden w-radio-input" type="radio" value="<$5,000" name="budget" />
+                        <span className="text-xl white w-form-label" htmlFor="budget-1">&lt; $5,000</span>
+                      </label>
+                      <label className="radio-field budget w-radio">
+                        <input id="budget-2" className="w-form-formradioinput hidden w-radio-input" type="radio" value="$5-$10k" name="budget" />
+                        <span className="text-xl white w-form-label" htmlFor="budget-2">$5-$10k</span>
+                      </label>
+                      <label className="radio-field budget w-radio">
+                        <input id="budget-3" className="w-form-formradioinput hidden w-radio-input" type="radio" value="$10-$20k" name="budget" />
+                        <span className="text-xl white w-form-label" htmlFor="budget-3">$10-$20k</span>
+                      </label>
+                      <label className="radio-field budget w-radio">
+                        <input id="budget-4" className="w-form-formradioinput hidden w-radio-input" type="radio" value="$20-$50k" name="budget" />
+                        <span className="text-xl white w-form-label" htmlFor="budget-4">$20-$50k</span>
+                      </label>
+                      <label className="radio-field budget w-radio">
+                        <input id="budget-5" className="w-form-formradioinput hidden w-radio-input" type="radio" value="$50k+" name="budget" />
+                        <span className="text-xl white w-form-label" htmlFor="budget-5">$50k+</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="v-flex-default left">
+                    <div className="h-flex-lg pt-16">
+                      <input disabled={formStatus === 'submitting'} className="submit w-button" type="submit" value={formStatus === 'submitting' ? "Sending..." : "Submit"} />
+                      <div className="_w-50">
+                        <div className="text-lg color-inverse">By clicking this button you accept Terms of Service and Privacy Policy.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {formStatus === 'error' && (
+                    <div className="w-form-fail" style={{ display: 'block', marginTop: '20px' }}>
+                      <div className="text-lg color-inverse">Oops! Something went wrong while submitting the form. Please try again.</div>
+                    </div>
+                  )}
+
+                  <div className="code-embed-3 w-embed">
+                    <style dangerouslySetInnerHTML={{ __html: `
   .text-form {
     background-color: transparent !important;
     border-top: none;
@@ -2518,20 +2688,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
     border-bottom: 1px solid #3B6EF5; 
   }
 ` }} />
-                  <style dangerouslySetInnerHTML={{ __html: `
+                    <style dangerouslySetInnerHTML={{ __html: `
   .radio-field:has(input[type="radio"]:checked) {
     background-color: #2853ff !important; 
     color: white !important; 
   }
 ` }} />
-                </div>
-              </form>
-              <div className="w-form-done">
-                <div>Thank you! Your submission has been received!</div>
-              </div>
-              <div className="w-form-fail">
-                <div>Oops! Something went wrong while submitting the form.</div>
-              </div>
+                  </div>
+                </form>
+              )}
             </div>
           </div>
         </div>
@@ -2551,49 +2716,56 @@ window.addEventListener("DOMContentLoaded", (event) => {
               <div className="v-flex-lg">
                 <div className="text-2xl bold"><span className="white">Find Us On</span></div>
                 <div className="v-flex-md">
-                  <a href="#" className="text-lg footer-link">Clutch</a>
-                  <a href="#" className="text-lg footer-link">Design Rush</a>
-                  <a href="#" className="text-lg footer-link">Contra</a>
+                  <a href="https://clutch.co/profile/elux-space" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Clutch</a>
+                  <a href="https://www.designrush.com/agency/profile/elux-space" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Design Rush</a>
+                  <a href="https://contra.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Contra</a>
                 </div>
               </div>
               <div className="v-flex-lg">
                 <div className="text-2xl bold"><span className="white">Product</span></div>
                 <div className="v-flex-md">
-                  <a href="#" className="text-lg footer-link">UI8</a>
-                  <a href="#" className="text-lg footer-link">Creative Market</a>
-                  <a href="#" className="text-lg footer-link">Craftwork</a>
-                  <a href="#" className="text-lg footer-link">Gumroad</a>
+                  <a href="https://ui8.net/elux-space/products" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">UI8</a>
+                  <a href="https://creativemarket.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Creative Market</a>
+                  <a href="https://craftwork.design/" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Craftwork</a>
+                  <a href="https://gumroad.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Gumroad</a>
                 </div>
               </div>
               <div className="v-flex-lg">
                 <div className="text-2xl bold"><span className="white">Our Social</span></div>
                 <div className="v-flex-md">
-                  <a href="#" className="text-lg footer-link">Linkedin Page</a>
-                  <a href="#" className="text-lg footer-link">Dribbble</a>
-                  <a href="#" className="text-lg footer-link">Behance</a>
-                  <a href="#" className="text-lg footer-link">Instagram</a>
-                  <a href="#" className="text-lg footer-link">Layers</a>
+                  <a href="https://id.linkedin.com/company/elux-space" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Linkedin Page</a>
+                  <a href="https://dribbble.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Dribbble</a>
+                  <a href="https://www.behance.net/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Behance</a>
+                  <a href="https://www.instagram.com/elux.space/" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Instagram</a>
+                  <a href="https://layers.to/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Layers</a>
                 </div>
               </div>
             </div>
           </div>
           <div className="v-flex-default">
             <div className="line"></div>
-            <div className="h-flex-space pt-16">
-              <a href="#" className="h-flex-xxs link w-inline-block">
-                <div className="text-xl white">hello@elux.space</div>
-                <div className="code-embed-2 w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17 7L7 17M17 7H8M17 7V16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                  </svg></div>
-              </a>
-              <div className="h-flex-xxs link">
-                <div className="text-xl white">+62 851-5698-9279</div>
-                <div className="code-embed-2 w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17 7L7 17M17 7H8M17 7V16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                  </svg></div>
+            <div className="h-flex-space pt-16" style={{ flexWrap: "wrap", rowGap: "24px" }}>
+              <div className="h-flex-lg" style={{ flexWrap: "wrap", gap: "24px" }}>
+                <a href="mailto:hello@elux.space" className="h-flex-xxs link w-inline-block">
+                  <div className="text-xl white">hello@elux.space</div>
+                  <div className="code-embed-2 w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17 7L7 17M17 7H8M17 7V16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                    </svg></div>
+                </a>
+                <a href="tel:+6285156989279" className="h-flex-xxs link w-inline-block">
+                  <div className="text-xl white">+62 851-5698-9279</div>
+                  <div className="code-embed-2 w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17 7L7 17M17 7H8M17 7V16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                    </svg></div>
+                </a>
               </div>
-              <div className="h-flex-xxs">
-                <div className="text-xl color-inverse">© 2026 eluxspace-All Rights Reserved.</div>
+              <div className="v-flex-xxs" style={{ alignItems: "flex-end" }}>
+                <div className="text-lg color-inverse">© 2026 eluxspace-All Rights Reserved.</div>
+                <div className="h-flex-xs" style={{ marginTop: "4px" }}>
+                  <a href="#" className="text-lg footer-link" style={{ fontSize: "14px", opacity: "0.6" }}>Privacy Policy</a>
+                  <span className="text-lg color-inverse" style={{ fontSize: "14px", opacity: "0.4", margin: "0 8px" }}>|</span>
+                  <a href="#" className="text-lg footer-link" style={{ fontSize: "14px", opacity: "0.6" }}>Terms of Service</a>
+                </div>
               </div>
             </div>
           </div>
@@ -2606,7 +2778,25 @@ window.addEventListener("DOMContentLoaded", (event) => {
   
   
   <style dangerouslySetInnerHTML={{ __html: `
-
+  .webflow-wrapper .grid-2xl.key-industries { border: none !important; }
+  .primary-button:hover .shadow { opacity: 1 !important; }
+  .primary-button:hover .button-wrap { background-color: #1d4ed8 !important; }
+  .hero-vector {
+    position: absolute !important;
+    top: -5% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    width: 954px !important;
+    max-width: none !important;
+    height: auto !important;
+  }
+  @media (max-width: 767px) {
+    .hero-vector {
+      width: 480px !important; /* Perkecil dikit untuk mobile */
+    }
+  }
   .webflow-wrapper .grid-4x2 .card-content { position: relative; cursor: pointer; overflow: hidden; }
   .webflow-wrapper .grid-4x2 .card-wrap.inner {
     position: absolute !important;

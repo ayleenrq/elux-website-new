@@ -1888,11 +1888,11 @@ body {
 
 .arrow.left {
   background-color: #ffffff1a;
-  inset: auto auto -30% 38%;
+  inset: auto auto -30% 41%;
 }
 
 .arrow.right {
-  inset: auto 38% -30% auto;
+  inset: auto 41% -30% auto;
 }
 
 .video-slider {
@@ -2220,8 +2220,13 @@ body {
     width: 100%;
   }
 
+  .arrow {
+    width: 52px;
+    height: 52px;
+  }
+
   .arrow.left {
-    left: calc(50% - 70px);
+    left: calc(50% - 58px);
   }
 
   .arrow.right {
@@ -2381,8 +2386,13 @@ body {
     display: none;
   }
 
+  .arrow {
+    width: 48px;
+    height: 48px;
+  }
+
   .arrow.left {
-    left: calc(50% - 70px);
+    left: calc(50% - 54px);
   }
 
   .arrow.right {

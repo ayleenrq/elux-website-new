@@ -24,16 +24,16 @@ export default function Footer() {
                         <div>
                             <h4 className="text-xl font-bold mb-6">Find Us On</h4>
                             <ul className="space-y-3 text-gray-400 text-sm font-medium">
-                                <li><a href="#" className="hover:text-white transition-colors">Clutch</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Design Rush</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Contra</a></li>
+                                <li><a href="https://clutch.co/profile/elux-space" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Clutch</a></li>
+                                <li><a href="https://www.designrush.com/agency/profile/elux-space" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Design Rush</a></li>
+                                <li><a href="https://contra.com/eluxspace" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Contra</a></li>
                             </ul>
                         </div>
                         <div>
                             <h4 className="text-xl font-bold mb-6">Product</h4>
                             <ul className="space-y-3 text-gray-400 text-sm font-medium">
-                                <li><a href="#" className="hover:text-white transition-colors">UI8</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Creative Market</a></li>
+                                <li><a href="https://ui8.net/elux-space/products" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">UI8</a></li>
+                                <li><a href="https://creativemarket.com/eluxspace" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Creative Market</a></li>
                                 <li><a href="#" className="hover:text-white transition-colors">Craftwork</a></li>
                                 <li><a href="#" className="hover:text-white transition-colors">Gumroad</a></li>
                             </ul>
@@ -41,11 +41,11 @@ export default function Footer() {
                         <div className="col-span-2 md:col-span-1">
                             <h4 className="text-xl font-bold mb-6">Our Social</h4>
                             <ul className="space-y-3 text-gray-400 text-sm font-medium">
-                                <li><a href="#" className="hover:text-white transition-colors">Linkedin Page</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Dribbble</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Behance</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Layers</a></li>
+                                <li><a href="https://id.linkedin.com/company/elux-space" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Linkedin Page</a></li>
+                                <li><a href="https://dribbble.com/eluxspace" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Dribbble</a></li>
+                                <li><a href="https://www.behance.net/eluxspace" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Behance</a></li>
+                                <li><a href="https://www.instagram.com/elux.space/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a></li>
+                                <li><a href="https://layers.to/eluxspace" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Layers</a></li>
                             </ul>
                         </div>
                     </div>
