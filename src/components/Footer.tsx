@@ -43,7 +43,7 @@ export default function Footer() {
                             <ul className="space-y-3 text-gray-400 text-sm font-medium">
                                 <li><a href="#" className="hover:text-white transition-colors">Linkedin Page</a></li>
                                 <li><a href="#" className="hover:text-white transition-colors">Dribbble</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Bahance</a></li>
+                                <li><a href="#" className="hover:text-white transition-colors">Behance</a></li>
                                 <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
                                 <li><a href="#" className="hover:text-white transition-colors">Layers</a></li>
                             </ul>
@@ -68,7 +68,7 @@ export default function Footer() {
                         </a>
                     </div>
                     <div className="text-gray-500 text-base font-medium">
-                        © 2025 eluxspace-All Rights Reserved.
+                        © 2026 eluxspace-All Rights Reserved.
                     </div>
                 </div>
             </div>

@@ -7,6 +7,18 @@ export default function WebflowHome() {
     let lenisInstance = null;
     let lenisRafId = null;
 
+    // FIX: Nonaktifkan scroll restoration browser agar posisi scroll
+    // tidak dipulihkan ke nilai lama saat zoom berubah + refresh.
+    // Tanpa ini, Webflow IX2 menghitung animasi dari posisi lama
+    // dan menganggap hero sudah di-scroll-lewati, sehingga hero hilang.
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    // Paksa scroll ke atas sebelum Webflow IX2 init
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
     const loadExternalScripts = async () => {
       const scriptUrls = ["https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6989896e1913ef45a770138a","/js/webflow.js","https://unpkg.com/lenis@1.1.2/dist/lenis.min.js","https://unpkg.com/split-type","https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js","https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"];
       for (const url of scriptUrls) {
@@ -20,6 +32,40 @@ export default function WebflowHome() {
 
       if (!isMounted) return;
 
+      // ═══════════════════════════════════════════════════════════════════
+      // FIX KRITIS: Hero hilang saat zoom berubah + refresh
+      // Penyebab: IX2 init SEBELUM layout stabil → IX2 salah hitung posisi
+      // Fix: clear IX2 cached transforms → tunggu layout → scroll=0 → init IX2
+      // ═══════════════════════════════════════════════════════════════════
+
+      // Step 1: Clear semua inline transform & opacity yang mungkin di-cache
+      // oleh IX2 dari session/zoom sebelumnya (bisa menyebabkan hero offset)
+      document.querySelectorAll('[data-w-id]').forEach(el => {
+        const s = (el as HTMLElement).style;
+        if (s.transform || s.opacity !== '') {
+          s.transform = '';
+          s.opacity = '';
+          s.willChange = '';
+        }
+      });
+
+      // Step 2: Reset scroll ke 0
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+
+      // Step 3: Tunggu 2 animation frames agar browser selesai layout
+      // pada zoom level saat ini SEBELUM IX2 menghitung posisi elemen
+      await new Promise(resolve => requestAnimationFrame(() =>
+        requestAnimationFrame(() => resolve(void 0))
+      ));
+
+      // Step 4: Pastikan masih di scroll=0 setelah layout recalculate
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+      if (!isMounted) return;
+
+      // Step 5: BARU init IX2 — layout sudah stabil, scroll sudah di 0
       if (window.Webflow && window.Webflow.destroy && window.Webflow.ready && window.Webflow.require) {
         window.Webflow.destroy();
         window.Webflow.ready();
@@ -293,31 +339,41 @@ window.addEventListener("DOMContentLoaded", (event) => {
   // Animasi untuk setiap kata
   $(".word-animation").each(function (index) {
     let triggerElement = $(this);
-    let targetElement = $(this).find(".word"); // SplitType pakai class .word, bukan .split-words
+    // Hapus animasi lama jika ada (untuk mencegah duplikasi saat resize)
+    if (triggerElement[0].animation) {
+      triggerElement[0].animation.kill();
+    }
+    
+    let targetElement = $(this).find(".word"); 
     let tl = gsap.timeline({
       scrollTrigger: {
         trigger: triggerElement,
-        start: "top 85%", 
+        start: "top 90%", 
         end: "bottom top",
         toggleActions: "play none none reverse"
       }
     });
     tl.from(targetElement, {
       duration: 1.5,
-      y: "100%",       // Gerak dari bawah
-      rotationX: -90,  // Efek putar
+      y: "100%",       
+      rotationX: -90,  
       opacity: 0,
       ease: "power3.out",
-      stagger: 0.05    // Jeda antar kata
+      stagger: 0.05    
     });
+    triggerElement[0].animation = tl;
   });
+  
   // Perbaiki bug saat resize layar (Reset SplitType)
   let windowWidth = window.innerWidth;
   window.addEventListener('resize', function() {
     if (windowWidth !== window.innerWidth) {
         windowWidth = window.innerWidth;
-        text.revert();
-        location.reload(); // Reload agar kalkulasi ulang
+        // Revert split sebelum membuat ulang
+        if (text) text.revert();
+        // Buat split baru
+        const newText = new SplitType('.split-text', { types: 'words' });
+        if (window.ScrollTrigger) window.ScrollTrigger.refresh();
     }
   });
 });
@@ -421,7 +477,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                     <div className="shadow"></div>
                     <div className="button-wrap">
                       <div className="h-flex-sm">
-                        <div className="text-lg"><span className="bold uppercase">LET’S TALKS</span></div>
+                        <div className="text-lg"><span className="bold uppercase">LET’S TALK</span></div>
                         <div className="code-embed w-embed"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0.75 12.4167L12.4167 0.75M12.4167 0.75H0.75M12.4167 0.75V12.4167" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                           </svg></div>
@@ -503,7 +559,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div>
             <div data-w-id="21f6043c-6591-57d8-9106-5f5151d14acf" style={{opacity: "0"}} className="w-layout-grid grid-4x2">
               <div className="card-content">
-                <div data-w-id="470048bf-5c74-3970-3cb6-e8ae2dd3f594" className="card-wrap outer"><img src="/images/Frame-2147229429.webp" loading="lazy" alt="" /></div>
+                <div data-w-id="470048bf-5c74-3970-3cb6-e8ae2dd3f594" className="card-wrap outer"><img src="/images/Frame-2147229429.webp" loading="lazy" alt="" className="image" /></div>
                 <div className="card-wrap inner">
                   <div className="v-flex-default sapce">
                     <div className="h-flex-xs">
@@ -557,11 +613,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         <div className="w-layout-grid card-grid">
                           <div className="v-flex-xs">
                             <div className="text-xs">Launch in</div>
-                            <div className="text-xl white"><span className="semibold">1 month</span></div>
+                            <div className="text-xl white"><span className="semibold">5 weeks</span></div>
                           </div>
                           <div className="v-flex-xs">
                             <div className="text-xs">Reduce cost</div>
-                            <div className="text-xl white"><span className="semibold">30%</span></div>
+                            <div className="text-xl white"><span className="semibold">15%</span></div>
                           </div>
                         </div>
                         <div className="text-xs">Delivered a full-cycle UX audit, redesign, and Framer build in 5 weeks without delays, reducing friction across key journeys by 15%.</div>
@@ -597,7 +653,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                             <div className="text-xl white"><span className="semibold">1 month</span></div>
                           </div>
                           <div className="v-flex-xs">
-                            <div className="text-xs">Reduce cost</div>
+                            <div className="text-xs">Reduce time</div>
                             <div className="text-xl white"><span className="semibold">30%</span></div>
                           </div>
                         </div>
@@ -618,16 +674,13 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 <div className="card-wrap inner">
                   <div className="v-flex-default sapce">
                     <div className="card-label-wrap">
-                      <div className="h-flex-xs grid">
+                      <div className="h-flex-xs">
                         <div className="card-label">
                           <div className="text-sm">SaaS</div>
                         </div>
                         <div className="card-label">
                           <div className="text-sm">United States</div>
                         </div>
-                      </div>
-                      <div className="card-label">
-                        <div className="text-sm">United States</div>
                       </div>
                     </div>
                     <div className="v-flex-md">
@@ -636,14 +689,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         <div className="w-layout-grid card-grid">
                           <div className="v-flex-xs">
                             <div className="text-xs">Launch in</div>
-                            <div className="text-xl white"><span className="semibold">1 month</span></div>
+                            <div className="text-xl white"><span className="semibold">2 months</span></div>
                           </div>
                           <div className="v-flex-xs">
                             <div className="text-xs">Reduce cost</div>
-                            <div className="text-xl white"><span className="semibold">30%</span></div>
+                            <div className="text-xl white"><span className="semibold">25%</span></div>
                           </div>
                         </div>
-                        <div className="text-xs">Lean presence MVP to support the product. Designed and launched the company site as a lean MVP foundation.</div>
+                        <div className="text-xs">Delivered a comprehensive product design system and MVP platform to accelerate market entry and user acquisition.</div>
                       </div>
                       <div className="line border"></div>
                       <div className="h-flex-xs center">
@@ -671,14 +724,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         <div className="w-layout-grid card-grid">
                           <div className="v-flex-xs">
                             <div className="text-xs">Launch in</div>
-                            <div className="text-xl white"><span className="semibold">1 month</span></div>
+                            <div className="text-xl white"><span className="semibold">3 weeks</span></div>
                           </div>
                           <div className="v-flex-xs">
                             <div className="text-xs">Reduce cost</div>
-                            <div className="text-xl white"><span className="semibold">30%</span></div>
+                            <div className="text-xl white"><span className="semibold">40%</span></div>
                           </div>
                         </div>
-                        <div className="text-xs">Delivered fast, intuitive design across website and AI app interfaces, with 3+ repeat engagements driven by on-time delivery and audit-led UI/UX improvements.</div>
+                        <div className="text-xs">Delivered fast, intuitive design across website and AI app interfaces, driven by audit-led UI/UX improvements.</div>
                       </div>
                       <div className="line border"></div>
                       <div className="h-flex-xs center">
@@ -690,52 +743,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
                   </div>
                 </div>
               </div>
+
               <div className="card-content">
-                <div data-w-id="cff4de03-203b-afed-8290-0e425b301f6a" className="card-wrap outer"><img src="/images/Frame-2147229429-2.webp" loading="lazy" alt="" /></div>
+                <div data-w-id="11f19e74-0bee-f910-1359-defa289cfac9" className="card-wrap outer"><img src="/images/Frame-2147229429-3.webp" loading="lazy" alt="" className="image" /></div>
                 <div className="card-wrap inner">
                   <div className="v-flex-default sapce">
                     <div className="h-flex-xs">
                       <div className="card-label">
-                        <div className="text-sm">FinTech</div>
-                      </div>
-                      <div className="card-label">
-                        <div className="text-sm">United States</div>
-                      </div>
-                    </div>
-                    <div className="v-flex-md">
-                      <div className="v-flex-xs">
-                        <div className="text-2xl white"><span className="semibold">Postcredit</span></div>
-                        <div className="w-layout-grid card-grid">
-                          <div className="v-flex-xs">
-                            <div className="text-xs">Launch in</div>
-                            <div className="text-xl white"><span className="semibold">1 month</span></div>
-                          </div>
-                          <div className="v-flex-xs">
-                            <div className="text-xs">Reduce cost</div>
-                            <div className="text-xl white"><span className="semibold">30%</span></div>
-                          </div>
-                        </div>
-                        <div className="text-xs">Supported a $1M+ funding raise by delivering a conversion-ready MVP website and web app that built credibility fast!</div>
-                      </div>
-                      <div className="line border"></div>
-                      <div className="h-flex-xxs">
-                        <div className="text-xs">App Design</div>
-                        <div className="dot-card"></div>
-                        <div className="text-xs">Web Design</div>
-                        <div className="dot-card"></div>
-                        <div className="text-xs">Web Development</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="card-content">
-                <div data-w-id="11f19e74-0bee-f910-1359-defa289cfac9" className="card-wrap outer"><img src="/images/Frame-2147229429-3.webp" loading="lazy" alt="" /></div>
-                <div className="card-wrap inner">
-                  <div className="v-flex-default sapce">
-                    <div className="h-flex-xs">
-                      <div className="card-label">
-                        <div className="text-sm">Enterprice</div>
+                        <div className="text-sm">Enterprize</div>
                       </div>
                       <div className="card-label">
                         <div className="text-sm">Indonesia</div>
@@ -747,17 +762,17 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         <div className="w-layout-grid card-grid">
                           <div className="v-flex-xs">
                             <div className="text-xs">Launch in</div>
-                            <div className="text-xl white"><span className="semibold">1 month</span></div>
+                            <div className="text-xl white"><span className="semibold">4 weeks</span></div>
                           </div>
                           <div className="v-flex-xs">
                             <div className="text-xs">Reduce cost</div>
-                            <div className="text-xl white"><span className="semibold">30%</span></div>
+                            <div className="text-xl white"><span className="semibold">35%</span></div>
                           </div>
                         </div>
-                        <div className="text-xs">Supported IPO documentation needs by delivering a 12-page internal Webflow MVP in 4 weeks, including QA and stock data embedding, for a public listing context worth IDR 250B+.</div>
+                        <div className="text-xs">Supported IPO documentation needs by delivering a 12-page internal Webflow MVP in 4 weeks for a public listing context worth IDR 250B+.</div>
                       </div>
                       <div className="line border"></div>
-                      <div className="h-flex-xxs">
+                      <div className="h-flex-xs center" style={{ gap: '8px' }}>
                         <div className="text-xs">Web Design</div>
                         <div className="dot-card"></div>
                         <div className="text-xs">Web Development</div>
@@ -769,7 +784,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 </div>
               </div>
               <div className="card-content">
-                <div data-w-id="64385c68-2147-ef9a-6e78-22453ea0ba6e" className="card-wrap outer"><img src="/images/Frame-2147229429-4.webp" loading="lazy" alt="" /></div>
+                <div data-w-id="64385c68-2147-ef9a-6e78-22453ea0ba6e" className="card-wrap outer"><img src="/images/Frame-2147229429-4.webp" loading="lazy" alt="" className="image" /></div>
                 <div className="card-wrap inner">
                   <div className="v-flex-default sapce">
                     <div className="h-flex-xs">
@@ -786,17 +801,17 @@ window.addEventListener("DOMContentLoaded", (event) => {
                         <div className="w-layout-grid card-grid">
                           <div className="v-flex-xs">
                             <div className="text-xs">Launch in</div>
-                            <div className="text-xl white"><span className="semibold">1 month</span></div>
+                            <div className="text-xl white"><span className="semibold">2 months</span></div>
                           </div>
                           <div className="v-flex-xs">
                             <div className="text-xs">Reduce cost</div>
-                            <div className="text-xl white"><span className="semibold">30%</span></div>
+                            <div className="text-xl white"><span className="semibold">50%</span></div>
                           </div>
                         </div>
                         <div className="text-xs">Shipped multiple UI templates through a long-term collaboration, built on reusable components for fast delivery and consistent quality.</div>
                       </div>
                       <div className="line border"></div>
-                      <div className="h-flex-xs center">
+                      <div className="h-flex-xs center" style={{ gap: '8px' }}>
                         <div className="text-xs">Web Design</div>
                         <div className="dot-card"></div>
                         <div className="text-xs">App Design</div>
@@ -902,7 +917,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           <div data-w-id="1d380937-3cee-ab96-08e8-f1b32ff35b01" style={{opacity: "0"}} className="w-layout-grid grid-2xl card-wrapper">
             <div className="card-content-wrap">
               <div className="v-flex-md">
-                <div className="text-xl color-blue">You are short on hands.</div>
+                <div className="text-xl color-blue">You need an MVP fast.</div>
                 <h4 className="text-4xl black">You need an MVP that’s credible enough to launch, sell, or raise.</h4>
                 <div className="text-2xl">We cut scope to what matters, design for trust, and ship a launch-ready MVP without wasted cycles. Clear UX, solid UI, and build support to get you live.</div>
               </div>
@@ -939,7 +954,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           <div className="w-layout-grid grid-2xl card-wrapper">
             <div className="card-content-wrap">
               <div className="v-flex-md">
-                <div className="text-xl color-blue">You are short on hands.</div>
+                <div className="text-xl color-blue">You are raising funds.</div>
                 <h4 className="text-4xl black">The story is strong, but the product doesn’t feel investor-ready.</h4>
                 <div className="text-2xl">We design the surfaces that signal credibility fast, so you look ready when it counts. You get pitch-ready flows, sharper product pages, and a product experience that feels fundable.</div>
               </div>
@@ -1128,7 +1143,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 <div className="bar-current"></div>
                 <div className="v-flex-md">
                   <h6 className="text-2xl color-white">Dashboard and Data UX</h6>
-                  <div className="text-base">Go live fast with a clean build, responsive layout, and QA included.</div>
+                  <div className="text-base">Simplify complex data into intuitive, actionable interfaces that empower users to make faster decisions.</div>
                 </div><img src="/images/Service-Image---Dashboard-and-Data-UX.webp" loading="lazy" sizes="100vw" srcset="/images/Service-Image---Dashboard-and-Data-UX-1-p-500.webp 500w, /images/Service-Image---Dashboard-and-Data-UX.webp 768w" alt="" className="service-image" />
               </div>
               <div data-w-id="cec532d8-e240-5ed5-5716-8a6559bfd7db" className="service-content">
@@ -1493,7 +1508,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                                   </radialgradient>
                                 </defs>
                               </svg></div>
-                            <div className="text-sm regular">Users hesitate when trust signals are unclear</div>
+                            <div className="text-sm regular">Users drop off due to high friction in complex flows</div>
                           </div>
                           <div className="h-felx-md center">
                             <div className="checklist w-embed"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1574,7 +1589,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                                   </radialgradient>
                                 </defs>
                               </svg></div>
-                            <div className="text-sm regular">Simplified KYC and transaction flows without compromising compliance</div>
+                            <div className="text-sm regular">A unified, scalable design system that keeps the product intuitive as features expand</div>
                           </div>
                           <div className="h-felx-md center">
                             <div className="checklist w-embed"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1984,8 +1999,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 <div className="text-sm testimonial-text">Wow, that is amazing! Thank you so much for this proactive initiative. I’ll review it in detail and get back to you with my feedback as soon as possible.</div>
               </div>
               <div className="v-flex-xs">
-                <div className="text-xl white"><span className="semibold">Niklas</span></div>
-                <div className="text-sm regular">Founder of Samsa AI</div>
+                <div className="text-xl white"><span className="semibold">Sarah</span></div>
+                <div className="text-sm regular">Founder of AliaPopups</div>
               </div>
             </div><img src="/images/Card-Image-1.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-1-p-500.png 500w, /images/Card-Image-1.png 720w" alt="" className="image-14" />
           </div>
@@ -2029,7 +2044,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
               </div>
               <div className="v-flex-xs">
                 <div className="text-xl white"><span className="semibold">David Albright</span></div>
-                <div className="text-sm regular">Head of Design and Comunications</div>
+                <div className="text-sm regular">Head of Design and Communications</div>
               </div>
             </div><img src="/images/Card-Image-5.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-5-p-500.png 500w, /images/Card-Image-5.png 720w" alt="" className="image-14" />
           </div>
@@ -2051,8 +2066,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 <div className="text-sm testimonial-text">Wow, that is amazing! Thank you so much for this proactive initiative. I’ll review it in detail and get back to you with my feedback as soon as possible.</div>
               </div>
               <div className="v-flex-xs">
-                <div className="text-xl white"><span className="semibold">Niklas</span></div>
-                <div className="text-sm regular">Founder of Samsa AI</div>
+                <div className="text-xl white"><span className="semibold">Sarah</span></div>
+                <div className="text-sm regular">Founder of AliaPopups</div>
               </div>
             </div><img src="/images/Card-Image-1.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-1-p-500.png 500w, /images/Card-Image-1.png 720w" alt="" className="image-14" />
           </div>
@@ -2096,7 +2111,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
               </div>
               <div className="v-flex-xs">
                 <div className="text-xl white"><span className="semibold">David Albright</span></div>
-                <div className="text-sm regular">Head of Design and Comunications</div>
+                <div className="text-sm regular">Head of Design and Communications</div>
               </div>
             </div><img src="/images/Card-Image-5.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-5-p-500.png 500w, /images/Card-Image-5.png 720w" alt="" className="image-14" />
           </div>
@@ -2188,7 +2203,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           <div className="card-testimonial">
             <div className="v-flex-default sapce">
               <div className="v-flex-xl"><img src="/images/image-9-1-1.png" loading="lazy" alt="" className="logo-image _2" />
-                <div className="text-sm testimonial-text">Great design arrangement, both versions confirmed after update.</div>
+                <div className="text-sm testimonial-text">Great design arrangement, both versionsconfirmed after update.</div>
               </div>
               <div className="v-flex-xs">
                 <div className="text-xl white"><span className="semibold">Florian</span></div>
@@ -2256,7 +2271,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           <div className="card-testimonial">
             <div className="v-flex-default sapce">
               <div className="v-flex-xl"><img src="/images/image-9-1-1.png" loading="lazy" alt="" className="logo-image _2" />
-                <div className="text-sm testimonial-text">Great design arrangement, both versions confirmed after update.</div>
+                <div className="text-sm testimonial-text">Great design arrangement, both versionsconfirmed after update.</div>
               </div>
               <div className="v-flex-xs">
                 <div className="text-xl white"><span className="semibold">Florian</span></div>
@@ -2286,7 +2301,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           <div className="v-flex-lg center">
             <div data-w-id="c481c5b0-ac42-cb87-6673-1094c6b513ee" style={{opacity: "0"}} className="label">
               <div className="dot"></div>
-              <div className="label-text">Awwards</div>
+              <div className="label-text">Awards</div>
             </div>
             <div className="word-animation">
               <h2 className="text-7xl _w-100"><span className="split-text white">Recognized for Design Excellence</span></h2>
@@ -2356,7 +2371,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                   <div className="h-flex-md"><img src="/images/Profile-Image.png" loading="lazy" alt="" className="image-10" />
                     <div className="v-flex-md _w-100">
                       <div className="v-flex-xxs">
-                        <div className="text-2xl white">Kseniia Shalia</div>
+                        <div className="text-2xl white">Arya</div>
                         <div className="text-lg color-inverse">Account Executive</div>
                       </div>
                       <div className="line"></div>
@@ -2376,7 +2391,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                   <div className="h-flex-md"><img src="/images/Profile-Image-1.png" loading="lazy" alt="" className="image-10" />
                     <div className="v-flex-md _w-100">
                       <div className="v-flex-xxs">
-                        <div className="text-2xl white">Kseniia Shalia</div>
+                        <div className="text-2xl white">Arya</div>
                         <div className="text-lg color-inverse">Account Executive</div>
                       </div>
                       <div className="line"></div>
@@ -2505,7 +2520,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 <div className="v-flex-md">
                   <a href="#" className="text-lg footer-link">Linkedin Page</a>
                   <a href="#" className="text-lg footer-link">Dribbble</a>
-                  <a href="#" className="text-lg footer-link">Bahance</a>
+                  <a href="#" className="text-lg footer-link">Behance</a>
                   <a href="#" className="text-lg footer-link">Instagram</a>
                   <a href="#" className="text-lg footer-link">Layers</a>
                 </div>
@@ -2528,7 +2543,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                   </svg></div>
               </div>
               <div className="h-flex-xxs">
-                <div className="text-xl color-inverse">© 2025 eluxspace-All Rights Reserved.</div>
+                <div className="text-xl color-inverse">© 2026 eluxspace-All Rights Reserved.</div>
               </div>
             </div>
           </div>
@@ -2565,8 +2580,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
   .webflow-wrapper .grid-4x2 .card-wrap.inner * { color: white !important; }
   .sticky-section.empty-space { display: none !important; }
   .scroll-close-wrap { min-height: auto !important; height: auto !important; padding-bottom: 0 !important; margin-bottom: 0 !important; }
-  .sticky-wrap { position: relative !important; height: auto !important; }
-  .sticky-section { position: relative !important; height: auto !important; }
+  .sticky-wrap { position: relative !important; height: auto !important; margin-top: 0 !important; }
+  .sticky-section { position: relative !important; height: auto !important; margin-top: 0 !important; }
+  .sticky-wrap-2 { position: relative !important; height: auto !important; margin-top: 0 !important; }
+  .section.sticky-bottom, .section.sticky-bottom-1 { position: relative !important; top: auto !important; margin-top: 0 !important; height: auto !important; }
   .service-wrapper { position: relative !important; }
   .service-image {
     position: absolute !important;
