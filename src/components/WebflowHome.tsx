@@ -73,40 +73,51 @@ export default function WebflowHome() {
       }
 
       
-  var tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  var player;
-  function onYouTubeIframeAPIReady() {
-    player = new YT.Player('video-player', {
-      events: {
-        'onReady': onPlayerReady
-      }
-    });
-  }
-  function onPlayerReady(event) {
-    var btn = document.getElementById('toggle-btn');
-    var iconPlay = document.getElementById('icon-play');
-    var iconPause = document.getElementById('icon-pause');
-    var isPlaying = true;
-    btn.addEventListener('click', function() {
-      if (isPlaying) {
-        player.pauseVideo();
-        iconPause.style.display = 'none';
-        iconPlay.style.display = 'block';
-      } else {
-        player.playVideo();
-        iconPlay.style.display = 'none';
-        iconPause.style.display = 'block';
-      }
-      isPlaying = !isPlaying;
-    });
-    // Hover effect
-    btn.onmouseover = function() { this.style.background = "rgba(255, 255, 255, 0.25)"; this.style.transform = "scale(1.05)"; };
-    btn.onmouseout = function() { this.style.background = "rgba(255, 255, 255, 0.1)"; this.style.transform = "scale(1)"; };
-    btn.parentElement.style.pointerEvents = "auto";
-  }
+  (function() {
+    if (!window.YT) {
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+    var player1;
+    var checkYT1 = setInterval(function () {
+        if (window.YT && window.YT.Player) {
+            initPlayer1();
+            clearInterval(checkYT1);
+        }
+    }, 100);
+    function initPlayer1() {
+      player1 = new YT.Player('video-player', {
+        events: {
+          'onReady': onPlayerReady1
+        }
+      });
+    }
+    function onPlayerReady1(event) {
+      var btn = document.getElementById('toggle-btn');
+      var iconPlay = document.getElementById('icon-play');
+      var iconPause = document.getElementById('icon-pause');
+      
+      btn.addEventListener('click', function() {
+        var state = player1.getPlayerState();
+        if (state == 1) { // Playing
+          player1.pauseVideo();
+          iconPause.style.display = 'none';
+          iconPlay.style.display = 'block';
+        } else {
+          player1.unMute();
+          player1.playVideo();
+          iconPlay.style.display = 'none';
+          iconPause.style.display = 'block';
+        }
+      });
+      // Hover effect
+      btn.onmouseover = function() { this.style.background = "rgba(255, 255, 255, 0.25)"; this.style.transform = "scale(1.05)"; };
+      btn.onmouseout = function() { this.style.background = "rgba(255, 255, 255, 0.1)"; this.style.transform = "scale(1)"; };
+      btn.parentElement.style.pointerEvents = "auto";
+    }
+  })();
 
 
   // Kita bungkus dalam fungsi sendiri agar variable tidak tabrakan
@@ -150,6 +161,7 @@ export default function WebflowHome() {
           iconPause.style.display = 'none';
           iconPlay.style.display = 'block';
         } else { // Jika Pause/Ended
+          player2.unMute();
           player2.playVideo();
           iconPlay.style.display = 'none';
           iconPause.style.display = 'block';
@@ -202,6 +214,7 @@ export default function WebflowHome() {
           iconPause.style.display = 'none';
           iconPlay.style.display = 'block';
         } else { // Jika Pause/Stop -> Play
+          player3.unMute();
           player3.playVideo();
           iconPlay.style.display = 'none';
           iconPause.style.display = 'block';
@@ -254,6 +267,7 @@ export default function WebflowHome() {
           iconPause.style.display = 'none';
           iconPlay.style.display = 'block';
         } else { // Jika Pause/Stop -> Play
+          player4.unMute();
           player4.playVideo();
           iconPlay.style.display = 'none';
           iconPause.style.display = 'block';
@@ -561,7 +575,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
               <div className="card-content">
                 <div data-w-id="470048bf-5c74-3970-3cb6-e8ae2dd3f594" className="card-wrap outer"><img src="/images/Frame-2147229429.webp" loading="lazy" alt="" className="image" /></div>
                 <div className="card-wrap inner">
-                  <div className="v-flex-default sapce">
+                  <div className="v-flex-default space">
                     <div className="h-flex-xs">
                       <div className="card-label">
                         <div className="text-sm">SaaS</div>
@@ -598,7 +612,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
               <div className="card-content">
                 <div data-w-id="1e54cd47-d8b4-d758-62f9-12f91d1684eb" className="card-wrap outer"><img src="/images/upnova-logo-1.webp" loading="lazy" alt="" className="image" /></div>
                 <div className="card-wrap inner">
-                  <div className="v-flex-default sapce">
+                  <div className="v-flex-default space">
                     <div className="h-flex-xs">
                       <div className="card-label">
                         <div className="text-sm">SaaS</div>
@@ -635,7 +649,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
               <div className="card-content">
                 <div data-w-id="10423fd5-9b7f-d0e3-0d6d-db07552a29aa" className="card-wrap outer"><img src="/images/Frame-2147229429_1.webp" loading="lazy" alt="" className="image-2" /></div>
                 <div className="card-wrap inner">
-                  <div className="v-flex-default sapce">
+                  <div className="v-flex-default space">
                     <div className="h-flex-xs">
                       <div className="card-label">
                         <div className="text-sm">B2B SaaS</div>
@@ -672,7 +686,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
               <div className="card-content">
                 <div data-w-id="9b32ea90-32bf-3d96-e586-016c37de803e" className="card-wrap outer"><img src="/images/lamah-1.webp" loading="lazy" alt="" className="image" /></div>
                 <div className="card-wrap inner">
-                  <div className="v-flex-default sapce">
+                  <div className="v-flex-default space">
                     <div className="card-label-wrap">
                       <div className="h-flex-xs">
                         <div className="card-label">
@@ -709,7 +723,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
               <div className="card-content">
                 <div data-w-id="b270f815-bb37-38c2-db78-88513efe2fe3" className="card-wrap outer"><img src="/images/Frame-2147229429-1.webp" loading="lazy" alt="" className="image" /></div>
                 <div className="card-wrap inner">
-                  <div className="v-flex-default sapce">
+                  <div className="v-flex-default space">
                     <div className="h-flex-xs">
                       <div className="card-label">
                         <div className="text-sm">AI</div>
@@ -744,10 +758,50 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 </div>
               </div>
 
+
+              <div className="card-content">
+                <div data-w-id="cff4de03-203b-afed-8290-0e425b301f6a" className="card-wrap outer"><img src="/images/Frame-2147229429-2.webp" loading="lazy" alt="" className="image" /></div>
+                <div className="card-wrap inner">
+                  <div className="v-flex-default space">
+                    <div className="h-flex-xs">
+                      <div className="card-label">
+                        <div className="text-sm">FinTech</div>
+                      </div>
+                      <div className="card-label">
+                        <div className="text-sm">United States</div>
+                      </div>
+                    </div>
+                    <div className="v-flex-md">
+                      <div className="v-flex-xs">
+                        <div className="text-2xl white"><span className="semibold">Postcredit</span></div>
+                        <div className="w-layout-grid card-grid">
+                          <div className="v-flex-xs">
+                            <div className="text-xs">Launch in</div>
+                            <div className="text-xl white"><span className="semibold">6 weeks</span></div>
+                          </div>
+                          <div className="v-flex-xs">
+                            <div className="text-xs">Reduce cost</div>
+                            <div className="text-xl white"><span className="semibold">20%</span></div>
+                          </div>
+                        </div>
+                        <div className="text-xs">Supported a $1M+ funding raise by delivering a conversion-ready MVP website and web app.</div>
+                      </div>
+                      <div className="line border"></div>
+                      <div className="h-flex-xs center" style={{ gap: '8px' }}>
+                        <div className="text-xs">App Design</div>
+                        <div className="dot-card"></div>
+                        <div className="text-xs">Web Design</div>
+                        <div className="dot-card"></div>
+                        <div className="text-xs">Web Development</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="card-content">
                 <div data-w-id="11f19e74-0bee-f910-1359-defa289cfac9" className="card-wrap outer"><img src="/images/Frame-2147229429-3.webp" loading="lazy" alt="" className="image" /></div>
                 <div className="card-wrap inner">
-                  <div className="v-flex-default sapce">
+                  <div className="v-flex-default space">
                     <div className="h-flex-xs">
                       <div className="card-label">
                         <div className="text-sm">Enterprize</div>
@@ -786,7 +840,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
               <div className="card-content">
                 <div data-w-id="64385c68-2147-ef9a-6e78-22453ea0ba6e" className="card-wrap outer"><img src="/images/Frame-2147229429-4.webp" loading="lazy" alt="" className="image" /></div>
                 <div className="card-wrap inner">
-                  <div className="v-flex-default sapce">
+                  <div className="v-flex-default space">
                     <div className="h-flex-xs">
                       <div className="card-label">
                         <div className="text-sm">UI Templates</div>
@@ -859,7 +913,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             <div id="w-node-_6d60b71b-f38c-c6a8-0faf-4f2bfe6520e4-a7701396" className="video-wrap">
               <div className="w-embed w-iframe w-script">
                 <div className="video-container" style={{position: "relative", paddingBottom: "100%", height: "0", overflow: "hidden", borderRadius: "8px"}}>
-                  <iframe id="video-player" src="https://www.youtube.com/embed/xYz4nXFTh_k?autoplay=1&mute=1&loop=1&playlist=xYz4nXFTh_k&controls=0&enablejsapi=1&start=1972" style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", pointerEvents: "none", transform: "scale(1.2)"}} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
+                  <iframe id="video-player" src="https://www.youtube.com/embed/xYz4nXFTh_k?autoplay=0&mute=0&loop=1&playlist=xYz4nXFTh_k&controls=0&enablejsapi=1&start=1972" style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", pointerEvents: "none", transform: "scale(1.2)"}} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
                   </iframe>
                   <button id="toggle-btn" style={{position: "absolute", bottom: "20px", left: "20px", zIndex: "20", background: "rgba(255, 255, 255, 0.1)", border: "3px solid rgba(255, 255, 255, 0.5)", borderRadius: "50%", width: "60px", height: "60px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", backdropFilter: "blur(2px)", transition: "all 0.3s ease"}}>
                     <div id="btn-icon-wrapper" style={{display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%"}}>
@@ -896,7 +950,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             <div id="w-node-abc9c443-1e9c-4570-5a53-8683288cd4ee-a7701396" className="video-wrap">
               <div className="w-embed w-iframe w-script">
                 <div className="video-container" style={{position: "relative", paddingBottom: "100%", height: "0", overflow: "hidden", borderRadius: "8px"}}>
-                  <iframe id="video-player-2" src="https://www.youtube.com/embed/ng4v6MHxNFU?autoplay=1&mute=1&loop=1&playlist=ng4v6MHxNFU&controls=0&enablejsapi=1&start=481" style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", pointerEvents: "none", transform: "scale(1.2)"}} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
+                  <iframe id="video-player-2" src="https://www.youtube.com/embed/ng4v6MHxNFU?autoplay=0&mute=0&loop=1&playlist=ng4v6MHxNFU&controls=0&enablejsapi=1&start=481" style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", pointerEvents: "none", transform: "scale(1.2)"}} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
                   </iframe>
                   <button id="toggle-btn-2" style={{position: "absolute", bottom: "20px", left: "20px", zIndex: "20", background: "rgba(255, 255, 255, 0.1)", border: "3px solid rgba(255, 255, 255, 0.5)", borderRadius: "50%", width: "60px", height: "60px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", backdropFilter: "blur(2px)", transition: "all 0.3s ease"}}>
                     <div id="btn-icon-wrapper-2" style={{display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%"}}>
@@ -933,7 +987,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             <div id="w-node-b3581415-e3a0-e96f-ba82-e5866fd3536e-a7701396" className="video-wrap">
               <div className="w-embed w-iframe w-script">
                 <div className="video-container" style={{position: "relative", paddingBottom: "100%", height: "0", overflow: "hidden", borderRadius: "8px"}}>
-                  <iframe id="video-player-3" src="https://www.youtube.com/embed/nR1WwHAFQ8U?autoplay=1&mute=1&loop=1&playlist=nR1WwHAFQ8U&controls=0&enablejsapi=1" style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", pointerEvents: "none", transform: "scale(1.2)"}} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
+                  <iframe id="video-player-3" src="https://www.youtube.com/embed/nR1WwHAFQ8U?autoplay=0&mute=0&loop=1&playlist=nR1WwHAFQ8U&controls=0&enablejsapi=1" style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", pointerEvents: "none", transform: "scale(1.2)"}} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
                   </iframe>
                   <button id="toggle-btn-3" style={{position: "absolute", bottom: "20px", left: "20px", zIndex: "20", background: "rgba(255, 255, 255, 0.1)", border: "3px solid rgba(255, 255, 255, 0.5)", borderRadius: "50%", width: "60px", height: "60px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", backdropFilter: "blur(2px)", transition: "all 0.3s ease"}}>
                     <div id="btn-icon-wrapper-3" style={{display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%"}}>
@@ -970,7 +1024,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             <div id="w-node-_515a5d09-4818-9e76-b488-a554e96e0fec-a7701396" className="video-wrap">
               <div className="w-embed w-iframe w-script">
                 <div className="video-container" style={{position: "relative", paddingBottom: "100%", height: "0", overflow: "hidden", borderRadius: "8px"}}>
-                  <iframe id="video-player-4" src="https://www.youtube.com/embed/ajvXxR1Di54?autoplay=1&mute=1&loop=1&playlist=ajvXxR1Di54&controls=0&enablejsapi=1" style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", pointerEvents: "none", transform: "scale(1.2)"}} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
+                  <iframe id="video-player-4" src="https://www.youtube.com/embed/ajvXxR1Di54?autoplay=0&mute=0&loop=1&playlist=ajvXxR1Di54&controls=0&enablejsapi=1" style={{position: "absolute", top: "0", left: "0", width: "100%", height: "100%", pointerEvents: "none", transform: "scale(1.2)"}} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="">
                   </iframe>
                   <button id="toggle-btn-4" style={{position: "absolute", bottom: "20px", left: "20px", zIndex: "20", background: "rgba(255, 255, 255, 0.1)", border: "3px solid rgba(255, 255, 255, 0.5)", borderRadius: "50%", width: "60px", height: "60px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", backdropFilter: "blur(2px)", transition: "all 0.3s ease"}}>
                     <div id="btn-icon-wrapper-4" style={{display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%"}}>
@@ -1018,7 +1072,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         </div>
         <div className="content-wrapper">
           <div data-w-id="389f6ffc-c5c9-ae51-dd0f-7c6ba05ed448" style={{opacity: "0"}} className="w-layout-grid service-content-grid _1">
-            <div id="w-node-def83005-1823-8ded-56ad-e5cfaece8d35-a7701396" className="v-flex-default sapce">
+            <div id="w-node-def83005-1823-8ded-56ad-e5cfaece8d35-a7701396" className="v-flex-default space">
               <div className="v-flex-xs">
                 <div className="label-text">SEED</div>
                 <h4 className="text-4xl"><span className="reguler">Validate Fast. Ship a Credible MVP in 7 Days.        </span></h4>
@@ -1064,7 +1118,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div>
           </div>
           <div className="w-layout-grid service-content-grid _2">
-            <div id="w-node-_9b8cd529-b6a2-c75a-e761-d633fd3f5597-a7701396" className="v-flex-default sapce">
+            <div id="w-node-_9b8cd529-b6a2-c75a-e761-d633fd3f5597-a7701396" className="v-flex-default space">
               <div className="v-flex-xs">
                 <div className="label-text">GROWTH</div>
                 <h4 className="text-4xl">Increase Adoption  and Cut Drop-Off, So Traction Keeps Growing</h4>
@@ -1110,7 +1164,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div>
           </div>
           <div className="w-layout-grid service-content-grid _3">
-            <div id="w-node-cec532d8-e240-5ed5-5716-8a6559bfd7ab-a7701396" className="v-flex-default sapce">
+            <div id="w-node-cec532d8-e240-5ed5-5716-8a6559bfd7ab-a7701396" className="v-flex-default space">
               <div className="v-flex-xs">
                 <div className="label-text">scale</div>
                 <h4 className="text-4xl">Optimize Without Breaking UX. Reach More Users With Confidence.</h4>
@@ -1177,7 +1231,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       </div>
       <div className="fetaure-content">
         <div className="content-bg content-1">
-          <div className="v-flex-default sapce">
+          <div className="v-flex-default space">
             <div className="h-flex-sm">
               <div className="lable-feature">
                 <div className="text-xl label-text"><span className="white">ALIA POPUPS</span></div>
@@ -1223,7 +1277,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           </div>
         </div>
         <div className="content-bg content-2">
-          <div className="v-flex-default sapce">
+          <div className="v-flex-default space">
             <div className="h-flex-sm">
               <div className="lable-feature">
                 <div className="text-xl label-text"><span className="white">ALLEN AI</span></div>
@@ -1265,7 +1319,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           </div>
         </div>
         <div className="content-bg content-3">
-          <div className="v-flex-default sapce">
+          <div className="v-flex-default space">
             <div className="h-flex-sm">
               <div className="lable-feature">
                 <div className="text-xl label-text"><span className="white">FUNDFLOW</span></div>
@@ -1311,9 +1365,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
       </div>
     </section>
   </div>
-  <div data-w-id="d6f1ddfe-bc10-e975-9aef-a1d6cdf3cc1b" className="scroll-close-wrap _2">
-    <div className="sticky-wrap _2">
-      <section className="section dark">
+
+    <section className="section dark">
         <div className="w-layout-blockcontainer container w-container">
           <div className="v-flex-2xl center _1">
             <div className="v-flex-lg center">
@@ -1777,8 +1830,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
           </div>
         </div>
       </section>
-    </div>
-    <div className="sticky-wrap-2">
+
       <section className="section">
         <div className="w-layout-blockcontainer container w-container">
           <div className="v-flex-lg center">
@@ -1819,12 +1871,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
           </div>
         </div>
       </section>
-    </div>
-  </div>
   <section className="section sticky-bottom">
     <div className="w-layout-blockcontainer container w-container">
       <div className="w-layout-grid grid-2xl benefit-section">
-        <div className="v-flex-default sapce">
+        <div className="v-flex-default space">
           <div className="v-flex-lg align-left">
             <div data-w-id="0ec343c5-c1a8-b8b0-98c8-f1c26beb43fd" style={{opacity: "0"}} className="label border">
               <div className="dot"></div>
@@ -1994,7 +2044,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       <div className="testimonial-carousel-wrap left">
         <div className="testimonial-carousel-content">
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/_Group_.png" loading="lazy" alt="" className="logo-image" />
                 <div className="text-sm testimonial-text">Wow, that is amazing! Thank you so much for this proactive initiative. I’ll review it in detail and get back to you with my feedback as soon as possible.</div>
               </div>
@@ -2005,7 +2055,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-1.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-1-p-500.png 500w, /images/Card-Image-1.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-212-Vectorized.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">Hi Elux team. Thank you so much for your work thus far. Things are looking really nice. We complied some specific in this doc.</div>
               </div>
@@ -2016,7 +2066,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-2.png" loading="lazy" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-213-Vectorized.png" loading="lazy" alt="" className="logo-image" />
                 <div className="text-sm testimonial-text">This style works, it makes it easier tointroduce new features in the future</div>
               </div>
@@ -2027,7 +2077,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-3.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-3-p-500.png 500w, /images/Card-Image-3.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-1-Vectorized.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">We&#x27;ve been working with Elux since 2022, and it&#x27;s been a great experience fromthe start. Their design work is consistently top-notch, and the team is always quick to respond and super easy to communicate with. They really get ourfeedback and always come through with great solutions. We&#x27;re definitely looking forward to continuing this partnership.</div>
               </div>
@@ -2038,7 +2088,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-4.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-4-p-500.png 500w, /images/Card-Image-4.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-212-Vectorized.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">OK designs look great! I have a meeting with the Molmo team later this afternoon. I will share it with the team then and follow up with any other changes after that.</div>
               </div>
@@ -2049,7 +2099,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-5.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-5-p-500.png 500w, /images/Card-Image-5.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/tc-logo-red.svg.png" loading="lazy" alt="" className="logo-image" />
                 <div className="text-sm testimonial-text">Hi, thanks for all the deliverables. Everythinglooks good as discussed before. Thanks for thecollaboration! Wish you all the best!</div>
               </div>
@@ -2061,7 +2111,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         </div>
         <div className="testimonial-carousel-content _1">
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/_Group_.png" loading="lazy" alt="" className="logo-image" />
                 <div className="text-sm testimonial-text">Wow, that is amazing! Thank you so much for this proactive initiative. I’ll review it in detail and get back to you with my feedback as soon as possible.</div>
               </div>
@@ -2072,7 +2122,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-1.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-1-p-500.png 500w, /images/Card-Image-1.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-212-Vectorized.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">Hi Elux team. Thank you so much for your work thus far. Things are looking really nice. We complied some specific in this doc.</div>
               </div>
@@ -2083,7 +2133,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-2.png" loading="lazy" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-213-Vectorized.png" loading="lazy" alt="" className="logo-image" />
                 <div className="text-sm testimonial-text">This style works, it makes it easier tointroduce new features in the future</div>
               </div>
@@ -2094,7 +2144,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-3.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-3-p-500.png 500w, /images/Card-Image-3.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-1-Vectorized.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">We&#x27;ve been working with Elux since 2022, and it&#x27;s been a great experience fromthe start. Their design work is consistently top-notch, and the team is always quick to respond and super easy to communicate with. They really get ourfeedback and always come through with great solutions. We&#x27;re definitely looking forward to continuing this partnership.</div>
               </div>
@@ -2105,7 +2155,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-4.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-4-p-500.png 500w, /images/Card-Image-4.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-212-Vectorized.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">OK designs look great! I have a meeting with the Molmo team later this afternoon. I will share it with the team then and follow up with any other changes after that.</div>
               </div>
@@ -2116,7 +2166,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-5.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-5-p-500.png 500w, /images/Card-Image-5.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/tc-logo-red.svg.png" loading="lazy" alt="" className="logo-image" />
                 <div className="text-sm testimonial-text">Hi, thanks for all the deliverables. Everythinglooks good as discussed before. Thanks for thecollaboration! Wish you all the best!</div>
               </div>
@@ -2157,7 +2207,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         </div>
         <div className="testimonial-carousel-content">
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-214-Vectorized.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">Great thanks I&#x27;ve carved out time to review and go over this tomorrow morning Cannot wait !!</div>
               </div>
@@ -2168,7 +2218,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-6.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-6-p-500.png 500w, /images/Card-Image-6.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/Logo.png" loading="lazy" alt="" className="logo-image" />
                 <div className="text-sm testimonial-text">I like both Hero sections, it&#x27;s really difficult to decide which one is better, I have to think about that. Really cool!</div>
               </div>
@@ -2179,7 +2229,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-p-500.png 500w, /images/Card-Image.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-216.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">Love this style</div>
               </div>
@@ -2190,7 +2240,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-11.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-11-p-500.png 500w, /images/Card-Image-11.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/LOGO_1.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">Hi, after checking the wireframes, awesome job to the Elux team! The wireframes have captured the core structure well, and we now have a very solid foundation to build on. To take this from &#x27;great&#x27; to &#x27;perfect,&#x27; here is some feedback to help us match Mellow Art&#x27;s unique vibe.</div>
               </div>
@@ -2201,7 +2251,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image_1.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image_1-p-500.png 500w, /images/Card-Image_1.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-9-1-1.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">Great design arrangement, both versionsconfirmed after update.</div>
               </div>
@@ -2212,7 +2262,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-1_1.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-1_1-p-500.png 500w, /images/Card-Image-1_1.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/S5ruRGq-1.png" loading="lazy" sizes="(max-width: 2054px) 100vw, 2054px" srcset="/images/8fd427d5497433c1f4accd13f6c2f838_S5ruRGq-1-p-500.png 500w, /images/8fd427d5497433c1f4accd13f6c2f838_S5ruRGq-1-p-800.png 800w, /images/8fd427d5497433c1f4accd13f6c2f838_S5ruRGq-1-p-1080.png 1080w, /images/8fd427d5497433c1f4accd13f6c2f838_S5ruRGq-1-p-1600.png 1600w, /images/8fd427d5497433c1f4accd13f6c2f838_S5ruRGq-1-p-2000.png 2000w, /images/S5ruRGq-1.png 2054w" alt="" className="logo-image" />
                 <div className="text-sm testimonial-text">We engaged Elux for website design and development, and the experience was exceptional. Their work stood out for its aesthetic appeal and professional quality. The team understood our needs well and delivered everything as expected with great support.</div>
               </div>
@@ -2225,7 +2275,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
         </div>
         <div className="testimonial-carousel-content">
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-214-Vectorized.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">Great thanks I&#x27;ve carved out time to review and go over this tomorrow morning Cannot wait !!</div>
               </div>
@@ -2236,7 +2286,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-6.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-6-p-500.png 500w, /images/Card-Image-6.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/Logo.png" loading="lazy" alt="" className="logo-image" />
                 <div className="text-sm testimonial-text">I like both Hero sections, it&#x27;s really difficult to decide which one is better, I have to think about that. Really cool!</div>
               </div>
@@ -2247,7 +2297,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-p-500.png 500w, /images/Card-Image.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-216.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">Love this style</div>
               </div>
@@ -2258,7 +2308,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-11.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-11-p-500.png 500w, /images/Card-Image-11.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/LOGO_1.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">Hi, after checking the wireframes, awesome job to the Elux team! The wireframes have captured the core structure well, and we now have a very solid foundation to build on. To take this from &#x27;great&#x27; to &#x27;perfect,&#x27; here is some feedback to help us match Mellow Art&#x27;s unique vibe.</div>
               </div>
@@ -2269,7 +2319,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image_1.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image_1-p-500.png 500w, /images/Card-Image_1.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/image-9-1-1.png" loading="lazy" alt="" className="logo-image _2" />
                 <div className="text-sm testimonial-text">Great design arrangement, both versionsconfirmed after update.</div>
               </div>
@@ -2280,7 +2330,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div><img src="/images/Card-Image-1_1.png" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" srcset="/images/Card-Image-1_1-p-500.png 500w, /images/Card-Image-1_1.png 720w" alt="" className="image-14" />
           </div>
           <div className="card-testimonial">
-            <div className="v-flex-default sapce">
+            <div className="v-flex-default space">
               <div className="v-flex-xl"><img src="/images/S5ruRGq-1.png" loading="lazy" sizes="(max-width: 2054px) 100vw, 2054px" srcset="/images/8fd427d5497433c1f4accd13f6c2f838_S5ruRGq-1-p-500.png 500w, /images/8fd427d5497433c1f4accd13f6c2f838_S5ruRGq-1-p-800.png 800w, /images/8fd427d5497433c1f4accd13f6c2f838_S5ruRGq-1-p-1080.png 1080w, /images/8fd427d5497433c1f4accd13f6c2f838_S5ruRGq-1-p-1600.png 1600w, /images/8fd427d5497433c1f4accd13f6c2f838_S5ruRGq-1-p-2000.png 2000w, /images/S5ruRGq-1.png 2054w" alt="" className="logo-image" />
                 <div className="text-sm testimonial-text">We engaged Elux for website design and development, and the experience was exceptional. Their work stood out for its aesthetic appeal and professional quality. The team understood our needs well and delivered everything as expected with great support.</div>
               </div>
@@ -2678,7 +2728,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       overflow: visible !important;
       z-index: 3 !important;
     }
-    .webflow-wrapper .benefit-section > .v-flex-default.sapce {
+    .webflow-wrapper .benefit-section > .v-flex-default.space {
       row-gap: 24px !important;
     }
     .webflow-wrapper .benefit-section .v-flex-lg.align-left {
@@ -2974,7 +3024,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       margin-bottom: 16px !important;
       padding-bottom: 0 !important;
     }
-    .webflow-wrapper .benefit-section > .v-flex-default.sapce {
+    .webflow-wrapper .benefit-section > .v-flex-default.space {
       row-gap: 20px !important;
     }
     .webflow-wrapper .benefit-section .v-flex-lg.align-left {
