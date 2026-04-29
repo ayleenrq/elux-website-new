@@ -1,33 +1,10 @@
 import { useState, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+
 import heroVideo from '../assets/4957781-hd_1920_1080_25fps.mp4';
 
 function Hero() {
     const [isPlaying, setIsPlaying] = useState(true);
     const videoRef = useRef<HTMLVideoElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
-
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"]
-    });
-
-    // Interaction Mapping
-    // Natural Scroll Phase (0 to 0.3): Everything moves up normally.
-    // Sticky Expansion Phase (0.3 to 0.8): Video fills screen.
-
-    // Headline/Action Fade & Move
-    const headerOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-    const headerY = useTransform(scrollYProgress, [0, 0.4], [0, -200]);
-
-    // Growing Video Section - Initial state is large and cornered
-    // Starts expanding after 0.3 progress
-    const videoScale = useTransform(scrollYProgress, [0.4, 0.9], [0.6, 1]);
-    const videoX = useTransform(scrollYProgress, [0.4, 0.9], ["25vw", "0vw"]);
-    const videoY = useTransform(scrollYProgress, [0.4, 0.9], ["25vh", "0vh"]);
-    const videoWidth = useTransform(scrollYProgress, [0.4, 0.9], ["50vw", "100vw"]);
-    const videoHeight = useTransform(scrollYProgress, [0.4, 0.9], ["65vh", "100vh"]);
-    const videoZIndex = useTransform(scrollYProgress, [0, 0.4, 0.41], [0, 0, 50]);
 
     const togglePlay = () => {
         if (videoRef.current) {
@@ -41,77 +18,56 @@ function Hero() {
     };
 
     return (
-        <div ref={containerRef} className="relative h-[500vh] bg-white pt-40">
-            <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white">
-
-                {/* Aligned Headline & Subheadline Grid */}
-                <motion.div
-                    style={{ opacity: headerOpacity, y: headerY }}
-                    className="absolute inset-0 z-10 px-8 max-w-7xl mx-auto w-full pointer-events-none mt-40"
-                >
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border-0 shadow-none">
-                        {/* Headline - Left */}
-                        <div className="lg:col-span-8 border-0 shadow-none">
-                            <h1 className="text-5xl md:text-[100px] leading-[0.9] text-gray-900 font-medium tracking-tighter border-0 shadow-none font-display uppercase">
-                                We Create Stunning <br /> Branding for Growing <br /> Brands
-                            </h1>
-                        </div>
-
-                        {/* Subheadline/Action - Right (Sejajar) */}
-                        <div className="lg:col-span-4 border-0 shadow-none pt-4 lg:pt-10">
-                            <a href="#" className="inline-flex items-center gap-2 group text-xl font-medium mb-8 border-0 shadow-none pointer-events-auto">
-                                <span className="border-b border-black">Book a Call</span>
-                                <svg className="w-5 h-5 transform transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </a>
-                            <p className="text-gray-600 text-lg font-medium leading-relaxed border-0 shadow-none">
-                                We help brands grow with strategic design, modern development, and results-driven digital solutions.
-                            </p>
-                        </div>
+        <div className="relative pt-40 pb-20 bg-white">
+            <div className="px-8 max-w-7xl mx-auto w-full mb-20">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border-0 shadow-none">
+                    <div className="lg:col-span-8 border-0 shadow-none">
+                        <h1 className="text-5xl md:text-[100px] leading-[0.9] text-gray-900 font-medium tracking-tighter border-0 shadow-none font-display uppercase">
+                            We Design Products <br /> People Actually <br /> Want to Use
+                        </h1>
                     </div>
-                </motion.div>
 
-                {/* Expanding Video Section */}
-                <motion.div
-                    style={{
-                        scale: videoScale,
-                        x: videoX,
-                        y: videoY,
-                        width: videoWidth,
-                        height: videoHeight,
-                        zIndex: videoZIndex
-                    }}
-                    className="relative overflow-hidden bg-gray-100 border-0 shadow-none rounded-none"
+                    <div className="lg:col-span-4 border-0 shadow-none pt-4 lg:pt-10">
+                        <a href="#contact" onClick={(e) => { e.preventDefault(); window.location.hash = '#contact'; }} className="inline-flex items-center gap-2 group text-xl font-medium mb-8 border-0 shadow-none pointer-events-auto">
+                            <span className="border-b border-black">Book a Discovery Call</span>
+                            <svg className="w-5 h-5 transform transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                        <p className="text-gray-600 text-lg font-medium leading-relaxed border-0 shadow-none">
+                            We help brands grow with strategic design, modern development, and results-driven digital solutions.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="relative overflow-hidden bg-gray-100 max-w-[95vw] mx-auto rounded-3xl h-[70vh]">
+                <video
+                    ref={videoRef}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                 >
-                    <video
-                        ref={videoRef}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
-                    >
-                        <source src={heroVideo} type="video/mp4" />
-                    </video>
+                    <source src={heroVideo} type="video/mp4" />
+                </video>
 
-                    {/* Play/Pause Button overlay */}
-                    <button
-                        onClick={togglePlay}
-                        className="absolute bottom-10 right-10 w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/40 transition-all z-20 group"
-                        aria-label={isPlaying ? 'Pause Video' : 'Play Video'}
-                    >
-                        {isPlaying ? (
-                            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-                            </svg>
-                        ) : (
-                            <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z" />
-                            </svg>
-                        )}
-                    </button>
-                </motion.div>
+                <button
+                    onClick={togglePlay}
+                    className="absolute bottom-10 right-10 w-16 h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/40 transition-all z-20 group"
+                    aria-label={isPlaying ? 'Pause Video' : 'Play Video'}
+                >
+                    {isPlaying ? (
+                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+                        </svg>
+                    ) : (
+                        <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                    )}
+                </button>
             </div>
         </div>
     );
@@ -151,7 +107,7 @@ function InformationAndMetrics() {
                     </div>
                     <div className="md:w-3/4 border-0 shadow-none">
                         <h2 className="text-[64px] leading-[1.1] text-gray-900 font-medium tracking-tighter border-0 shadow-none font-display">
-                            Grabfy is an independent creative agency with more than 15 years of experiences. Worked with brand like Nike, Uber, Meta and more...
+                            Elux Space is a global product design studio helping founders and operators build digital products that ship, scale, and convert.
                         </h2>
                     </div>
                 </div>
@@ -239,49 +195,44 @@ function Awards() {
     );
 }
 
-function StackIntegrations() {
-    const integrations = [
-        { name: 'Mailchimp', icon: 'https://cdn.worldvectorlogo.com/logos/mailchimp-freddie-icon.svg' },
-        { name: 'Notion', icon: 'https://cdn.worldvectorlogo.com/logos/notion-2.svg' },
-        { name: 'Slack', icon: 'https://cdn.worldvectorlogo.com/logos/slack-new-logo.svg' },
-        { name: 'Zapier', icon: 'https://cdn.worldvectorlogo.com/logos/zapier-2.svg' },
-        { name: 'Asana', icon: 'https://cdn.worldvectorlogo.com/logos/asana-1.svg' },
-        { name: 'Evergreen', icon: 'https://www.vectorlogo.zone/logos/evergreen/evergreen-icon.svg' }
+function DesignToolStack() {
+    const tools = [
+        { name: 'Figma', category: 'Design & Prototyping', color: 'bg-purple-500/10 text-purple-400' },
+        { name: 'Framer', category: 'Web Development', color: 'bg-blue-500/10 text-blue-400' },
+        { name: 'Webflow', category: 'No-Code Build', color: 'bg-emerald-500/10 text-emerald-400' },
+        { name: 'React', category: 'Front-End Dev', color: 'bg-cyan-500/10 text-cyan-400' },
+        { name: 'Lottie', category: 'Motion & Animation', color: 'bg-orange-500/10 text-orange-400' },
+        { name: 'Notion', category: 'Project Management', color: 'bg-gray-500/10 text-gray-400' },
+        { name: 'Maze', category: 'User Testing', color: 'bg-pink-500/10 text-pink-400' },
+        { name: 'Zeroheight', category: 'Design System Docs', color: 'bg-indigo-500/10 text-indigo-400' },
     ];
 
-    // Double the array for seamless marquee
-    const marqueeItems = [...integrations, ...integrations];
-
     return (
-        <section className="bg-white py-32 border-0 shadow-none overflow-hidden">
-            <div className="max-w-7xl mx-auto px-8 text-center border-0 shadow-none mb-20">
-                <span className="text-[10px] font-bold text-gray-400 tracking-[0.2em] uppercase mb-4 block">INTEGRATION</span>
-                <h2 className="text-[56px] md:text-[72px] font-medium tracking-tighter text-gray-900 leading-[1.1] mb-6 font-display">
-                    Simply connect the apps to <br className="hidden md:block" /> boost your profile
-                </h2>
-                <p className="text-gray-500 text-xl max-w-2xl mx-auto border-0 shadow-none">
-                    Seamlessly sync your favorite tools and streamline your workflow with our growing ecosystem of integrations.
-                </p>
-            </div>
+        <section className="bg-white py-32 px-8 border-0 shadow-none overflow-hidden">
+            <div className="max-w-7xl mx-auto border-0 shadow-none">
+                <div className="text-center mb-20 border-0 shadow-none">
+                    <span className="text-[10px] font-bold text-gray-400 tracking-[0.2em] uppercase mb-4 block">OUR TOOLKIT</span>
+                    <h2 className="text-[56px] md:text-[72px] font-medium tracking-tighter text-gray-900 leading-[1.1] mb-6 font-display">
+                        Tools of the trade
+                    </h2>
+                    <p className="text-gray-500 text-xl max-w-2xl mx-auto border-0 shadow-none">
+                        We work in the same tools your developers use — ensuring seamless handoff, zero guesswork, and production-ready output every time.
+                    </p>
+                </div>
 
-            <div className="relative flex overflow-hidden w-full border-0 shadow-none mb-16">
-                <div className="flex whitespace-nowrap animate-marquee items-center border-0 shadow-none hover:[animation-play-state:paused]">
-                    {marqueeItems.map((app, idx) => (
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 border-0 shadow-none">
+                    {tools.map((tool) => (
                         <div
-                            key={`${app.name}-${idx}`}
-                            className="bg-[#f9f9f9] border border-gray-100 rounded-2xl p-6 flex items-center gap-4 min-w-[240px] mx-4 hover:shadow-md transition-shadow duration-300"
+                            key={tool.name}
+                            className="bg-[#f9f9f9] border border-gray-100 rounded-2xl p-6 flex flex-col gap-2 hover:border-gray-300 hover:shadow-sm transition-all duration-300"
                         >
-                            <img src={app.icon} alt={app.name} className="w-8 h-8 object-contain" />
-                            <span className="text-lg font-bold text-gray-700">{app.name}</span>
+                            <span className={`text-[10px] font-bold tracking-[0.2em] uppercase px-2 py-1 rounded-full w-fit ${tool.color}`}>
+                                {tool.category}
+                            </span>
+                            <span className="text-xl font-bold text-gray-900 mt-2">{tool.name}</span>
                         </div>
                     ))}
                 </div>
-            </div>
-
-            <div className="flex justify-center border-0 shadow-none">
-                <button className="bg-black text-white px-10 py-4 rounded-full font-bold text-sm tracking-widest hover:scale-105 transition-transform">
-                    CONNECT APPS
-                </button>
             </div>
         </section>
     );
@@ -290,28 +241,28 @@ function StackIntegrations() {
 function GrowthSolutions() {
     const solutions = [
         {
-            title: "Content Marketing",
-            description: "Create and distribute valuable content to attract and engage your ideal audience."
+            title: "UX & UI Design",
+            description: "End-to-end product design from discovery and wireframes to high-fidelity UI your developers can build from."
         },
         {
-            title: "Marketing Automation",
-            description: "Streamline marketing processes and deliver personalized experiences at scale."
+            title: "Design Systems",
+            description: "Living component libraries and token systems that scale with your team and ship consistently across every surface."
         },
         {
-            title: "Influencer Marketing",
-            description: "Partner with trusted voices to amplify your brand's reach and credibility."
+            title: "MVP & Prototyping",
+            description: "From rough concept to fundable, investor-ready prototype — in as little as two weeks."
         },
         {
-            title: "Email Marketing",
-            description: "Design and execute high-converting email sequences that drive measurable growth."
+            title: "Web Development",
+            description: "Production-quality websites and web apps built on Webflow, Framer, or React — from design to deployment."
         },
         {
-            title: "Social Media Strategy",
-            description: "Build a strong brand presence and foster community across all major platforms."
+            title: "UX Audit & Research",
+            description: "Evidence-based direction from user interviews, heuristic audits, and conversion funnel analysis."
         },
         {
-            title: "Performance Marketing",
-            description: "Optimize your ad spend and maximize ROI with data-driven advertising campaigns."
+            title: "Brand & Visual Identity",
+            description: "Premium brand systems that signal trust and differentiate your product in a crowded market."
         }
     ];
 
@@ -320,18 +271,22 @@ function GrowthSolutions() {
             <div className="max-w-7xl mx-auto border-0 shadow-none">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24 border-0 shadow-none items-end">
                     <h2 className="text-[72px] md:text-[96px] font-medium tracking-tighter text-white leading-[0.9] font-display">
-                        Solutions Tailored <br /> for Your Growth
+                        What We <br /> Actually Do
                     </h2>
                     <div className="border-0 shadow-none flex flex-col items-start lg:items-end">
                         <p className="text-gray-400 text-xl max-w-md lg:text-right mb-10 leading-relaxed font-medium">
-                            We fuel bold ideas, driving them forward with sharp strategy and precision execution.
+                            From zero-to-one MVPs to enterprise design systems — we bring senior design execution at every stage of your product journey.
                         </p>
-                        <button className="bg-[#d4ff3f] text-black px-8 py-4 rounded-full font-bold text-sm tracking-widest flex items-center gap-3 hover:scale-105 transition-transform mb-2 leading-none">
-                            GET STARTED
-                            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                                <path d="M5 12h14M12 5l7 7-7 7" />
+                        <a
+                            href="#services"
+                            onClick={(e) => { e.preventDefault(); window.location.hash = '#services'; }}
+                            className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 rounded-full font-bold text-sm tracking-widest hover:bg-gray-800 transition-all mb-2 leading-none group"
+                        >
+                            VIEW ALL SERVICES
+                            <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
-                        </button>
+                        </a>
                     </div>
                 </div>
 
@@ -408,14 +363,18 @@ function HowWeWork() {
                     <p className="text-gray-500 text-lg mb-12 max-w-sm border-0 shadow-none">
                         No surprises — just structured milestones, clear updates, and open communication from start to finish.
                     </p>
-                    <button className="group flex items-center gap-4 bg-black text-white px-8 py-5 rounded-full hover:scale-105 transition-all duration-300 border-0 shadow-none">
-                        <span className="text-sm font-bold uppercase tracking-widest border-0 shadow-none">Contact Now</span>
+                    <a
+                        href="#contact"
+                        onClick={(e) => { e.preventDefault(); window.location.hash = '#contact'; }}
+                        className="group flex items-center gap-4 bg-black text-white px-8 py-5 rounded-full hover:bg-gray-800 transition-all duration-300 border-0 shadow-none w-fit"
+                    >
+                        <span className="text-sm font-bold uppercase tracking-widest border-0 shadow-none">Start a Project</span>
                         <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center transition-colors group-hover:bg-blue-600 border-0 shadow-none">
                             <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
                         </div>
-                    </button>
+                    </a>
                 </div>
 
                 {/* Right Column: Cards */}
@@ -446,13 +405,13 @@ function HowWeWork() {
 
 function Team() {
     const team = [
-        { name: 'DARRELL STEWARD', role: 'CONTENT STRATEGIST', image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=800&q=80' },
-        { name: 'JACOB JONES', role: 'SOCIAL MEDIA MANAGER', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80' },
-        null, // EMPTY SLOT
         { name: 'ARMAN NIUM', role: 'CREATIVE DIRECTOR', image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80' },
-        { name: 'THERESA WEBB', role: 'MARKETING ANALYST', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&q=80' },
-        { name: 'KATHRYN MURPHY', role: 'BRAND STRATEGIST', image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800&q=80' },
-        { name: 'ROBERT FOX', role: 'GRAPHIC DESIGNER', image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=800&q=80' },
+        { name: 'THERESA WEBB', role: 'SENIOR UX DESIGNER', image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=800&q=80' },
+        null, // EMPTY SLOT
+        { name: 'KATHRYN MURPHY', role: 'PRODUCT DESIGNER', image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800&q=80' },
+        { name: 'JACOB JONES', role: 'UI DESIGN LEAD', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80' },
+        { name: 'DARRELL STEWARD', role: 'DESIGN SYSTEMS LEAD', image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=800&q=80' },
+        { name: 'ROBERT FOX', role: 'FRAMER DEVELOPER', image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?w=800&q=80' },
         null // EMPTY SLOT
     ];
 
@@ -472,7 +431,7 @@ function Team() {
                         <p className="max-w-2xl text-2xl text-gray-400 font-medium leading-relaxed border-0 shadow-none">
                             A collective of senior designers and product thinkers dedicated to building valid foundations for the next generation of digital giants.
                         </p>
-                        <a href="#" className="underline font-bold text-xs tracking-widest border-0 shadow-none whitespace-nowrap mb-2">JOIN US</a>
+                        <a href="mailto:hello@elux.space" className="underline font-bold text-xs tracking-widest border-0 shadow-none whitespace-nowrap mb-2 hover:text-blue-600 transition-colors">JOIN US</a>
                     </div>
                 </div>
 
@@ -511,7 +470,7 @@ export default function AboutUs() {
             <HowWeWork />
             <Awards />
             <Team />
-            <StackIntegrations />
+            <DesignToolStack />
         </div>
     );
 }

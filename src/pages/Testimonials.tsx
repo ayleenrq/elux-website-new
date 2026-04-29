@@ -1,12 +1,47 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, LayoutGroup } from 'framer-motion';
 
+// ─── Video Modal Component ────────────────────────────────────────────────────
+function VideoModal({ embedUrl, onClose }: { embedUrl: string; onClose: () => void }) {
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => { document.body.style.overflow = ''; };
+    }, []);
+    return (
+        <div
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-black/80 backdrop-blur-sm"
+            onClick={onClose}
+        >
+            <div
+                className="relative w-full max-w-4xl mx-4 aspect-video rounded-2xl overflow-hidden shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+            >
+                <iframe
+                    src={embedUrl}
+                    className="w-full h-full"
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                    title="Testimonial Video"
+                />
+                <button
+                    onClick={onClose}
+                    className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 flex items-center justify-center text-white hover:bg-black/80 transition-colors"
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    );
+}
+
 interface Testimonial {
     id: string;
     speakerName: string;
     companyName: string;
     quote: string;
-    videoUrl: string;
+    videoEmbedUrl: string;
     thumbnail: string;
 }
 
@@ -16,7 +51,7 @@ const testimonials: Testimonial[] = [
         speakerName: 'Jana Komarov',
         companyName: 'Concept Family',
         quote: "Elux transformed our entire workflow. The speed and precision they brought to our product development was something we hadn't seen with any other agency.",
-        videoUrl: 'https://player.vimeo.com/external/494252666.sd.mp4?s=72ce12da43194090288eb1f86851b43952ecae68&profile_id=164&oauth_token_id=57447761',
+        videoEmbedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
         thumbnail: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800',
     },
     {
@@ -24,7 +59,7 @@ const testimonials: Testimonial[] = [
         speakerName: 'Torsten Kaldun',
         companyName: 'World of Pizza',
         quote: "The design language Elux created for us resonated perfectly with our enterprise clients. It bridged the gap between complex tech and human-centric UI.",
-        videoUrl: 'https://player.vimeo.com/external/494252666.sd.mp4?s=72ce12da43194090288eb1f86851b43952ecae68&profile_id=164&oauth_token_id=57447761',
+        videoEmbedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
         thumbnail: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800',
     },
     {
@@ -32,7 +67,7 @@ const testimonials: Testimonial[] = [
         speakerName: 'Sebastian Remus',
         companyName: 'Kaimug',
         quote: "Scaling our platform from 10k to 500k users required a robust UX strategy. Elux was there every step of the way, ensuring every transition was seamless.",
-        videoUrl: 'https://player.vimeo.com/external/494252666.sd.mp4?s=72ce12da43194090288eb1f86851b43952ecae68&profile_id=164&oauth_token_id=57447761',
+        videoEmbedUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1',
         thumbnail: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800',
     },
 ];
@@ -44,7 +79,7 @@ const v3Testimonials = [
         company: "Aventi Corp",
         role: "Chief Operating Officer",
         thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1200",
-        videoUrl: "https://player.vimeo.com/external/494252666.sd.mp4?s=72ce12da43194090288eb1f86851b43952ecae68&profile_id=164&oauth_token_id=57447761"
+        videoEmbedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
     },
     {
         type: 'text',
@@ -60,7 +95,7 @@ const v3Testimonials = [
         company: "Solaris Tech",
         role: "Head of Marketing",
         thumbnail: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800",
-        videoUrl: "https://player.vimeo.com/external/494252666.sd.mp4?s=72ce12da43194090288eb1f86851b43952ecae68&profile_id=164&oauth_token_id=57447761"
+        videoEmbedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
     },
     {
         type: 'text',
@@ -76,7 +111,7 @@ const v3Testimonials = [
         company: "CloudScale",
         role: "Product Manager",
         thumbnail: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
-        videoUrl: "https://player.vimeo.com/external/494252666.sd.mp4?s=72ce12da43194090288eb1f86851b43952ecae68&profile_id=164&oauth_token_id=57447761"
+        videoEmbedUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
     },
     {
         type: 'text',
@@ -91,19 +126,20 @@ const v3Testimonials = [
 export default function Testimonials() {
     const [activeIndex1, setActiveIndex1] = useState(0);
     const [activeIndex2, setActiveIndex2] = useState(1);
-    const [isPlaying, setIsPlaying] = useState(false);
-    const videoRef = useRef<HTMLVideoElement>(null);
+    const [videoModal, setVideoModal] = useState<string | null>(null);
     const carouselRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        document.title = 'Testimonials | Elux Space – Client Stories';
+    }, []);
 
     const nextTestimonial1 = (e?: React.MouseEvent) => {
         if (e) e.stopPropagation();
-        setIsPlaying(false);
         setActiveIndex1((prev) => (prev + 1) % testimonials.length);
     };
 
     const prevTestimonial1 = (e?: React.MouseEvent) => {
         if (e) e.stopPropagation();
-        setIsPlaying(false);
         setActiveIndex1((prev) => (prev - 1 + testimonials.length) % testimonials.length);
     };
 
@@ -117,21 +153,7 @@ export default function Testimonials() {
         }
     };
 
-    const togglePlay = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        if (videoRef.current) {
-            if (isPlaying) {
-                videoRef.current.pause();
-            } else {
-                videoRef.current.play();
-            }
-            setIsPlaying(!isPlaying);
-        }
-    };
 
-    useEffect(() => {
-        setIsPlaying(false);
-    }, [activeIndex1]);
 
     return (
         <main className="bg-[#F9FAFB] overflow-x-hidden">
@@ -150,7 +172,7 @@ export default function Testimonials() {
                                 <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
                             </svg>
                             <p className="text-xs font-bold tracking-[0.2em] text-[#2563EB] uppercase">
-                                Testimonial 1
+                                Client Stories
                             </p>
                         </motion.div>
                         <motion.h2
@@ -188,35 +210,23 @@ export default function Testimonials() {
                                                     layout
                                                     src={item.thumbnail}
                                                     alt={item.speakerName}
-                                                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${isActive && isPlaying ? 'opacity-0' : 'opacity-100'}`}
+                                                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100`}
                                                 />
                                                 {isActive ? (
                                                     <div className="absolute inset-0 bg-transparent flex">
                                                         <div className="relative flex-1 h-full bg-black/5">
-                                                            <video
-                                                                ref={videoRef}
-                                                                src={item.videoUrl}
-                                                                className="w-full h-full object-cover"
-                                                                playsInline
-                                                                loop
-                                                            />
-                                                            {!isPlaying && (
-                                                                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-                                                                    <motion.button
-                                                                        whileHover={{ scale: 1.1 }}
-                                                                        whileTap={{ scale: 0.9 }}
-                                                                        onClick={togglePlay}
-                                                                        className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-2xl"
-                                                                    >
-                                                                        <svg className="w-8 h-8 text-[#2563EB] fill-current ml-1" viewBox="0 0 24 24">
-                                                                            <path d="M8 5v14l11-7z" />
-                                                                        </svg>
-                                                                    </motion.button>
-                                                                </div>
-                                                            )}
-                                                            {isPlaying && (
-                                                                <div className="absolute inset-0 cursor-pointer" onClick={togglePlay} />
-                                                            )}
+                                                            <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                                                                <motion.button
+                                                                    whileHover={{ scale: 1.1 }}
+                                                                    whileTap={{ scale: 0.9 }}
+                                                                    onClick={(e) => { e.stopPropagation(); setVideoModal(item.videoEmbedUrl); }}
+                                                                    className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-2xl"
+                                                                >
+                                                                    <svg className="w-8 h-8 text-[#2563EB] fill-current ml-1" viewBox="0 0 24 24">
+                                                                        <path d="M8 5v14l11-7z" />
+                                                                    </svg>
+                                                                </motion.button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 ) : (
@@ -329,7 +339,7 @@ export default function Testimonials() {
                             viewport={{ once: true }}
                             className="text-[10px] font-bold tracking-[0.4em] text-[#2563EB] uppercase mb-6"
                         >
-                            Testimonial 2
+                            Founders &amp; Operators
                         </motion.p>
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
@@ -478,7 +488,7 @@ export default function Testimonials() {
                                 <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
                             </svg>
                             <p className="text-xs font-bold tracking-[0.2em] text-[#2563EB] uppercase">
-                                Testimonial 3
+                                Video Stories
                             </p>
                         </motion.div>
                         <motion.h2
@@ -503,7 +513,7 @@ export default function Testimonials() {
                                     <div className={`${item.type === 'text' ? 'bg-[#111111] p-6 border border-white/5 h-auto md:h-[480px] flex-col md:flex-row' : 'h-[400px] md:h-[480px]'} rounded-2xl flex gap-6 relative group overflow-hidden`}>
                                         {item.type === 'text' ? (
                                             <>
-                                                {/* Card Content Top Left - Precisely like screenshot */}
+                                                {/* Card Content Top Left */}
                                                 <div className="flex-1 flex flex-col justify-between">
                                                     <div>
                                                         {/* Logo Box */}
@@ -529,20 +539,20 @@ export default function Testimonials() {
                                                 </div>
                                             </>
                                         ) : (
-                                            <div className="w-full h-full relative cursor-pointer">
+                                            <div className="w-full h-full relative cursor-pointer" onClick={() => setVideoModal(item.videoEmbedUrl || '')}>
                                                 <img src={item.thumbnail} alt={item.name} className="absolute inset-0 w-full h-full object-cover" />
                                                 <div className="absolute inset-0 bg-black/30" />
 
-                                                {/* Play Button - Pojok Kanan Bawah */}
+                                                {/* Play Button */}
                                                 <div className="absolute bottom-10 right-10">
-                                                    <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20">
+                                                    <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 hover:bg-white/25 transition-colors">
                                                         <svg className="w-6 h-6 text-white fill-current ml-1" viewBox="0 0 24 24">
                                                             <path d="M8 5v14l11-7z" />
                                                         </svg>
                                                     </div>
                                                 </div>
 
-                                                {/* Info Overlay - Pojok Kiri Bawah */}
+                                                {/* Info Overlay */}
                                                 <div className="absolute bottom-10 left-10">
                                                     <h4 className="text-white font-bold text-4xl mb-1">{item.name}</h4>
                                                     <p className="text-[#2563EB] text-base font-bold tracking-[0.2em] uppercase">{item.company}</p>
@@ -593,7 +603,7 @@ export default function Testimonials() {
                                 <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
                             </svg>
                             <p className="text-xs font-bold tracking-[0.2em] text-[#2563EB] uppercase">
-                                Testimonial 4
+                                In Their Words
                             </p>
                         </motion.div>
                         <motion.h2
@@ -614,6 +624,7 @@ export default function Testimonials() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             className="md:col-span-2 aspect-[16/9] rounded-[2rem] relative overflow-hidden group cursor-pointer"
+                            onClick={() => setVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1')}
                         >
                             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=1200" alt="Marcus" className="absolute inset-0 w-full h-full object-cover object-center" />
                             <div className="absolute inset-0 bg-black/20" />
@@ -663,6 +674,7 @@ export default function Testimonials() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             className="md:col-span-2 aspect-[16/9] rounded-[2rem] relative overflow-hidden group cursor-pointer"
+                            onClick={() => setVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1')}
                         >
                             <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800" alt="Elena" className="absolute inset-0 w-full h-full object-cover object-center" />
                             <div className="absolute inset-0 bg-black/30" />
@@ -684,6 +696,7 @@ export default function Testimonials() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             className="md:col-span-2 aspect-[16/9] rounded-[2rem] relative overflow-hidden group cursor-pointer"
+                            onClick={() => setVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1')}
                         >
                             <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800" alt="David" className="absolute inset-0 w-full h-full object-cover object-center" />
                             <div className="absolute inset-0 bg-black/30" />
@@ -723,6 +736,7 @@ export default function Testimonials() {
                 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
                 .scroll-smooth { scroll-behavior: smooth; }
             `}} />
+            {videoModal && <VideoModal embedUrl={videoModal} onClose={() => setVideoModal(null)} />}
         </main>
     );
 }

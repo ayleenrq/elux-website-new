@@ -3,18 +3,52 @@ import Navbar from './components/Navbar';
 import WebflowHome from './components/WebflowHome';
 import BottomCTA from './components/BottomCTA';
 import AboutUs from './pages/AboutUs';
-import ServiceDetail from './pages/ServiceDetail';
+import ServiceDetail, { serviceDataMap } from './pages/ServiceDetail';
 import CaseStudiesArchive from './pages/CaseStudiesArchive';
 import CaseStudyDetail from './pages/CaseStudyDetail';
 import Testimonials from './pages/Testimonials';
-import Industries from './pages/Industries';
+import Industries, { industryHighlights } from './pages/Industries';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 
 import Footer from './components/Footer';
 
+const PAGE_TITLES: Record<string, string> = {
+  '#home': 'eluxspace | Premium Product Design Agency',
+  '#about': 'About Us | Elux Space – Global Product Design Studio',
+  '#services': 'Services | Elux Space – UI/UX & Product Design',
+  '#services-seed': 'Seed Stage Services | Elux Space',
+  '#services-growth': 'Growth Stage Services | Elux Space',
+  '#services-scale': 'Scale Stage Services | Elux Space',
+  '#industries': 'Industries | Elux Space – Product Design Studio',
+  '#case-studies': 'Case Studies | Elux Space – Work That Ships',
+  '#testimonials': 'Testimonials | Elux Space – Client Stories',
+  '#contact': 'Contact Us | Elux Space – Start Your Project',
+  '#blog': 'Blog | Elux Space – Design & Product Insights',
+};
 
+function getPageTitle(hash: string): string {
+  const normalizedHash = hash.split('?')[0];
+  if (PAGE_TITLES[normalizedHash]) return PAGE_TITLES[normalizedHash];
+  if (normalizedHash.startsWith('#services')) {
+      const svc = serviceDataMap[normalizedHash];
+      if (svc && svc.serviceTitle) {
+          return `${svc.serviceTitle} | Elux Space`;
+      }
+      return 'Services | Elux Space – UI/UX & Product Design';
+  }
+  if (normalizedHash.startsWith('#industries')) {
+      const ind = industryHighlights[normalizedHash];
+      if (ind && ind.title) {
+          return `${ind.label} | Elux Space`;
+      }
+      return 'Industries | Elux Space – Product Design Studio';
+  }
+  if (normalizedHash.startsWith('#blog/')) return 'Blog | Elux Space – Design & Product Insights';
+  if (normalizedHash.startsWith('#case-study-detail')) return 'Case Study | Elux Space';
+  return 'eluxspace | Premium Product Design Agency';
+}
 
 function App() {
   const [hash, setHash] = useState(window.location.hash || '#home');
@@ -44,16 +78,19 @@ function App() {
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }
 
+    // Update document title
+    document.title = getPageTitle(window.location.hash || '#home');
+
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, [hash]);
 
   const renderPage = () => {
     if (hash === '#about') return <AboutUs />;
-    if (hash.startsWith('#services')) return <ServiceDetail />;
+    if (hash.startsWith('#services')) return <ServiceDetail serviceHash={hash} />;
     if (hash === '#case-studies') return <CaseStudiesArchive />;
     if (hash.startsWith('#case-study-detail')) return <CaseStudyDetail />;
     if (hash === '#testimonials') return <Testimonials />;
-    if (hash.startsWith('#industries')) return <Industries />;
+    if (hash.startsWith('#industries')) return <Industries industryHash={hash} />;
     if (hash === '#contact') return <Contact />;
     if (hash === '#blog') return <Blog />;
     if (hash.startsWith('#blog/')) return <BlogDetail />;

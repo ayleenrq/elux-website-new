@@ -1,0 +1,375 @@
+    '#services-seed-mvp': {
+        stageCategory: 'SEED STAGE',
+        serviceTitle: 'MVP UX & UI Design',
+        description: 'From zero to a fundable, shippable product interface.',
+        longDescription: {
+            header: 'MVP UX & UI Design for SEED STAGE',
+            paragraphs: [
+                'We specialize in mvp ux & ui design that perfectly fits the seed stage needs.',
+                'From zero to a fundable, shippable product interface.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of mvp ux & ui design.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-seed-prototype': {
+        stageCategory: 'SEED STAGE',
+        serviceTitle: 'Clickable Prototype',
+        description: 'Validated, interactive prototypes for demos or user testing.',
+        longDescription: {
+            header: 'Clickable Prototype for SEED STAGE',
+            paragraphs: [
+                'We specialize in clickable prototype that perfectly fits the seed stage needs.',
+                'Validated, interactive prototypes for demos or user testing.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of clickable prototype.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-seed-landing': {
+        stageCategory: 'SEED STAGE',
+        serviceTitle: 'Launch-Ready Landing Page',
+        description: 'High-converting landing pages built to capture and retain.',
+        longDescription: {
+            header: 'Launch-Ready Landing Page for SEED STAGE',
+            paragraphs: [
+                'We specialize in launch-ready landing page that perfectly fits the seed stage needs.',
+                'High-converting landing pages built to capture and retain.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of launch-ready landing page.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-seed-nocode': {
+        stageCategory: 'SEED STAGE',
+        serviceTitle: 'No-Code MVP Build',
+        description: 'Full product launched without a single line of custom code.',
+        longDescription: {
+            header: 'No-Code MVP Build for SEED STAGE',
+            paragraphs: [
+                'We specialize in no-code mvp build that perfectly fits the seed stage needs.',
+                'Full product launched without a single line of custom code.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of no-code mvp build.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-seed-pitch': {
+        stageCategory: 'SEED STAGE',
+        serviceTitle: 'Pitch & Demo Readiness',
+        description: 'Investor-facing decks, flows, and screen presentations.',
+        longDescription: {
+            header: 'Pitch & Demo Readiness for SEED STAGE',
+            paragraphs: [
+                'We specialize in pitch & demo readiness that perfectly fits the seed stage needs.',
+                'Investor-facing decks, flows, and screen presentations.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of pitch & demo readiness.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-growth-audit': {
+        stageCategory: 'GROWTH STAGE',
+        serviceTitle: 'UX Audit & Priorities',
+        description: 'Identify friction points and a clear roadmap to fix them.',
+        longDescription: {
+            header: 'UX Audit & Priorities for GROWTH STAGE',
+            paragraphs: [
+                'We specialize in ux audit & priorities that perfectly fits the growth stage needs.',
+                'Identify friction points and a clear roadmap to fix them.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of ux audit & priorities.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-growth-brand': {
+        stageCategory: 'GROWTH STAGE',
+        serviceTitle: 'Brand & Visual Enhancement',
+        description: 'Elevate your product identity without a full redesign.',
+        longDescription: {
+            header: 'Brand & Visual Enhancement for GROWTH STAGE',
+            paragraphs: [
+                'We specialize in brand & visual enhancement that perfectly fits the growth stage needs.',
+                'Elevate your product identity without a full redesign.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of brand & visual enhancement.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-growth-redesign': {
+        stageCategory: 'GROWTH STAGE',
+        serviceTitle: 'Product Redesign',
+        description: 'Modernise and restructure existing products for better outcomes.',
+        longDescription: {
+            header: 'Product Redesign for GROWTH STAGE',
+            paragraphs: [
+                'We specialize in product redesign that perfectly fits the growth stage needs.',
+                'Modernise and restructure existing products for better outcomes.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of product redesign.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-growth-dashboard': {
+        stageCategory: 'GROWTH STAGE',
+        serviceTitle: 'Dashboard & Data UX',
+        description: 'Turn complex data into clear, decision-driving interfaces.',
+        longDescription: {
+            header: 'Dashboard & Data UX for GROWTH STAGE',
+            paragraphs: [
+                'We specialize in dashboard & data ux that perfectly fits the growth stage needs.',
+                'Turn complex data into clear, decision-driving interfaces.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of dashboard & data ux.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-growth-team': {
+        stageCategory: 'GROWTH STAGE',
+        serviceTitle: 'Team Extension',
+        description: 'Senior designers embedded into your existing product team.',
+        longDescription: {
+            header: 'Team Extension for GROWTH STAGE',
+            paragraphs: [
+                'We specialize in team extension that perfectly fits the growth stage needs.',
+                'Senior designers embedded into your existing product team.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of team extension.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-scale-designsystem': {
+        stageCategory: 'SCALE STAGE',
+        serviceTitle: 'Design System Build',
+        description: 'A living system of components, tokens, and documentation.',
+        longDescription: {
+            header: 'Design System Build for SCALE STAGE',
+            paragraphs: [
+                'We specialize in design system build that perfectly fits the scale stage needs.',
+                'A living system of components, tokens, and documentation.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of design system build.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-scale-enterprise': {
+        stageCategory: 'SCALE STAGE',
+        serviceTitle: 'Enterprise UX Redesign',
+        description: 'Scalable design architecture for complex, multi-team products.',
+        longDescription: {
+            header: 'Enterprise UX Redesign for SCALE STAGE',
+            paragraphs: [
+                'We specialize in enterprise ux redesign that perfectly fits the scale stage needs.',
+                'Scalable design architecture for complex, multi-team products.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of enterprise ux redesign.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-scale-website': {
+        stageCategory: 'SCALE STAGE',
+        serviceTitle: 'Website Redesign',
+        description: 'Editorial-quality web presence that converts and retains.',
+        longDescription: {
+            header: 'Website Redesign for SCALE STAGE',
+            paragraphs: [
+                'We specialize in website redesign that perfectly fits the scale stage needs.',
+                'Editorial-quality web presence that converts and retains.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of website redesign.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-scale-ongoing': {
+        stageCategory: 'SCALE STAGE',
+        serviceTitle: 'Ongoing Design Partnership',
+        description: 'A long-term design team that grows with your product.',
+        longDescription: {
+            header: 'Ongoing Design Partnership for SCALE STAGE',
+            paragraphs: [
+                'We specialize in ongoing design partnership that perfectly fits the scale stage needs.',
+                'A long-term design team that grows with your product.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of ongoing design partnership.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },
+    '#services-scale-research': {
+        stageCategory: 'SCALE STAGE',
+        serviceTitle: 'UX Research & Strategy',
+        description: 'User interviews, workshops, and evidence-based direction.',
+        longDescription: {
+            header: 'UX Research & Strategy for SCALE STAGE',
+            paragraphs: [
+                'We specialize in ux research & strategy that perfectly fits the scale stage needs.',
+                'User interviews, workshops, and evidence-based direction.',
+                'Our process ensures that we deliver high quality and scalable solutions for your business.'
+            ],
+        },
+        deliverables: [
+            { title: 'Analysis & Strategy', span: 2, description: 'Deep dive into your requirements.' },
+            { title: 'Execution', span: 1, description: 'Building the core value.' },
+            { title: 'Delivery', span: 1, description: 'Handover of ux research & strategy.' }
+        ],
+        processSteps: [
+            { number: '01', title: 'Discovery', description: 'Understanding goals.' },
+            { number: '02', title: 'Design', description: 'Crafting the solution.' },
+            { number: '03', title: 'Refinement', description: 'Iterating.' },
+            { number: '04', title: 'Launch', description: 'Going live.' }
+        ],
+        featuredProofImage: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop',
+    },

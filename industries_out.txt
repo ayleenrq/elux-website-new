@@ -1,0 +1,48 @@
+    '#industries-cloud': {
+        label: 'CLOUD & DEVOPS',
+        title: 'Cloud & DevOps',
+        desc: 'Infrastructure dashboards for ops teams who move fast.',
+        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200',
+    },
+    '#industries-devtools': {
+        label: 'DEVELOPER TOOLS',
+        title: 'Developer Tools',
+        desc: 'Precision-first UX for technical, particular audiences.',
+        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200',
+    },
+    '#industries-banking': {
+        label: 'BANKING & INSURANCE',
+        title: 'Banking & Insurance',
+        desc: 'Compliance-first UX with excellent accessibility.',
+        image: 'https://images.unsplash.com/photo-1501167786227-4cba60a62585?q=80&w=1200',
+    },
+    '#industries-crypto': {
+        label: 'CRYPTO & DEFI',
+        title: 'Crypto & DeFi',
+        desc: 'Decentralised exchanges and staking interfaces.',
+        image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=1200',
+    },
+    '#industries-investment': {
+        label: 'INVESTMENT PLATFORMS',
+        title: 'Investment Platforms',
+        desc: 'Portfolio trackers and trade execution UX.',
+        image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1200',
+    },
+    '#industries-compliance': {
+        label: 'REGULATORY COMPLIANCE',
+        title: 'Regulatory Compliance',
+        desc: 'KYC flows and audit dashboards as a competitive edge.',
+        image: 'https://images.unsplash.com/photo-1450101499163-c8848c66cb85?q=80&w=1200',
+    },
+    '#industries-travel': {
+        label: 'TRAVEL & HOSPITALITY',
+        title: 'Travel & Hospitality',
+        desc: 'Booking flows that make travel feel effortless.',
+        image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1200',
+    },
+    '#industries-media': {
+        label: 'MEDIA & ENTERTAINMENT',
+        title: 'Media & Entertainment',
+        desc: 'Content discovery and streaming UX audiences return to.',
+        image: 'https://images.unsplash.com/photo-1600861194942-f883de0dfe96?q=80&w=1200',
+    },

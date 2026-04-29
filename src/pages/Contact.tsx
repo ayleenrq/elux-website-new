@@ -191,10 +191,42 @@ function ContactForm() {
         service: '',
         message: '',
     });
+    const [errors, setErrors] = useState<Record<string, string>>({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const validateForm = () => {
+        const newErrors: Record<string, string> = {};
+        if (!formData.name.trim()) newErrors.name = 'Name is required';
+        if (!formData.email.trim()) {
+            newErrors.email = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            newErrors.email = 'Please enter a valid email address';
+        }
+        if (!formData.service) newErrors.service = 'Please select a service';
+        if (!formData.message.trim()) newErrors.message = 'Project description is required';
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        
+        if (!validateForm()) return;
+        
+        setIsSubmitting(true);
+        
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Build a mailto link so the form actually sends
+        const subject = encodeURIComponent(`[Elux Inquiry] ${formData.company || formData.name}`);
+        const body = encodeURIComponent(
+            `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nService: ${formData.service}\nBudget: ${formData.budget}\n\nProject Description:\n${formData.message}`
+        );
+        window.open(`mailto:hello@elux.space?subject=${subject}&body=${body}`, '_blank');
+        setIsSubmitting(false);
         setSubmitted(true);
     };
 
@@ -268,23 +300,23 @@ function ContactForm() {
                                 <label className="block text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">Full name *</label>
                                 <input
                                     type="text"
-                                    required
-                                    value={formData.name}
-                                    onChange={e => setFormData({ ...formData, name: e.target.value })}
-                                    placeholder="Alex Johnson"
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white text-[14px] font-medium placeholder-gray-600 focus:outline-none focus:border-blue-600/60 focus:bg-white/8 transition-all"
+                                    className={`w-full bg-white/5 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} rounded-xl px-5 py-4 text-white text-[14px] font-medium placeholder-gray-600 focus:outline-none focus:border-blue-600/60 focus:bg-white/8 transition-all`}
                                 />
+                                {errors.name && <p className="text-red-400 text-xs mt-2">{errors.name}</p>}
                             </div>
                             <div>
                                 <label className="block text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">Email address *</label>
                                 <input
                                     type="email"
-                                    required
                                     value={formData.email}
-                                    onChange={e => setFormData({ ...formData, email: e.target.value })}
+                                    onChange={e => {
+                                        setFormData({ ...formData, email: e.target.value });
+                                        if (errors.email) setErrors({ ...errors, email: '' });
+                                    }}
                                     placeholder="alex@company.com"
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white text-[14px] font-medium placeholder-gray-600 focus:outline-none focus:border-blue-600/60 focus:bg-white/8 transition-all"
+                                    className={`w-full bg-white/5 border ${errors.email ? 'border-red-500/50' : 'border-white/10'} rounded-xl px-5 py-4 text-white text-[14px] font-medium placeholder-gray-600 focus:outline-none focus:border-blue-600/60 focus:bg-white/8 transition-all`}
                                 />
+                                {errors.email && <p className="text-red-400 text-xs mt-2">{errors.email}</p>}
                             </div>
                         </div>
 
@@ -308,16 +340,20 @@ function ContactForm() {
                                     <button
                                         key={opt}
                                         type="button"
-                                        onClick={() => setFormData({ ...formData, service: opt })}
+                                        onClick={() => {
+                                            setFormData({ ...formData, service: opt });
+                                            if (errors.service) setErrors({ ...errors, service: '' });
+                                        }}
                                         className={`text-[11px] font-bold uppercase tracking-widest px-4 py-2.5 rounded-full border transition-all duration-200 ${formData.service === opt
                                             ? 'bg-blue-600 border-blue-600 text-white'
-                                            : 'border-white/10 text-gray-400 hover:border-white/30 hover:text-white'
+                                            : errors.service ? 'border-red-500/30 text-gray-400 hover:text-white' : 'border-white/10 text-gray-400 hover:border-white/30 hover:text-white'
                                             }`}
                                     >
                                         {opt}
                                     </button>
                                 ))}
                             </div>
+                            {errors.service && <p className="text-red-400 text-xs mt-2">{errors.service}</p>}
                         </div>
 
                         {/* Budget */}
@@ -344,25 +380,31 @@ function ContactForm() {
                         <div>
                             <label className="block text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">Project description *</label>
                             <textarea
-                                required
                                 rows={5}
                                 value={formData.message}
-                                onChange={e => setFormData({ ...formData, message: e.target.value })}
+                                onChange={e => {
+                                    setFormData({ ...formData, message: e.target.value });
+                                    if (errors.message) setErrors({ ...errors, message: '' });
+                                }}
                                 placeholder="Tell us about your project — what are you building, what's the challenge, and what does success look like?"
-                                className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-white text-[14px] font-medium placeholder-gray-600 focus:outline-none focus:border-blue-600/60 focus:bg-white/8 transition-all resize-none"
+                                className={`w-full bg-white/5 border ${errors.message ? 'border-red-500/50' : 'border-white/10'} rounded-xl px-5 py-4 text-white text-[14px] font-medium placeholder-gray-600 focus:outline-none focus:border-blue-600/60 focus:bg-white/8 transition-all resize-none`}
                             />
+                            {errors.message && <p className="text-red-400 text-xs mt-2">{errors.message}</p>}
                         </div>
 
                         <button
                             type="submit"
-                            className="group w-full flex items-center justify-center gap-3 bg-white text-black text-[12px] font-bold uppercase tracking-widest px-8 py-5 rounded-full hover:bg-gray-100 transition-all duration-300"
+                            disabled={isSubmitting}
+                            className="group w-full flex items-center justify-center gap-3 bg-white text-black text-[12px] font-bold uppercase tracking-widest px-8 py-5 rounded-full hover:bg-gray-100 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
                         >
-                            Send Message
-                            <div className="w-8 h-8 bg-black/10 rounded-full flex items-center justify-center transition-colors group-hover:bg-blue-600 group-hover:text-white">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </div>
+                            {isSubmitting ? 'Sending...' : 'Send Message'}
+                            {!isSubmitting && (
+                                <div className="w-8 h-8 bg-black/10 rounded-full flex items-center justify-center transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </div>
+                            )}
                         </button>
 
                         <p className="text-gray-600 text-[11px] text-center font-medium">
@@ -523,145 +565,6 @@ function AreasOfExpertise() {
 }
 
 // ─────────────────────────────────────────────
-// CLIENT REVIEWS — dark, masonry-style
-// ─────────────────────────────────────────────
-function ClientReviews() {
-    const reviews = [
-        {
-            author: 'Alex Friedman',
-            role: 'CEO at Open Path',
-            avatar: 'https://i.pravatar.cc/150?u=alex',
-            type: 'text',
-            rating: 5,
-            content: 'Not only is the team extremely communicative, their work is exceptional. I have never worked with a team so talented while also being competitively priced.',
-        },
-        {
-            author: 'Craig Tortolani',
-            role: 'CPO at Dekryption Labs',
-            avatar: 'https://i.pravatar.cc/150?u=craig',
-            type: 'video',
-            content: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=600',
-        },
-        {
-            author: 'George Fry',
-            role: 'Founder at Neap',
-            avatar: 'https://i.pravatar.cc/150?u=george',
-            type: 'text',
-            rating: 5,
-            content: 'The quality of the designs is fantastic. Elux works at speed and is extremely punctual with timelines. They deliver top-notch outcomes every time.',
-        },
-        {
-            author: 'Andre Guerra',
-            role: 'Co-Owner at RADCAT Design',
-            avatar: 'https://i.pravatar.cc/150?u=andre',
-            type: 'video',
-            content: 'https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=600',
-        },
-        {
-            author: 'Kevin Alvarez',
-            role: 'Founder & GP, Predictive',
-            avatar: 'https://i.pravatar.cc/150?u=kevin',
-            type: 'text',
-            rating: 5,
-            content: "Elux's ability to translate concepts into high-fidelity assets was impressive. The goal was to maintain simple elegance, and they did it very well.",
-        },
-        {
-            author: 'KlickEx Team',
-            role: 'KlickEx Group',
-            avatar: 'https://i.pravatar.cc/150?u=klick',
-            type: 'video',
-            content: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80&w=600',
-        },
-    ];
-
-    return (
-        <section className="bg-[#0a0a0a] py-32 px-8">
-            <div className="max-w-7xl mx-auto">
-                {/* Header */}
-                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-16 gap-8">
-                    <div>
-                        <div className="flex items-center gap-2 mb-4">
-                            <span className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
-                            <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase">Testimonials</span>
-                        </div>
-                        <h2 className="text-[40px] md:text-[52px] font-medium tracking-tighter text-white leading-[1.05] font-display">
-                            5.0 is our average<br />
-                            on Clutch & Designrush
-                        </h2>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <div className="flex gap-0.5">
-                            {[...Array(5)].map((_, i) => (
-                                <svg key={i} className="w-5 h-5 text-amber-400 fill-current" viewBox="0 0 20 20">
-                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                            ))}
-                        </div>
-                        <span className="text-white font-bold text-lg">5.0</span>
-                        <span className="text-gray-500 text-sm">· 40+ reviews</span>
-                    </div>
-                </div>
-
-                {/* Masonry grid */}
-                <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
-                    {reviews.map((review, i) => (
-                        <div key={i} className="break-inside-avoid">
-                            {review.type === 'video' ? (
-                                <div className="relative rounded-2xl overflow-hidden aspect-[3/4] group">
-                                    <img
-                                        src={review.content}
-                                        alt={review.author}
-                                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                                    {/* Play button */}
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 group-hover:bg-white/30 transition-colors">
-                                            <svg className="w-5 h-5 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                                <path d="M8 5v14l11-7z" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <div className="absolute bottom-0 left-0 right-0 p-5">
-                                        <div className="flex items-center gap-3">
-                                            <img src={review.avatar} alt={review.author} className="w-8 h-8 rounded-full border border-white/20" />
-                                            <div>
-                                                <p className="text-white text-[13px] font-semibold">{review.author}</p>
-                                                <p className="text-white/60 text-[11px]">{review.role}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="bg-[#111] border border-white/8 rounded-2xl p-6 hover:border-white/15 transition-colors">
-                                    <div className="flex gap-0.5 mb-4">
-                                        {[...Array(review.rating || 5)].map((_, si) => (
-                                            <svg key={si} className="w-3.5 h-3.5 text-amber-400 fill-current" viewBox="0 0 20 20">
-                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                            </svg>
-                                        ))}
-                                    </div>
-                                    <p className="text-gray-300 text-[15px] font-medium leading-[1.6] tracking-tight mb-5">
-                                        "{review.content}"
-                                    </p>
-                                    <div className="flex items-center gap-3 pt-4 border-t border-white/5">
-                                        <img src={review.avatar} alt={review.author} className="w-8 h-8 rounded-full" />
-                                        <div>
-                                            <p className="text-white text-[12px] font-semibold">{review.author}</p>
-                                            <p className="text-gray-500 text-[11px]">{review.role}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-}
-
-// ─────────────────────────────────────────────
 // SOCIAL PROOF LOGOS — white section
 // ─────────────────────────────────────────────
 function SocialProofLogos() {
@@ -813,7 +716,6 @@ export default function Contact() {
             <ContactForm />
             <CalculatorBanner onOpen={() => setCalcOpen(true)} />
             <AreasOfExpertise />
-            <ClientReviews />
             <SocialProofLogos />
             <ContactFAQ />
             {calcOpen && <ProjectCalculatorModal onClose={() => setCalcOpen(false)} />}

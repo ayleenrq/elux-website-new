@@ -3,25 +3,25 @@ import { useState, useRef, useEffect } from 'react';
 // ─── Data with descriptions ───────────────────────────────────────────────────
 const servicesMenu = {
     SEED: [
-        { title: 'MVP UX & UI Design', desc: 'From zero to a fundable, shippable product interface.', hash: '#services-seed' },
-        { title: 'Clickable Prototype', desc: 'Validated, interactive prototypes for demos or user testing.', hash: '#services-seed' },
-        { title: 'Launch-Ready Landing Page', desc: 'High-converting landing pages built to capture and retain.', hash: '#services-seed' },
-        { title: 'No-Code MVP Build', desc: 'Full product launched without a single line of custom code.', hash: '#services-seed' },
-        { title: 'Pitch & Demo Readiness', desc: 'Investor-facing decks, flows, and screen presentations.', hash: '#services-seed' },
+        { title: 'MVP UX & UI Design', desc: 'From zero to a fundable, shippable product interface.', hash: '#services-seed-mvp' },
+        { title: 'Clickable Prototype', desc: 'Validated, interactive prototypes for demos or user testing.', hash: '#services-seed-prototype' },
+        { title: 'Launch-Ready Landing Page', desc: 'High-converting landing pages built to capture and retain.', hash: '#services-seed-landing' },
+        { title: 'No-Code MVP Build', desc: 'Full product launched without a single line of custom code.', hash: '#services-seed-nocode' },
+        { title: 'Pitch & Demo Readiness', desc: 'Investor-facing decks, flows, and screen presentations.', hash: '#services-seed-pitch' },
     ],
     GROWTH: [
-        { title: 'UX Audit & Priorities', desc: 'Identify friction points and a clear roadmap to fix them.', hash: '#services-growth' },
-        { title: 'Brand & Visual Enhancement', desc: 'Elevate your product identity without a full redesign.', hash: '#services-growth' },
-        { title: 'Product Redesign', desc: 'Modernise and restructure existing products for better outcomes.', hash: '#services-growth' },
-        { title: 'Dashboard & Data UX', desc: 'Turn complex data into clear, decision-driving interfaces.', hash: '#services-growth' },
-        { title: 'Team Extension', desc: 'Senior designers embedded into your existing product team.', hash: '#services-growth' },
+        { title: 'UX Audit & Priorities', desc: 'Identify friction points and a clear roadmap to fix them.', hash: '#services-growth-audit' },
+        { title: 'Brand & Visual Enhancement', desc: 'Elevate your product identity without a full redesign.', hash: '#services-growth-brand' },
+        { title: 'Product Redesign', desc: 'Modernise and restructure existing products for better outcomes.', hash: '#services-growth-redesign' },
+        { title: 'Dashboard & Data UX', desc: 'Turn complex data into clear, decision-driving interfaces.', hash: '#services-growth-dashboard' },
+        { title: 'Team Extension', desc: 'Senior designers embedded into your existing product team.', hash: '#services-growth-team' },
     ],
     SCALE: [
-        { title: 'Design System Build', desc: 'A living system of components, tokens, and documentation.', hash: '#services-scale' },
-        { title: 'Enterprise UX Redesign', desc: 'Scalable design architecture for complex, multi-team products.', hash: '#services-scale' },
-        { title: 'Website Redesign', desc: 'Editorial-quality web presence that converts and retains.', hash: '#services-scale' },
-        { title: 'Ongoing Design Partnership', desc: 'A long-term design team that grows with your product.', hash: '#services-scale' },
-        { title: 'UX Research & Strategy', desc: 'User interviews, workshops, and evidence-based direction.', hash: '#services-scale' },
+        { title: 'Design System Build', desc: 'A living system of components, tokens, and documentation.', hash: '#services-scale-designsystem' },
+        { title: 'Enterprise UX Redesign', desc: 'Scalable design architecture for complex, multi-team products.', hash: '#services-scale-enterprise' },
+        { title: 'Website Redesign', desc: 'Editorial-quality web presence that converts and retains.', hash: '#services-scale-website' },
+        { title: 'Ongoing Design Partnership', desc: 'A long-term design team that grows with your product.', hash: '#services-scale-ongoing' },
+        { title: 'UX Research & Strategy', desc: 'User interviews, workshops, and evidence-based direction.', hash: '#services-scale-research' },
     ],
 };
 
@@ -352,10 +352,10 @@ export default function Navbar() {
                             onMouseLeave={handleMenuLeave}
                         >
                             <a
-                                className={`text-[13px] text-gray-300 uppercase tracking-[0.15em] font-medium transition-colors duration-200 flex items-center gap-1.5 \${activeMenu === 'services' ? 'text-white' : 'text-gray-300 hover:text-white'}`}
+                                className={`text-[13px] text-gray-300 uppercase tracking-[0.15em] font-medium transition-colors duration-200 flex items-center gap-1.5 ${activeMenu === 'services' ? 'text-white' : 'text-gray-300 hover:text-white'}`}
                             >
                                 SERVICES
-                                <svg className={`w-3 h-3 transition-transform duration-200 \${activeMenu === 'services' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className={`w-3 h-3 transition-transform duration-200 ${activeMenu === 'services' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
                             </a>
@@ -367,10 +367,10 @@ export default function Navbar() {
                             onMouseLeave={handleMenuLeave}
                         >
                             <a
-                                className={`text-[13px] text-gray-300 uppercase tracking-[0.15em] font-medium transition-colors duration-200 flex items-center gap-1.5 \${activeMenu === 'industries' ? 'text-white' : 'text-gray-300 hover:text-white'}`}
+                                className={`text-[13px] text-gray-300 uppercase tracking-[0.15em] font-medium transition-colors duration-200 flex items-center gap-1.5 ${activeMenu === 'industries' ? 'text-white' : 'text-gray-300 hover:text-white'}`}
                             >
                                 INDUSTRIES
-                                <svg className={`w-3 h-3 transition-transform duration-200 \${activeMenu === 'industries' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className={`w-3 h-3 transition-transform duration-200 ${activeMenu === 'industries' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
                             </a>

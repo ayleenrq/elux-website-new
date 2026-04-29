@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 // ─────────────────────────────────────────────
@@ -370,6 +370,10 @@ function BlogHero({ allPosts }: { allPosts: typeof posts }) {
 export default function Blog() {
     useScrollReveal();
     const [activeCategory, setActiveCategory] = useState('All');
+
+    useEffect(() => {
+        document.title = 'Blog | Elux Space – Design & Product Insights';
+    }, []);
 
     const featuredPost = posts.find(p => p.featured)!;
     const filteredPosts = posts.filter(p =>

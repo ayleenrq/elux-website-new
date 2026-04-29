@@ -3,7 +3,55 @@ import { useState } from 'react';
 // ─────────────────────────────────────────────
 // 1. HERO — dark, full-width statement
 // ─────────────────────────────────────────────
-function Hero() {
+function Hero({ industryHash }: { industryHash?: string }) {
+    const highlight = industryHash ? industryHighlights[industryHash] : null;
+
+    if (highlight) {
+        // Industry-specific hero: full-width, image + content side by side
+        return (
+            <section className="bg-[#0a0a0a] pt-44 pb-0 px-8 overflow-hidden">
+                <div className="max-w-7xl mx-auto">
+                    <div className="flex flex-col lg:flex-row lg:items-end gap-16 lg:gap-24 pb-20 border-b border-white/8">
+                        {/* Left: industry content */}
+                        <div className="flex-1">
+                            <span className="text-[10px] font-bold tracking-[0.3em] text-blue-400 uppercase mb-6 block">
+                                {highlight.label}
+                            </span>
+                            <h1 className="text-[56px] md:text-[76px] lg:text-[88px] font-medium tracking-tighter leading-[1.0] text-white font-display mb-8">
+                                {highlight.title}
+                            </h1>
+                            <p className="text-gray-400 text-base md:text-lg font-medium leading-[1.6] tracking-tight max-w-xl mb-12">
+                                {highlight.desc}
+                            </p>
+                            <div className="flex flex-wrap items-center gap-4">
+                                <a
+                                    href="mailto:hello@elux.space"
+                                    className="inline-flex items-center gap-2 bg-[#2563EB] text-white text-[11px] font-bold uppercase tracking-widest px-7 py-4 rounded-full hover:bg-blue-500 transition-all duration-300 group"
+                                >
+                                    Book a Discovery Call
+                                    <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                                </a>
+                                <a
+                                    href="#case-studies"
+                                    onClick={() => { window.location.hash = '#case-studies'; }}
+                                    className="inline-flex items-center gap-2 bg-white/8 border border-white/12 text-white text-[11px] font-bold uppercase tracking-widest px-7 py-4 rounded-full hover:bg-white/15 transition-all duration-300 group"
+                                >
+                                    View Our Cases
+                                    <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                                </a>
+                            </div>
+                        </div>
+                        {/* Right: industry image */}
+                        <div className="w-full lg:w-[42%] rounded-3xl overflow-hidden aspect-[4/3] flex-shrink-0">
+                            <img src={highlight.image} alt={highlight.label} className="w-full h-full object-cover" />
+                        </div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    // Default: generic industries hero
     return (
         <section className="bg-[#0a0a0a] pt-44 pb-0 px-8 overflow-hidden">
             <div className="max-w-7xl mx-auto">
@@ -38,8 +86,6 @@ function Hero() {
                             </a>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </section>
@@ -1339,12 +1385,134 @@ function PortfolioShowcase() {
 }
 
 // ─────────────────────────────────────────────
+// Industry Highlight (shows when coming from specific dropdown)
+// ─────────────────────────────────────────────
+export const industryHighlights: Record<string, { label: string; title: string; desc: string; image: string }> = {
+    '#industries-saas': {
+        label: 'SAAS PLATFORMS',
+        title: 'Dashboards That Drive Retention.',
+        desc: 'We design SaaS platforms where every interaction — from onboarding to power-user workflows — reduces churn and drives daily active usage.',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200',
+    },
+    '#industries-ai': {
+        label: 'AI & MACHINE LEARNING',
+        title: 'Making AI Legible to Humans.',
+        desc: 'We translate complex model outputs into clear, actionable interfaces — bridging the gap between AI capability and user comprehension.',
+        image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&q=80&w=1200',
+    },
+    '#industries-fintech': {
+        label: 'FINTECH & PAYMENTS',
+        title: 'Trust-First Design for Finance.',
+        desc: 'In financial products, every interaction must inspire confidence. We design payment flows and banking UX that reduce friction and build trust.',
+        image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=1200',
+    },
+    '#industries-health': {
+        label: 'HEALTH & WELLNESS',
+        title: 'Empathetic UX for Healthcare.',
+        desc: 'We design health products with empathy at their core — from patient portals to clinical dashboards that work in high-stakes environments.',
+        image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200',
+    },
+    '#industries-ecommerce': {
+        label: 'E-COMMERCE & RETAIL',
+        title: 'Checkout Flows That Convert.',
+        desc: 'We design e-commerce experiences where product discovery is delightful and checkout friction is eliminated — driving higher conversion rates.',
+        image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1200',
+    },
+    '#industries-blockchain': {
+        label: 'BLOCKCHAIN & WEB3',
+        title: 'Web3 UX That Non-Crypto Users Get.',
+        desc: 'We design wallets, DeFi platforms, and NFT marketplaces that demystify blockchain concepts without sacrificing power-user functionality.',
+        image: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?auto=format&fit=crop&q=80&w=1200',
+    },
+    '#industries-edtech': {
+        label: 'EDTECH & LEARNING',
+        title: 'LMS Platforms Students Return To.',
+        desc: 'We design learning management systems and educational apps where engagement is built-in — reducing drop-off and improving completion rates.',
+        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200',
+    },
+    '#industries-cloud': {
+        label: 'CLOUD & DEVOPS',
+        title: 'Cloud & DevOps',
+        desc: 'Infrastructure dashboards for ops teams who move fast.',
+        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200',
+    },
+    '#industries-devtools': {
+        label: 'DEVELOPER TOOLS',
+        title: 'Developer Tools',
+        desc: 'Precision-first UX for technical, particular audiences.',
+        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200',
+    },
+    '#industries-banking': {
+        label: 'BANKING & INSURANCE',
+        title: 'Banking & Insurance',
+        desc: 'Compliance-first UX with excellent accessibility.',
+        image: 'https://images.unsplash.com/photo-1501167786227-4cba60a62585?q=80&w=1200',
+    },
+    '#industries-crypto': {
+        label: 'CRYPTO & DEFI',
+        title: 'Crypto & DeFi',
+        desc: 'Decentralised exchanges and staking interfaces.',
+        image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?q=80&w=1200',
+    },
+    '#industries-investment': {
+        label: 'INVESTMENT PLATFORMS',
+        title: 'Investment Platforms',
+        desc: 'Portfolio trackers and trade execution UX.',
+        image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=1200',
+    },
+    '#industries-compliance': {
+        label: 'REGULATORY COMPLIANCE',
+        title: 'Regulatory Compliance',
+        desc: 'KYC flows and audit dashboards as a competitive edge.',
+        image: 'https://images.unsplash.com/photo-1450101499163-c8848c66cb85?q=80&w=1200',
+    },
+    '#industries-travel': {
+        label: 'TRAVEL & HOSPITALITY',
+        title: 'Travel & Hospitality',
+        desc: 'Booking flows that make travel feel effortless.',
+        image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=1200',
+    },
+    '#industries-media': {
+        label: 'MEDIA & ENTERTAINMENT',
+        title: 'Media & Entertainment',
+        desc: 'Content discovery and streaming UX audiences return to.',
+        image: 'https://images.unsplash.com/photo-1600861194942-f883de0dfe96?q=80&w=1200',
+    },
+};
+
+function IndustryHighlight({ industryHash }: { industryHash: string }) {
+    const highlight = industryHighlights[industryHash];
+    if (!highlight) return null;
+    return (
+        <section className="bg-[#111111] py-20 px-8 border-b border-white/5">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span className="text-[10px] font-bold tracking-[0.3em] text-blue-400 uppercase mb-4 block">{highlight.label}</span>
+                    <h2 className="text-[48px] md:text-[60px] font-medium tracking-tighter text-white leading-[1.0] font-display mb-6">{highlight.title}</h2>
+                    <p className="text-gray-400 text-lg font-medium leading-[1.6] tracking-tight mb-8">{highlight.desc}</p>
+                    <a
+                        href="mailto:hello@elux.space"
+                        className="inline-flex items-center gap-2 bg-blue-600 text-white text-[11px] font-bold uppercase tracking-widest px-7 py-4 rounded-full hover:bg-blue-500 transition-all group"
+                    >
+                        Book a Discovery Call
+                        <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                    </a>
+                </div>
+                <div className="rounded-3xl overflow-hidden aspect-[4/3]">
+                    <img src={highlight.image} alt={highlight.label} className="w-full h-full object-cover" />
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// ─────────────────────────────────────────────
 // Page assembly
 // ─────────────────────────────────────────────
-export default function Industries() {
+export default function Industries({ industryHash = '#industries' }: { industryHash?: string }) {
     return (
         <div className="bg-white overflow-x-hidden">
-            <Hero />
+            <Hero industryHash={industryHash !== '#industries' ? industryHash : undefined} />
             <PartnershipSection />
             <ChallengesSection />
             <ExpectationsSection />

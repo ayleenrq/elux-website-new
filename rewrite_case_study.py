@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import os
+
+content = """import { useEffect, useState } from 'react';
 import { caseStudies } from './CaseStudiesArchive';
 
 function ProjectHero({ project }: { project: any }) {
@@ -181,3 +183,9 @@ export default function CaseStudyDetail() {
         </div>
     );
 }
+"""
+
+with open('src/pages/CaseStudyDetail.tsx', 'w', encoding='utf-8') as f:
+    f.write(content)
+
+print("Rewrote CaseStudyDetail.tsx")
