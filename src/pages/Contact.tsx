@@ -103,7 +103,7 @@ function ContactHero() {
                         <div className="grid grid-cols-2 gap-4">
                             <a
                                 href="mailto:hello@elux.space"
-                                className="group bg-[#111] border border-white/8 rounded-full p-5 hover:border-blue-600/50 hover:bg-blue-600/5 transition-all duration-300"
+                                className="group bg-[#111] border border-white/8 rounded-2xl p-5 hover:border-blue-600/50 hover:bg-blue-600/5 transition-all duration-300"
                             >
                                 <div className="w-8 h-8 rounded-lg bg-blue-600/20 flex items-center justify-center mb-3 group-hover:bg-blue-600/30 transition-colors">
                                     <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,7 +117,7 @@ function ContactHero() {
                                 href="https://calendly.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group bg-[#111] border border-white/8 rounded-full p-5 hover:border-white/20 hover:bg-white/3 transition-all duration-300"
+                                className="group bg-[#111] border border-white/8 rounded-2xl p-5 hover:border-white/20 hover:bg-white/3 transition-all duration-300"
                             >
                                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center mb-3 group-hover:bg-white/15 transition-colors">
                                     <svg className="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -130,46 +130,36 @@ function ContactHero() {
                         </div>
 
                         {/* ── Contact cards ── */}
-                        <div className="grid grid-cols-2 gap-4 pt-2">
-                            {/* Project card */}
-                            <div className="bg-[#111111] p-4 rounded-2xl border border-white/5 group cursor-pointer hover:border-white/10 transition-colors flex flex-col gap-3">
-                                <img
-                                    src="/assets/contact1.png"
-                                    alt="Kseniia Shalia"
-                                    className="w-12 h-12 rounded-xl object-cover grayscale group-hover:grayscale-0 transition-all"
-                                />
-                                <div>
-                                    <p className="text-white font-semibold text-[13px]">Kseniia Shalia</p>
-                                    <p className="text-gray-500 text-[11px] mb-2">Account Executive</p>
-                                    <div className="h-px bg-white/10 mb-2" />
-                                    <div className="flex items-center justify-between text-[11px] font-medium">
-                                        <span className="text-gray-400 text-[10px]">Project brief</span>
-                                        <svg className="w-3 h-3 text-gray-500 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 pt-2">
+                            {/* Card 1: Arya */}
+                            <a href="mailto:arya.pradana@elux.space" className="bg-[#111111] p-5 rounded-2xl border border-white/5 group hover:border-white/10 transition-all flex items-start gap-5">
+                                <img src="/images/Arya-Profile.jpg" alt="Arya Pradana" className="w-[100px] h-[100px] rounded-2xl object-cover flex-shrink-0" />
+                                <div className="flex flex-col flex-1 h-full min-h-[100px]">
+                                    <p className="text-white font-medium text-[17px] mb-1">Arya Pradana</p>
+                                    <p className="text-gray-400 text-[13px] leading-snug">Chief Executive Officer & Founder</p>
+                                    <div className="flex items-center justify-between w-full mt-auto pt-3 border-t border-white/10">
+                                        <span className="text-gray-300 text-[13px] font-medium group-hover:text-white transition-colors">arya.pradana@elux.space</span>
+                                        <svg className="w-3.5 h-3.5 text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                         </svg>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
 
-                            {/* Partnership card */}
-                            <div className="bg-[#111111] p-4 rounded-2xl border border-white/5 group cursor-pointer hover:border-white/10 transition-colors flex flex-col gap-3">
-                                <img
-                                    src="/assets/contact2.png"
-                                    alt="Darrell Steward"
-                                    className="w-12 h-12 rounded-xl object-cover grayscale group-hover:grayscale-0 transition-all"
-                                />
-                                <div>
-                                    <p className="text-white font-semibold text-[13px]">Darrell Steward</p>
-                                    <p className="text-gray-500 text-[11px] mb-2">Partnership Manager</p>
-                                    <div className="h-px bg-white/10 mb-2" />
-                                    <div className="flex items-center justify-between text-[11px] font-medium">
-                                        <span className="text-gray-400 text-[10px]">Partnership</span>
-                                        <svg className="w-3 h-3 text-gray-500 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            {/* Card 2: Lintang */}
+                            <a href="mailto:lintang.utami@elux.space" className="bg-[#111111] p-5 rounded-2xl border border-white/5 group hover:border-white/10 transition-all flex items-start gap-5">
+                                <img src="/images/Lintang-Profile.jpg" alt="Lintang Fajar Utami" className="w-[100px] h-[100px] rounded-2xl object-cover flex-shrink-0" />
+                                <div className="flex flex-col flex-1 h-full min-h-[100px]">
+                                    <p className="text-white font-medium text-[17px] mb-1">Lintang Fajar Utami</p>
+                                    <p className="text-gray-400 text-[13px] leading-snug">Project Manager</p>
+                                    <div className="flex items-center justify-between w-full mt-auto pt-3 border-t border-white/10">
+                                        <span className="text-gray-300 text-[13px] font-medium group-hover:text-white transition-colors">lintang.utami@elux.space</span>
+                                        <svg className="w-3.5 h-3.5 text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                         </svg>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
 
@@ -217,17 +207,27 @@ function ContactForm() {
         
         setIsSubmitting(true);
         
-        // Simulate network delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        try {
+            const formDataToSubmit = new FormData();
+            Object.entries(formData).forEach(([key, value]) => {
+                formDataToSubmit.append(key, value);
+            });
 
-        // Build a mailto link so the form actually sends
-        const subject = encodeURIComponent(`[Elux Inquiry] ${formData.company || formData.name}`);
-        const body = encodeURIComponent(
-            `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nService: ${formData.service}\nBudget: ${formData.budget}\n\nProject Description:\n${formData.message}`
-        );
-        window.open(`mailto:hello@elux.space?subject=${subject}&body=${body}`, '_blank');
-        setIsSubmitting(false);
-        setSubmitted(true);
+            await fetch('https://formspree.io/f/xgvkwpwn', {
+                method: 'POST',
+                body: formDataToSubmit,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            setIsSubmitting(false);
+            setSubmitted(true);
+        } catch (error) {
+            console.error('Submission error:', error);
+            setIsSubmitting(false);
+            alert('Something went wrong. Please try again or email us directly.');
+        }
     };
 
     const budgetOptions = ['< $5k', '$5k – $15k', '$15k – $30k', '$30k – $60k', '$60k+'];
@@ -300,6 +300,12 @@ function ContactForm() {
                                 <label className="block text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase mb-2">Full name *</label>
                                 <input
                                     type="text"
+                                    value={formData.name}
+                                    onChange={e => {
+                                        setFormData({ ...formData, name: e.target.value });
+                                        if (errors.name) setErrors({ ...errors, name: '' });
+                                    }}
+                                    placeholder="Enter your name"
                                     className={`w-full bg-white/5 border ${errors.name ? 'border-red-500/50' : 'border-white/10'} rounded-xl px-5 py-4 text-white text-[14px] font-medium placeholder-gray-600 focus:outline-none focus:border-blue-600/60 focus:bg-white/8 transition-all`}
                                 />
                                 {errors.name && <p className="text-red-400 text-xs mt-2">{errors.name}</p>}
@@ -465,108 +471,12 @@ function CalculatorBanner({ onOpen }: { onOpen: () => void }) {
 // ─────────────────────────────────────────────
 // AREAS OF EXPERTISE — white section
 // ─────────────────────────────────────────────
-function AreasOfExpertise() {
-    const areas = [
-        {
-            category: 'SaaS & Web Apps',
-            services: ['Dashboard UX Design', 'Onboarding Flow Design', 'Admin Panel Design', 'Feature UX Design'],
-            image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200',
-            desc: 'Powerful, intuitive interfaces for complex SaaS products — from onboarding to power-user dashboards.',
-        },
-        {
-            category: 'Fintech & Finance',
-            services: ['Payment Flow Design', 'Investment Platform UX', 'Banking App Design', 'KYC Flow Optimisation'],
-            image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=1200',
-            desc: 'Trust-first design for financial products where every interaction needs to be clear, secure, and friction-free.',
-        },
-        {
-            category: 'HealthTech',
-            services: ['Patient Portal UX', 'Telemedicine App Design', 'Clinical Dashboard', 'Health Tracking UI'],
-            image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200',
-            desc: 'Empathetic, accessible interfaces that bridge complex clinical workflows with everyday human needs.',
-        },
-    ];
 
-    const [activeIdx, setActiveIdx] = useState(0);
-
-    return (
-        <section className="bg-white py-32 px-8">
-            <div className="max-w-7xl mx-auto">
-                <div className="flex justify-between items-end mb-16">
-                    <div>
-                        <div className="flex items-center gap-2 mb-4">
-                            <span className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
-                            <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase">Expertise</span>
-                        </div>
-                        <h2 className="text-[40px] md:text-[56px] font-medium tracking-tighter text-gray-900 leading-[1.0] font-display">
-                            Our areas of expertise
-                        </h2>
-                    </div>
-                    <a
-                        href="#services"
-                        onClick={() => { window.location.hash = '#services'; }}
-                        className="hidden lg:inline-flex items-center gap-2 border border-gray-900 text-gray-900 text-[11px] font-bold uppercase tracking-widest px-6 py-3 rounded-full hover:bg-gray-900 hover:text-white transition-all duration-300"
-                    >
-                        All Services
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                    </a>
-                </div>
-
-                {/* Tab navigation */}
-                <div className="flex gap-0 border-b border-gray-200 mb-12">
-                    {areas.map((area, i) => (
-                        <button
-                            key={area.category}
-                            onClick={() => setActiveIdx(i)}
-                            className={`text-[11px] font-bold uppercase tracking-widest px-6 py-4 border-b-2 transition-all duration-200 ${activeIdx === i
-                                ? 'border-gray-900 text-gray-900'
-                                : 'border-transparent text-gray-400 hover:text-gray-600'
-                                }`}
-                        >
-                            {area.category}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Active area panel */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    <div>
-                        <p className="text-gray-400 text-lg font-medium leading-[1.6] tracking-tight mb-10">
-                            {areas[activeIdx].desc}
-                        </p>
-                        <div className="grid grid-cols-2 gap-3 mb-10">
-                            {areas[activeIdx].services.map((svc) => (
-                                <div key={svc} className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3">
-                                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full shrink-0" />
-                                    <span className="text-gray-700 text-[13px] font-medium">{svc}</span>
-                                </div>
-                            ))}
-                        </div>
-                        <button
-                            onClick={() => { window.location.hash = '#services'; }}
-                            className="inline-flex items-center gap-2 bg-black text-white text-[11px] font-bold uppercase tracking-widest px-6 py-3.5 rounded-full hover:bg-gray-800 transition-colors"
-                        >
-                            Explore {areas[activeIdx].category}
-                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                        </button>
-                    </div>
-                    <div className="rounded-[28px] overflow-hidden aspect-[4/3] relative">
-                        <img
-                            src={areas[activeIdx].image}
-                            alt={areas[activeIdx].category}
-                            className="w-full h-full object-cover transition-all duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent" />
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-}
 
 // ─────────────────────────────────────────────
 // SOCIAL PROOF LOGOS — white section
 // ─────────────────────────────────────────────
+/*
 function SocialProofLogos() {
     const platforms = [
         { name: 'Clutch', rating: '5.0', reviews: '40+' },
@@ -584,7 +494,6 @@ function SocialProofLogos() {
         <section className="bg-white py-24 px-8 border-t border-gray-100">
             <div className="max-w-7xl mx-auto">
 
-                {/* Platforms */}
                 <p className="text-[10px] font-bold tracking-[0.25em] text-gray-400 uppercase text-center mb-10">
                     Trusted & reviewed on
                 </p>
@@ -597,7 +506,6 @@ function SocialProofLogos() {
                     ))}
                 </div>
 
-                {/* Client names marquee-like */}
                 <div className="border-t border-gray-100 pt-12">
                     <p className="text-[10px] font-bold tracking-[0.25em] text-gray-400 uppercase text-center mb-8">
                         Brands we've partnered with
@@ -614,96 +522,12 @@ function SocialProofLogos() {
         </section>
     );
 }
+*/
 
 // ─────────────────────────────────────────────
 // CONTACT FAQ — light
 // ─────────────────────────────────────────────
-function ContactFAQ() {
-    const [open, setOpen] = useState<number | null>(0);
-    const faqs = [
-        {
-            q: 'How quickly can we get started?',
-            a: 'Most projects kick off within a week of signing. Discovery calls are free with zero commitment. We can also start with a focused audit before committing to a full engagement.',
-        },
-        {
-            q: 'What information should I include in my brief?',
-            a: 'The more detail the better — project goals, target audience, existing brand assets, timeline, and any references you love. A solid brief means faster, more accurate proposals.',
-        },
-        {
-            q: 'Do you work with startups or only established companies?',
-            a: "Both. We have dedicated packages for early-stage startups building MVPs and for growth-stage companies redesigning or scaling their products. Budget and scope adapt accordingly.",
-        },
-        {
-            q: 'What does your design process look like?',
-            a: 'Discovery → Strategy → Wireframes → Visual Design → Prototype → Handoff. Each phase has defined deliverables and review checkpoints. You own everything we create.',
-        },
-        {
-            q: 'Do you offer ongoing retainers?',
-            a: 'Yes — our Ongoing Design Partnership retainer gives you dedicated senior design capacity on a monthly basis. Ideal for teams shipping frequently.',
-        },
-    ];
 
-    return (
-        <section className="bg-white py-32 px-8 border-t border-gray-100">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
-                {/* LEFT */}
-                <div className="h-fit lg:sticky lg:top-32">
-                    <div className="flex items-center gap-2 mb-6">
-                        <span className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
-                        <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase">FAQ</span>
-                    </div>
-                    <h2 className="text-[40px] md:text-[52px] font-medium tracking-tighter text-gray-900 leading-[1.0] font-display mb-6">
-                        Common<br />questions
-                    </h2>
-                    <p className="text-gray-500 text-base font-medium leading-[1.6] tracking-tight mb-10">
-                        Can't find what you're looking for?<br />
-                        Email us at{' '}
-                        <a href="mailto:hello@elux.space" className="text-gray-900 underline underline-offset-4 hover:text-blue-600 transition-colors">
-                            hello@elux.space
-                        </a>
-                    </p>
-                    <a
-                        href="mailto:hello@elux.space"
-                        className="group inline-flex items-center gap-4 bg-black text-white px-8 py-5 rounded-full hover:scale-105 transition-all duration-300"
-                    >
-                        <span className="text-sm font-bold uppercase tracking-widest">Get In Touch</span>
-                        <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center transition-colors group-hover:bg-blue-600">
-                            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
-                        </div>
-                    </a>
-                </div>
-
-                {/* RIGHT */}
-                <div className="border-t border-gray-200">
-                    {faqs.map((faq, i) => (
-                        <div key={i} className="border-b border-gray-100">
-                            <button
-                                onClick={() => setOpen(open === i ? null : i)}
-                                className="w-full flex items-center justify-between py-7 text-left group"
-                            >
-                                <span className={`text-base font-medium transition-colors pr-8 ${open === i ? 'text-gray-900' : 'text-gray-500 group-hover:text-gray-900'}`}>
-                                    {faq.q}
-                                </span>
-                                <div className={`w-8 h-8 rounded-full border flex-shrink-0 flex items-center justify-center transition-all duration-300 ${open === i ? 'bg-gray-900 border-gray-900 rotate-45' : 'border-gray-200 group-hover:border-gray-400'}`}>
-                                    <svg className={`w-4 h-4 transition-colors ${open === i ? 'text-white' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                                    </svg>
-                                </div>
-                            </button>
-                            {open === i && (
-                                <div className="pb-7 pr-16">
-                                    <p className="text-gray-500 text-[15px] font-medium leading-[1.6] tracking-tight">{faq.a}</p>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-}
 
 // ─────────────────────────────────────────────
 // MAIN EXPORT
@@ -711,14 +535,12 @@ function ContactFAQ() {
 export default function Contact() {
     const [calcOpen, setCalcOpen] = useState(false);
     return (
-        <>
+        <div className="bg-[#0a0a0a] min-h-screen">
             <ContactHero />
             <ContactForm />
             <CalculatorBanner onOpen={() => setCalcOpen(true)} />
-            <AreasOfExpertise />
-            <SocialProofLogos />
-            <ContactFAQ />
+            {/* <SocialProofLogos /> */}
             {calcOpen && <ProjectCalculatorModal onClose={() => setCalcOpen(false)} />}
-        </>
+        </div>
     );
 }

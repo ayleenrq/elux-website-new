@@ -85,17 +85,17 @@ function App() {
   }, [hash]);
 
   const renderPage = () => {
-    if (hash === '#about') return <AboutUs />;
-    if (hash.startsWith('#services')) return <ServiceDetail serviceHash={hash} />;
-    if (hash === '#case-studies') return <CaseStudiesArchive />;
-    if (hash.startsWith('#case-study-detail')) return <CaseStudyDetail />;
-    if (hash === '#testimonials') return <Testimonials />;
-    if (hash.startsWith('#industries')) return <Industries industryHash={hash} />;
-    if (hash === '#contact') return <Contact />;
-    if (hash === '#blog') return <Blog />;
-    if (hash.startsWith('#blog/')) return <BlogDetail />;
+    if (hash === '#about') return <AboutUs key={hash} />;
+    if (hash.startsWith('#services')) return <ServiceDetail key={hash} serviceHash={hash} />;
+    if (hash === '#case-studies') return <CaseStudiesArchive key={hash} />;
+    if (hash.startsWith('#case-study-detail')) return <CaseStudyDetail key={hash} />;
+    if (hash === '#testimonials') return <Testimonials key={hash} />;
+    if (hash.startsWith('#industries')) return <Industries key={hash} industryHash={hash} />;
+    if (hash === '#contact') return <Contact key={hash} />;
+    if (hash === '#blog') return <Blog key={hash} />;
+    if (hash.startsWith('#blog/')) return <BlogDetail key={hash} />;
     return (
-      <WebflowHome />
+      <WebflowHome key={hash} />
     );
   };
 
@@ -104,7 +104,7 @@ function App() {
       <Navbar />
       <main>
         {renderPage()}
-        {hash !== '#home' && <BottomCTA />}
+        {hash !== '#home' && hash !== '#contact' && <BottomCTA />}
       </main>
       {hash !== '#home' && <Footer />}
     </div>

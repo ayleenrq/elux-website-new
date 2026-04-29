@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, LayoutGroup } from 'framer-motion';
 
 // ─── Video Modal Component ────────────────────────────────────────────────────
@@ -72,6 +72,7 @@ const testimonials: Testimonial[] = [
     },
 ];
 
+/*
 const v3Testimonials = [
     {
         type: 'video',
@@ -122,12 +123,13 @@ const v3Testimonials = [
         image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=800",
     }
 ];
+*/
 
 export default function Testimonials() {
     const [activeIndex1, setActiveIndex1] = useState(0);
-    const [activeIndex2, setActiveIndex2] = useState(1);
+    // const [activeIndex2, setActiveIndex2] = useState(1);
     const [videoModal, setVideoModal] = useState<string | null>(null);
-    const carouselRef = useRef<HTMLDivElement>(null);
+    // const carouselRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         document.title = 'Testimonials | Elux Space – Client Stories';
@@ -143,6 +145,7 @@ export default function Testimonials() {
         setActiveIndex1((prev) => (prev - 1 + testimonials.length) % testimonials.length);
     };
 
+    /*
     const nextTestimonial2 = () => setActiveIndex2((prev) => (prev + 1) % 3);
     const prevTestimonial2 = () => setActiveIndex2((prev) => (prev - 1 + 3) % 3);
 
@@ -152,6 +155,7 @@ export default function Testimonials() {
             carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     };
+    */
 
 
 
@@ -328,10 +332,12 @@ export default function Testimonials() {
                 </div>
             </section>
 
-            {/* Testimonial 2 Section */}
+            <TestimonialsFAQ />
+
+            {/* Testimonial 2 Section - Hidden for now */}
+            {/* 
             <section id="testimonial-v2" className="bg-[#0A0A0A] pt-32 pb-48 px-4 md:px-8 overflow-hidden">
                 <div className="max-w-7xl mx-auto">
-                    {/* Header */}
                     <div className="text-center mb-16">
                         <motion.p
                             initial={{ opacity: 0, y: 10 }}
@@ -352,7 +358,6 @@ export default function Testimonials() {
                         </motion.h2>
                     </div>
 
-                    {/* Carousel */}
                     <div className="relative flex justify-center items-center h-[400px] md:h-[500px] mb-8">
                         <div className="relative w-full flex justify-center items-center">
                             {[
@@ -424,7 +429,6 @@ export default function Testimonials() {
                         </div>
                     </div>
 
-                    {/* Navigation Buttons */}
                     <div className="flex justify-center gap-4 mb-12">
                         <button onClick={prevTestimonial2} className="w-11 h-11 rounded-full bg-[#2563EB] flex items-center justify-center text-white shadow-lg">
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -438,7 +442,6 @@ export default function Testimonials() {
                         </button>
                     </div>
 
-                    {/* Integrated Static Cards (V2) */}
                     <div className="grid md:grid-cols-3 gap-6">
                         {[
                             { name: "Udy Joe", avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=200", rating: 5, text: "For those who need AI and multi-functional chatbots, definitely add this to your collection. The browser-based capture is incredibly efficient, and the constant updates make it a future-proof investment for any team." },
@@ -466,17 +469,18 @@ export default function Testimonials() {
                                         </div>
                                     </div>
                                 </div>
-                                <p className="text-white/60 text-[15px] leading-relaxed italic">"{card.text}"</p>
+                                <p className="text-white/60 text-[15px] leading-relaxed italic">\"{card.text}\"</p>
                             </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
+            */}
 
-            {/* Testimonial 3 Section */}
+            {/* Testimonial 3 Section - Hidden for now */}
+            {/* 
             <section id="testimonial-v3" className="bg-[#0A0A0A] pt-32 pb-48 px-4 md:px-8 overflow-hidden">
                 <div className="max-w-7xl mx-auto">
-                    {/* Header - V1 Style */}
                     <div className="text-center mb-20">
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
@@ -502,7 +506,6 @@ export default function Testimonials() {
                         </motion.h2>
                     </div>
 
-                    {/* Horizontal Carousel (1 Baris) */}
                     <div className="relative">
                         <div
                             ref={carouselRef}
@@ -513,27 +516,22 @@ export default function Testimonials() {
                                     <div className={`${item.type === 'text' ? 'bg-[#111111] p-6 border border-white/5 h-auto md:h-[480px] flex-col md:flex-row' : 'h-[400px] md:h-[480px]'} rounded-2xl flex gap-6 relative group overflow-hidden`}>
                                         {item.type === 'text' ? (
                                             <>
-                                                {/* Card Content Top Left */}
                                                 <div className="flex-1 flex flex-col justify-between">
                                                     <div>
-                                                        {/* Logo Box */}
                                                         <div className="bg-[#1a1a1a] rounded-lg p-3 w-fit mb-6 md:mb-12 border border-white/5">
                                                             <div className="text-[10px] font-bold text-white uppercase leading-none">
                                                                 #{item.logo}<br />{item.logo}
                                                             </div>
                                                         </div>
-                                                        {/* Quote */}
                                                         <p className="text-white text-xl md:text-2xl font-medium leading-relaxed tracking-tight max-w-[90%] mb-8 md:mb-0">
-                                                            "{item.quote}"
+                                                            \"{item.quote}\"
                                                         </p>
                                                     </div>
-                                                    {/* Author */}
                                                     <div className="mb-6 md:mb-0">
                                                         <h4 className="text-white font-bold text-lg">{item.name}</h4>
                                                         <p className="text-zinc-500 text-sm mt-1">{item.role}</p>
                                                     </div>
                                                 </div>
-                                                {/* Image */}
                                                 <div className="w-full md:w-[45%] h-64 md:h-full relative overflow-hidden rounded-2xl">
                                                     <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
                                                 </div>
@@ -543,7 +541,6 @@ export default function Testimonials() {
                                                 <img src={item.thumbnail} alt={item.name} className="absolute inset-0 w-full h-full object-cover" />
                                                 <div className="absolute inset-0 bg-black/30" />
 
-                                                {/* Play Button */}
                                                 <div className="absolute bottom-10 right-10">
                                                     <div className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 hover:bg-white/25 transition-colors">
                                                         <svg className="w-6 h-6 text-white fill-current ml-1" viewBox="0 0 24 24">
@@ -552,7 +549,6 @@ export default function Testimonials() {
                                                     </div>
                                                 </div>
 
-                                                {/* Info Overlay */}
                                                 <div className="absolute bottom-10 left-10">
                                                     <h4 className="text-white font-bold text-4xl mb-1">{item.name}</h4>
                                                     <p className="text-[#2563EB] text-base font-bold tracking-[0.2em] uppercase">{item.company}</p>
@@ -565,7 +561,6 @@ export default function Testimonials() {
                             ))}
                         </div>
 
-                        {/* Navigation Arrows */}
                         <div className="flex justify-center gap-4 mt-8">
                             <button
                                 onClick={() => scrollCarousel('left')}
@@ -587,11 +582,12 @@ export default function Testimonials() {
                     </div>
                 </div>
             </section>
+            */}
 
-            {/* Testimonial 4 Section - Premium Bento Grid */}
+            {/* Testimonial 4 Section - Hidden for now */}
+            {/* 
             <section id="testimonial-v4" className="bg-white pt-32 pb-48 px-4 md:px-8">
                 <div className="max-w-7xl mx-auto">
-                    {/* Header */}
                     <div className="text-center mb-20">
                         <motion.div
                             initial={{ opacity: 0, y: 10 }}
@@ -617,9 +613,7 @@ export default function Testimonials() {
                         </motion.h2>
                     </div>
 
-                    {/* Bento Grid - 16:9 Video Aspect Ratio Focus */}
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {/* Row 1: Video 1 (16:9 Rectangle) + Text 1 (Square-ish) */}
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -647,7 +641,7 @@ export default function Testimonials() {
                             className="bg-[#E9E4F0] rounded-[2rem] p-8 md:p-10 flex flex-col justify-between relative group overflow-hidden h-full min-h-[250px] md:min-h-0"
                         >
                             <p className="text-gray-900 text-base md:text-lg font-medium leading-[1.6] tracking-tight">
-                                "Elux has revolutionized how we handle our backend operations. The automation they've implemented is seamless."
+                                \"Elux has revolutionized how we handle our backend operations. The automation they've implemented is seamless.\"
                             </p>
                             <div>
                                 <h4 className="text-gray-900 font-bold text-lg">Julianne Moore</h4>
@@ -655,14 +649,13 @@ export default function Testimonials() {
                             </div>
                         </motion.div>
 
-                        {/* Row 2: Text 2 (Square-ish) + Video 2 (16:9 Rectangle) */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             className="bg-[#F8F8F8] rounded-[2rem] p-8 md:p-10 flex flex-col justify-between relative group overflow-hidden border border-gray-100 h-full min-h-[250px] md:min-h-0"
                         >
                             <p className="text-gray-900 text-base md:text-lg font-medium leading-[1.6] tracking-tight">
-                                "The level of customization and support we received was beyond expectations. A truly premium experience."
+                                \"The level of customization and support we received was beyond expectations. A truly premium experience.\"
                             </p>
                             <div>
                                 <h4 className="text-gray-900 font-bold text-lg">Thomas Wright</h4>
@@ -691,7 +684,6 @@ export default function Testimonials() {
                             </div>
                         </motion.div>
 
-                        {/* Row 3: Video 3 (16:9 Rectangle) + Text 3 (Square-ish) */}
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
@@ -719,7 +711,7 @@ export default function Testimonials() {
                             className="bg-[#D9DEE1] rounded-[2rem] p-8 md:p-10 flex flex-col justify-between relative group overflow-hidden h-full min-h-[250px] md:min-h-0"
                         >
                             <p className="text-gray-900 text-base md:text-lg font-medium leading-[1.6] tracking-tight">
-                                "Helping us scale faster than any internal team could. Their expertise in automation is unmatched in the industry."
+                                \"Helping us scale faster than any internal team could. Their expertise in automation is unmatched in the industry.\"
                             </p>
                             <div>
                                 <h4 className="text-gray-900 font-bold text-lg">Ritika Sehgal</h4>
@@ -729,6 +721,10 @@ export default function Testimonials() {
                     </div>
                 </div>
             </section>
+            */}
+
+            {/* Clients Say Section - Hidden for now */}
+            {/* <ClientsSaySection /> */}
 
             <style dangerouslySetInnerHTML={{
                 __html: `
@@ -740,3 +736,226 @@ export default function Testimonials() {
         </main>
     );
 }
+
+// ─────────────────────────────────────────────
+// TESTIMONIALS FAQ — dark premium
+// ─────────────────────────────────────────────
+function TestimonialsFAQ() {
+    const [open, setOpen] = useState<number | null>(null);
+    const faqs = [
+        { 
+            q: 'Do you specialise in a particular industry?', 
+            a: "We have deep experience in tech (SaaS, AI, Web3), finance (fintech, banking, DeFi), and lifestyle (health, e-commerce, EdTech). That said, we've shipped products in many more verticals — we adapt fast." 
+        },
+        { 
+            q: 'How quickly can we get started?', 
+            a: 'Most projects kick off within a week of signing. Discovery calls are free with zero commitment. We can also start with a focused audit before committing to a full engagement.' 
+        },
+        { 
+            q: 'How long does a typical project take?', 
+            a: 'MVP scopes: 2–4 weeks. Full product design: 4–8 weeks. Audit + redesign: 3–6 weeks. We work in focused sprints and eliminate delays through tight feedback loops.' 
+        },
+        {
+            q: 'What information should I include in my brief?',
+            a: 'The more detail the better — project goals, target audience, existing brand assets, timeline, and any references you love. A solid brief means faster, more accurate proposals.',
+        },
+        {
+            q: 'Do you work with startups or only established companies?',
+            a: "Both. We have dedicated packages for early-stage startups building MVPs and for growth-stage companies redesigning or scaling their products. Budget and scope adapt accordingly.",
+        },
+        { 
+            q: 'Does industry experience affect the price?', 
+            a: "No — our pricing is scope-based, not sector-based. What you're buying is a design team that already speaks your industry's language, saving you rounds of context-setting." 
+        },
+        { 
+            q: 'What does design handoff look like?', 
+            a: "Organised Figma files, annotated components, a design system, spacing tokens, and an interactive prototype — everything your engineering team needs to build without back-and-forth." 
+        },
+    ];
+
+    return (
+        <section className="bg-[#0a0a0a] py-40 px-8">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div className="h-fit lg:sticky lg:top-32">
+                    <div className="flex items-center gap-2 mb-8">
+                        <span className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
+                        <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase">FAQ</span>
+                    </div>
+                    <h2 className="text-[64px] font-medium tracking-tighter text-white leading-[1.0] font-display mb-8">
+                        Common<br />Questions
+                    </h2>
+                    <p className="text-gray-400 text-base font-medium leading-[1.6] tracking-tight mb-12">
+                        Can't find what you're looking for?<br />
+                        Reach us at{' '}
+                        <a href="mailto:hello@elux.space" className="text-white underline underline-offset-4 hover:text-white/70 transition-colors">
+                            hello@elux.space
+                        </a>
+                    </p>
+                    <button
+                        onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                        className="group flex items-center gap-4 bg-white text-black px-8 py-5 rounded-full hover:scale-105 transition-all duration-300"
+                    >
+                        <span className="text-sm font-bold uppercase tracking-widest">Send a Message</span>
+                        <div className="w-8 h-8 bg-black/10 rounded-full flex items-center justify-center transition-colors group-hover:bg-blue-600 group-hover:text-white">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </div>
+                    </button>
+                </div>
+                <div className="border-t border-white/10">
+                    {faqs.map((faq, i) => (
+                        <div key={i} className="border-b border-white/10">
+                            <button
+                                onClick={() => setOpen(open === i ? null : i)}
+                                className="w-full flex items-center justify-between py-8 text-left group"
+                            >
+                                <span className={`text-lg font-medium transition-colors pr-8 ${open === i ? 'text-white' : 'text-gray-400 group-hover:text-white'}`}>
+                                    {faq.q}
+                                </span>
+                                <div className={`w-8 h-8 rounded-full border flex-shrink-0 flex items-center justify-center transition-all duration-300 ${open === i ? 'bg-white border-white rotate-45' : 'border-white/20 group-hover:border-white/40'}`}>
+                                    <svg className={`w-4 h-4 transition-colors ${open === i ? 'text-black' : 'text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                                    </svg>
+                                </div>
+                            </button>
+                            {open === i && (
+                                <div className="pb-8 pr-16">
+                                    <p className="text-gray-400 text-base font-medium leading-[1.6] tracking-tight">{faq.a}</p>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// ─────────────────────────────────────────────
+// X4. WHAT OUR CLIENTS SAY (Moved from Industries)
+// ─────────────────────────────────────────────
+/*
+function ClientsSaySection() {
+    const reviews = [
+        {
+            author: "Craig Tortolani",
+            role: "CPO at Dekryption Labs",
+            avatar: "https://i.pravatar.cc/150?u=craig",
+            type: "video",
+            content: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=600"
+        },
+        {
+            author: "Alex Friedman",
+            role: "CEO at Open Path",
+            avatar: "https://i.pravatar.cc/150?u=alex",
+            type: "text",
+            content: "Not only is the team extremely communicative, their work is exceptional. I have never worked with a team so talented while also being competitively priced and communicative."
+        },
+        {
+            author: "KlickEx Team",
+            role: "",
+            avatar: "https://i.pravatar.cc/150?u=klick",
+            type: "video",
+            content: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80&w=600"
+        },
+        {
+            author: "George Fry",
+            role: "Founder at Neap",
+            avatar: "https://i.pravatar.cc/150?u=george",
+            type: "text",
+            content: "The quality of the designs is fantastic. Elux works at speed and is extremely punctual with timelines. They deliver top-notch outcomes with exceptional designs."
+        },
+        {
+            author: "Andre Guerra",
+            role: "Co-Owner at RADCAT Design",
+            avatar: "https://i.pravatar.cc/150?u=andre",
+            type: "video",
+            content: "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=600"
+        },
+        {
+            author: "Kevin Alvarez",
+            role: "Founder & General Partner, Predictive",
+            avatar: "https://i.pravatar.cc/150?u=kevin",
+            type: "text",
+            content: "Elux's ability to translate concepts and rough design mock-ups into high-fidelity assets, designs, and visuals was very impressive. The goal was to maintain simple elegance in the design aesthetic, and they did it very well."
+        }
+    ];
+
+    return (
+        <section className="bg-white py-32 px-8 border-t border-gray-100">
+            <div className="max-w-7xl mx-auto">
+                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-20 gap-10">
+                    <div className="max-w-2xl">
+                        <p className="text-[11px] font-bold tracking-[0.2em] text-[#888] uppercase mb-6">
+                            What Our Clients Say
+                        </p>
+                        <h2 className="text-[48px] md:text-[64px] lg:text-[72px] font-medium tracking-tight text-[#111] leading-[1.05] font-display">
+                            5.0 is our average on clutch & upwork
+                        </h2>
+                    </div>
+
+                    <div className="flex gap-4">
+                        <div className="bg-[#f8f8f8] rounded-2xl p-6 flex flex-col justify-between min-w-[200px] h-[120px]">
+                            <p className="font-bold text-2xl text-black">C</p>
+                            <div className="flex justify-between items-center w-full">
+                                <div className="flex gap-1 text-[#ff6600]">
+                                    {[1, 2, 3, 4, 5].map(i => (
+                                        <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    ))}
+                                </div>
+                                <span className="font-medium text-gray-500 text-sm tracking-tight">5.0</span>
+                            </div>
+                        </div>
+
+                        <div className="bg-[#f8f8f8] rounded-2xl p-6 flex flex-col justify-between min-w-[200px] h-[120px]">
+                            <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13.5h-13L12 6.5z" /></svg>
+                            <div className="flex justify-between items-center w-full">
+                                <div className="flex gap-1 text-[#ff6600]">
+                                    {[1, 2, 3, 4, 5].map(i => (
+                                        <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+                                    ))}
+                                </div>
+                                <span className="font-medium text-gray-500 text-sm tracking-tight">4.9</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {reviews.map((r, i) => (
+                        <div key={i} className="bg-[#f8f8f8] rounded-2xl p-8 flex flex-col h-full overflow-hidden relative group">
+                            <div className="flex items-center gap-4 mb-8">
+                                <img src={r.avatar} alt={r.author} className="w-12 h-12 rounded-full object-cover" />
+                                <div>
+                                    <p className="font-medium text-gray-900 leading-snug tracking-tight">{r.author}</p>
+                                    {r.role && <p className="text-gray-500 text-sm font-medium tracking-tight">{r.role}</p>}
+                                </div>
+                            </div>
+
+                            {r.type === 'text' ? (
+                                <>
+                                    <p className="text-gray-500 text-[18px] lg:text-[20px] leading-[1.6] font-medium tracking-tight z-10">
+                                        {r.content}
+                                    </p>
+                                    <span className="absolute bottom-6 left-8 text-gray-300 text-7xl font-serif opacity-30 leading-none">
+                                        "
+                                    </span>
+                                </>
+                            ) : (
+                                <div className="relative mt-auto w-full h-[200px] rounded-xl overflow-hidden -mb-4 -mx-4 w-[calc(100%+2rem)]">
+                                    <img src={r.content} className="absolute inset-0 w-full h-full object-cover" alt="Video thumbnail" />
+                                    <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/20" />
+                                    <div className="absolute bottom-4 left-4 w-8 h-8 flex items-center justify-center bg-white/30 backdrop-blur rounded-full group-hover:scale-110 transition-transform">
+                                        <svg className="w-3 h-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+*/

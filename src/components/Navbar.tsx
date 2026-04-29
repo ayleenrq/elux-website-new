@@ -313,10 +313,15 @@ export default function Navbar() {
     useEffect(() => {
         if (mobileOpen) {
             document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
         }
-        return () => { document.body.style.overflow = ''; };
+        return () => { 
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+        };
     }, [mobileOpen]);
 
     const navLinks = [
@@ -438,7 +443,7 @@ export default function Navbar() {
             <div className={`fixed inset-0 z-40 lg:hidden transition-opacity duration-300 ${mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                 <div className="absolute inset-0 bg-black/60" onClick={() => setMobileOpen(false)} />
                 <div className={`absolute right-0 top-0 h-full w-[88%] max-w-sm bg-[#0a0a0a] border-l border-white/8 transform transition-transform duration-300 ease-out overflow-y-auto ${mobileOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-                    <div className="pt-24 px-5 pb-10">
+                    <div className="px-5 pb-10" style={{ paddingTop: '120px' }}>
 
                         <a
                             href="#about"

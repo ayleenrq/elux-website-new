@@ -5,75 +5,75 @@ const filters = ["All", "Healthcare", "SaaS", "AI Platforms", "FinTech", "E-Comm
 export const caseStudies = [
     { 
         id: 1, title: "Novus Medical", category: "HEALTHCARE", filter: "Healthcare", tagline: "Redesigning a clinical workflow platform for 8,000+ daily active clinicians.", metric: "+120% Placement Rate", tags: ["Product Design", "Design System", "UX Research"], image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600&q=80", span: 2,
-        problem: "Clinicians wasted hours navigating deeply nested EHR menus, causing burnout and data entry errors.",
-        solution: "We engineered a modular dashboard with predictive charting and a command palette to minimize clicks.",
-        impact: "Reduced charting time by 35% and increased workflow completion rates by 120%."
+        problem: "Clinicians were struggling with legacy EHR systems that featured deeply nested menus and inconsistent data entry points. This fragmentation caused significant cognitive load, leading to frequent charting errors and severe practitioner burnout across 120+ clinical sites.",
+        solution: "We engineered a modular, high-density dashboard that prioritizes patient-critical data through a 'command palette' interface. By implementing predictive charting and a unified design system, we streamlined the data entry process and reduced navigation depth from 7 clicks to just 2.",
+        impact: "The redesign led to a 35% reduction in average charting time per patient and a 120% increase in workflow completion rates. More importantly, clinician satisfaction scores improved by 85%, directly addressing the retention issues previously plaguing the organization."
     },
     { 
         id: 2, title: "Upnova", category: "AI PLATFORMS", filter: "AI Platforms", tagline: "Turning complex AI model outputs into dashboards non-technical teams actually use.", metric: "2x Faster Workflows", tags: ["AI UX", "Dashboard Design"], image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80", span: 1,
-        problem: "Raw AI data tables alienated their primary audience: marketing and sales teams.",
-        solution: "Abstracted complexity through visual storytelling and dynamic widgets with actionable insights.",
-        impact: "Increased daily active usage by 300% among non-technical staff."
+        problem: "Upnova's powerful AI models were producing valuable insights, but the raw data tables were too complex for marketing and sales teams to interpret. This gap between data science and business application resulted in low internal adoption and missed revenue opportunities.",
+        solution: "We transformed the analytical experience by replacing static tables with dynamic, interactive widgets. Our approach focused on visual storytelling, using intuitive data visualizations and plain-English summaries that translate complex AI predictions into actionable business steps.",
+        impact: "Post-launch, daily active usage among non-technical staff increased by 300%. Teams reported making data-backed decisions 2x faster, and the platform became a core part of the quarterly planning process for both marketing and sales departments."
     },
     { 
         id: 3, title: "AETERNA Labs", category: "SAAS", filter: "SaaS", tagline: "0→1 product design for a biotech SaaS that closed a $2M seed round.", metric: "$2M Seed Raised", tags: ["MVP Design", "Investor Deck"], image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=800&q=80", span: 1,
-        problem: "Scientists had a revolutionary algorithm but no interface to prove commercial viability to investors.",
-        solution: "A rapid 4-week design sprint to build a highly-polished, interactive prototype for investor demos.",
-        impact: "The prototype was instrumental in closing an oversubscribed $2M seed round."
+        problem: "AETERNA's founding team had developed a revolutionary biotech algorithm, but lacked a commercial interface. Without a way to demonstrate the software's practical application and user experience, they struggled to communicate value to potential investors during their seed round.",
+        solution: "We executed a high-intensity 4-week design sprint to build a fully interactive, high-fidelity prototype. We focused on the core scientist workflow, creating a 'wow-factor' interface that visualized the algorithm's outputs in a way that felt both professional and technologically advanced.",
+        impact: "The prototype became the centerpiece of their pitch deck, providing the visual proof-of-concept needed to build investor confidence. This directly led to the closing of an oversubscribed $2M seed round within just six weeks of the design delivery."
     },
     { 
         id: 4, title: "KlickEx", category: "FINTECH", filter: "FinTech", tagline: "Redesigning a cross-border payments interface handling $1B+ in annual transactions.", metric: "+40% Conversion Rate", tags: ["FinTech UX", "Mobile Design", "Payment Flows"], image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1600&q=80", span: 2,
-        problem: "High abandonment rates caused by a confusing fee display and multi-page checkout.",
-        solution: "Consolidated the transfer process into a single page with real-time previews and transparent fees.",
-        impact: "Transaction completion jumped by 40% and support tickets dropped by 65%."
+        problem: "Despite processing over $1B annually, KlickEx faced massive checkout abandonment. Users were confused by hidden fees, a non-responsive mobile experience, and a multi-page transaction flow that required repetitive data entry, leading to high frustration and lost revenue.",
+        solution: "We reimagined the entire payment experience, consolidating the multi-step process into a single, intuitive checkout page. We introduced real-time currency conversion previews, transparent fee breakdowns, and a smart 'smart-fill' system to minimize user effort on mobile devices.",
+        impact: "The results were immediate: transaction completion rates increased by 40% across all devices. Furthermore, the clarity of the new interface led to a 65% reduction in customer support tickets related to payment confusion, significantly lowering operational costs."
     },
     { 
         id: 5, title: "Vitalix", category: "HEALTHCARE", filter: "Healthcare", tagline: "A telehealth MVP designed in 3 weeks that helped close a $2.4M funding round.", metric: "3-Week MVP Launch", tags: ["Telehealth", "MVP", "Prototype"], image: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800&q=80", span: 1,
-        problem: "Needed a believable, production-ready product experience from a rough whiteboard concept in 3 weeks.",
-        solution: "Used 'Design System Lite' to assemble the core 'book-to-consult' flow with high-end micro-animations.",
-        impact: "Delivered a clickable prototype in 21 days, securing a $2.4M seed funding round."
+        problem: "Vitalix needed to transition from a conceptual whiteboard idea to a production-ready product experience in record time. They had a critical investor demo scheduled in three weeks and required a credible interface that felt like a mature, fully-functional healthcare platform.",
+        solution: "Utilizing our 'Design System Lite' framework, we focused on the core 'book-to-consult' user journey. We prioritized high-impact touchpoints, incorporating premium micro-animations and a clean, trustworthy aesthetic that signaled security and reliability to potential stakeholders.",
+        impact: "We delivered a comprehensive clickable prototype in exactly 21 days. This rapid turnaround allowed the founders to present a tangible product vision that secured a $2.4M seed funding round, enabling them to hire their full engineering team and move into development."
     },
     { 
         id: 6, title: "CartFlow", category: "E-COMMERCE", filter: "E-Commerce", tagline: "Eliminating checkout friction for a D2C brand processing 40k+ orders monthly.", metric: "+65% Cart Completion", tags: ["E-Commerce UX", "Conversion Optimization"], image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80", span: 1,
-        problem: "Multi-step checkout with manual data entry bled revenue on mobile devices.",
-        solution: "Redesigned into a frictionless, one-page accordion checkout with one-click express payments.",
-        impact: "Mobile checkout completion increased by 65%, adding $120k in monthly revenue."
+        problem: "For a high-volume D2C brand, mobile conversion was suffering due to a fragmented multi-step checkout process. Manual address entry and repeated shipping selections created high friction, leading to a significant revenue leak during peak shopping hours.",
+        solution: "We redesign the checkout into a frictionless, one-page accordion experience. By integrating express payment options (Apple Pay, Google Pay) and implementing a smart address autocomplete system, we reduced the time-to-purchase from 2 minutes to under 30 seconds.",
+        impact: "The new flow resulted in a 65% increase in mobile checkout completion. This conversion lift translated directly into an additional $120,000 in monthly revenue, providing an immediate and massive ROI on the design investment."
     },
     { 
         id: 7, title: "ChainVault", category: "BLOCKCHAIN", filter: "Blockchain", tagline: "Making DeFi accessible — a non-custodial wallet UX for mainstream users.", metric: "50k+ Wallet Activations", tags: ["Web3 UX", "Wallet Design", "DeFi"], image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=1600&q=80", span: 2,
-        problem: "Complex onboarding and seed-phrase management deterred mainstream web2 users from adopting DeFi.",
-        solution: "Introduced social logins and abstracted gas fees to create a familiar web2-like experience.",
-        impact: "Surpassed 50,000 active wallets in the first month post-launch."
+        problem: "Mainstream users were interested in DeFi but were intimidated by the complexities of Web3 onboarding. Seed phrase management, gas fee calculations, and non-intuitive wallet addresses created a massive barrier to entry for users coming from traditional banking backgrounds.",
+        solution: "We abstracted the technical complexity of blockchain by introducing social logins and a familiar Web2-like interface. We implemented a 'gasless' experience through smart contract abstraction and created a simplified asset management dashboard that prioritized clarity over technical jargon.",
+        impact: "The simplified onboarding process led to over 50,000 active wallet activations in the first month post-launch. The platform saw a 4x higher retention rate compared to competitors, proving that a user-centric approach is key to mainstream Web3 adoption."
     },
     { 
         id: 8, title: "Learnify Pro", category: "EDTECH", filter: "EdTech", tagline: "Rebuilding a corporate LMS that reduced course drop-off by 55%.", metric: "-55% Drop-off Rate", tags: ["EdTech", "LMS Design", "Engagement"], image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80", span: 1,
-        problem: "Employees found the corporate LMS boring and overwhelming, leading to low completion rates.",
-        solution: "Gamified the learning experience with bite-sized modules, progress streaks, and clear milestones.",
-        impact: "Reduced course drop-off by 55% and increased average session length by 12 minutes."
+        problem: "Learnify's corporate clients reported that employees found the learning platform uninspiring and difficult to navigate. This led to exceptionally low course completion rates and a general perception that corporate training was a chore rather than a benefit.",
+        solution: "We completely gamified the learning experience by introducing bite-sized modules, progress streaks, and interactive milestones. We focused on creating a mobile-first design that allowed employees to learn in short bursts, integrating social features for peer-to-peer motivation.",
+        impact: "The redesign resulted in a 55% reduction in course drop-off rates and a significant increase in average session length. Corporate partners reported higher employee engagement scores and a faster ramp-up time for new hires using the updated LMS."
     },
     { 
         id: 9, title: "NeuralDesk", category: "AI PLATFORMS", filter: "AI Platforms", tagline: "Designing the interface for an enterprise AI assistant used by 200+ companies.", metric: "4.9★ User Satisfaction", tags: ["Enterprise UX", "AI Interface", "B2B SaaS"], image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80", span: 1,
-        problem: "The AI assistant felt disconnected from users' daily workflows and lacked contextual awareness.",
-        solution: "Integrated the assistant directly into the OS layer with a sleek, non-intrusive floating interface.",
-        impact: "Achieved a 4.9/5 user satisfaction score and expanded to 200+ enterprise clients."
+        problem: "Existing AI assistants felt like disconnected tools that required users to constantly switch contexts between their work and the assistant. This lack of integration made the AI feel like an interruption rather than an aid, limiting its effectiveness in high-stakes enterprise environments.",
+        solution: "We designed a non-intrusive floating interface that lives directly within the user's OS layer, providing contextual assistance without ever leaving the active window. We implemented a 'zero-shot' interaction model that anticipates user needs based on their current task.",
+        impact: "The platform achieved a 4.9/5 user satisfaction score and rapidly expanded to over 200 enterprise clients. Companies reported a 30% increase in overall team efficiency as the AI became an invisible, ubiquitous part of the daily professional workflow."
     },
     { 
         id: 10, title: "Dekryption Labs", category: "SAAS", filter: "SaaS", tagline: "A cybersecurity SaaS dashboard that surfaces critical threats without noise.", metric: "42% Churn Reduction", tags: ["Security UX", "Data Visualization"], image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80", span: 2,
-        problem: "Security analysts suffered from alert fatigue due to an overloaded dashboard with 100+ daily notifications.",
-        solution: "Implemented a severity-based triage view that highlights critical threats and auto-groups anomalies.",
-        impact: "Reduced mean time to resolution (MTTR) by 40% and decreased customer churn by 42%."
+        problem: "Security analysts were suffering from extreme alert fatigue, overwhelmed by a legacy dashboard that delivered over 100 daily notifications with no clear prioritization. This 'noise' led to critical threats being missed and a high rate of analyst turnover due to stress.",
+        solution: "We implemented a severity-based triage system that automatically groups anomalies and highlights only the most critical threats using a high-contrast visual hierarchy. We added a 'one-click remediation' flow that allows analysts to take action directly from the dashboard view.",
+        impact: "The new system reduced the mean time to resolution (MTTR) by 40%. More importantly, the reduction in cognitive load led to a 42% decrease in customer churn, as analysts felt more empowered and less overwhelmed by their daily monitoring tasks."
     },
     { 
         id: 11, title: "MedConnect", category: "HEALTHCARE", filter: "Healthcare", tagline: "Patient portal redesign for 120 clinics — improving scheduling adherence.", metric: "+38% Appointment Rate", tags: ["Patient UX", "Portal Design"], image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80", span: 1,
-        problem: "Elderly patients struggled to book appointments online, leading to high call center volume.",
-        solution: "Redesigned the booking flow with large typography, clear contrast, and a conversational interface.",
-        impact: "Increased online appointment bookings by 38% and reduced call center load."
+        problem: "MedConnect's patient portal was difficult for their primary demographic—elderly patients—to navigate. Poor legibility, complex scheduling flows, and a technical interface led to high abandonment rates and a massive volume of manual scheduling calls to clinical staff.",
+        solution: "We completely redesigned the portal with an emphasis on accessibility. We utilized high-contrast color palettes, large-scale typography, and a conversational interface that guides patients through the booking process step-by-step, mimicking a real human interaction.",
+        impact: "The results were a 38% increase in online appointment bookings and a significant reduction in call center volume. Patients reported feeling more confident in managing their own healthcare, leading to better long-term adherence to clinical schedules."
     },
     { 
         id: 12, title: "PocketTrade", category: "FINTECH", filter: "FinTech", tagline: "A zero-commission trading app designed to feel premium for first-time investors.", metric: "280k Downloads in 3 months", tags: ["Trading UX", "Mobile App", "Onboarding"], image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80", span: 1,
-        problem: "First-time investors felt intimidated by complex trading jargon and cluttered charts.",
-        solution: "Created a minimalist, swipe-to-trade interface with gamified educational modules.",
-        impact: "Generated 280,000 downloads in the first 3 months with a 45% daily retention rate."
+        problem: "The trading app market was saturated with complex, jargon-heavy platforms that intimidated new investors. PocketTrade needed an interface that felt premium and secure while remaining accessible to users who had never made a trade before.",
+        solution: "We created a minimalist 'swipe-to-trade' interface that abstracts the complexity of market data. We integrated gamified educational paths that explain investment concepts in real-time, using a high-end visual aesthetic that builds user trust and signals reliability.",
+        impact: "PocketTrade achieved 280,000 downloads in just the first three months of launch. With a 45% daily retention rate, the app proved that simplicity and education can drive massive user growth in the competitive fintech landscape."
     },
 ];
 
@@ -94,6 +94,105 @@ const processSlides = [
 const marqueeItems = [
     'SaaS Platforms', 'FinTech', 'HealthTech', 'AI & ML', 'E-Commerce', 'Blockchain', 'EdTech', 'DevTools', 'B2B Products', 'Consumer Apps', 'Enterprise UX', 'No-Code Builds',
 ];
+
+// ─────────────────────────────────────────────
+// EXPECTATIONS SHOWCASE — white
+// ─────────────────────────────────────────────
+function ExpectationsSection() {
+    const categories = [
+        'SaaS & Web Apps',
+        'Fintech Solutions',
+        'HealthTech',
+        'E-Commerce & Retail',
+        'Team Augmentation',
+    ];
+
+    const showcases = [
+        {
+            text: 'Custom web apps designed for logging complex data, managing workflows, and generating reports — paired with smart visualizations, bulk tools, and adaptive UX that keeps users engaged long-term.',
+            img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=1200',
+        },
+        {
+            text: 'Dashboards and mobile apps that connect users and businesses through real-time data sync, secure integrations, and proactive alerts. Built to streamline reporting and reduce cognitive load.',
+            img: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=1200',
+        },
+        {
+            text: 'We simplify complex platforms into modular, intuitive interfaces that reduce time-on-task. Designed for power users, administrators, and general consumers — all in one unified ecosystem.',
+            img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200',
+        },
+        {
+            text: 'End-to-end UX and development for diverse digital products — including specialized educational platforms, comprehensive web portals, and scalable design systems that accelerate future development cycles.',
+            img: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=1200',
+        }
+    ];
+
+    return (
+        <section className="bg-white py-40 px-8 border-0 shadow-none">
+            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 border-0 shadow-none">
+                {/* Left side fixed/sticky */}
+                <div className="w-full lg:w-[40%] border-0 shadow-none">
+                    <div className="lg:sticky lg:top-40 border-0 shadow-none">
+                        <div className="flex items-center gap-2 mb-8 border-0 shadow-none">
+                            <span className="w-1.5 h-1.5 bg-blue-600 rounded-full border-0 shadow-none"></span>
+                            <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase border-0 shadow-none">EXPERTISE</span>
+                        </div>
+                        <h2 className="text-[64px] font-medium tracking-tighter text-gray-900 leading-[1] mb-10 border-0 shadow-none font-display">
+                            What you'd expect from a world-class partner
+                        </h2>
+                        <p className="text-gray-500 text-lg font-medium mb-12 max-w-sm border-0 shadow-none leading-[1.6] tracking-tight">
+                            From ambitious startups to global enterprises, our product design studio creates digital products that do more than look good — they accelerate workflows and scale businesses.
+                        </p>
+
+                        <div className="flex flex-col border-t border-gray-100 mb-12 border-0 shadow-none">
+                            {categories.map((item, idx) => (
+                                <div key={idx} className="group flex items-center justify-between cursor-pointer border-b border-gray-100 py-6 transition-colors hover:border-black border-0 shadow-none">
+                                    <span className={`text-lg font-semibold tracking-tight transition-colors duration-300 border-0 shadow-none ${idx === 0 ? 'text-black' : 'text-gray-400 group-hover:text-black'}`}>
+                                        {item}
+                                    </span>
+                                    <svg className={`w-5 h-5 transition-all duration-300 border-0 shadow-none ${idx === 0 ? 'text-black translate-x-0' : 'text-transparent -translate-x-4 group-hover:text-black group-hover:translate-x-0'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </div>
+                            ))}
+                        </div>
+
+                        <a
+                            href="#work"
+                            onClick={(e) => { e.preventDefault(); const grid = document.getElementById('work-grid'); if(grid) grid.scrollIntoView({behavior: 'smooth'}); }}
+                            className="group flex items-center gap-4 bg-black text-white px-8 py-5 rounded-full hover:scale-105 transition-all duration-300 border-0 shadow-none w-fit"
+                        >
+                            <span className="text-sm font-bold uppercase tracking-widest border-0 shadow-none">See Our Work</span>
+                            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center transition-colors group-hover:bg-blue-600 border-0 shadow-none">
+                                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                {/* Right side scrolling items */}
+                <div className="w-full lg:w-[60%] flex flex-col gap-32 border-0 shadow-none pt-10 lg:pt-0">
+                    {showcases.map((showcase, i) => (
+                        <div key={i} className="flex flex-col gap-8 group border-0 shadow-none">
+                            <p className="text-gray-500 text-[20px] md:text-[24px] font-medium leading-[1.6] max-w-2xl tracking-tight border-0 shadow-none">
+                                {showcase.text}
+                            </p>
+                            <div className="w-full rounded-[32px] overflow-hidden bg-gray-100 aspect-[4/3] relative shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-0">
+                                <img
+                                    src={showcase.img}
+                                    alt={`Showcase ${i}`}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] border-0 shadow-none"
+                                />
+                                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500 border-0 shadow-none" />
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
 
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 function ArchiveHero() {
@@ -196,16 +295,19 @@ function CaseStudyCard({ study }: { study: any }) {
                 
                 <div className="flex-1 relative min-h-[180px]">
                     <div className={`absolute inset-0 transition-all duration-500 ${activeTab === 'problem' ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+                        <span className="text-[10px] font-bold tracking-[0.25em] text-blue-500 uppercase mb-4 block">The Problem</span>
                         <p className="text-gray-400 text-lg md:text-xl font-medium leading-[1.7] tracking-tight">
                             {study.problem}
                         </p>
                     </div>
                     <div className={`absolute inset-0 transition-all duration-500 ${activeTab === 'solution' ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+                        <span className="text-[10px] font-bold tracking-[0.25em] text-emerald-500 uppercase mb-4 block">The Solution</span>
                         <p className="text-gray-400 text-lg md:text-xl font-medium leading-[1.7] tracking-tight">
                             {study.solution}
                         </p>
                     </div>
                     <div className={`absolute inset-0 transition-all duration-500 ${activeTab === 'impact' ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+                        <span className="text-[10px] font-bold tracking-[0.25em] text-purple-500 uppercase mb-4 block">The Impact</span>
                         <p className="text-gray-400 text-lg md:text-xl font-medium leading-[1.7] tracking-tight">
                             {study.impact}
                         </p>
@@ -239,7 +341,7 @@ function StickyFilterAndGrid() {
     const filtered = activeFilter === "All" ? caseStudies : caseStudies.filter(s => s.filter === activeFilter);
 
     return (
-        <section className="bg-white text-black min-h-screen pb-32">
+        <section id="work-grid" className="bg-white text-black min-h-screen pb-32">
             <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-md py-5 px-8 border-b border-gray-100">
                 <div className="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
                     {filters.map(f => (
@@ -408,6 +510,88 @@ function IndustryHighlights() {
     );
 }
 
+// ─────────────────────────────────────────────
+// GROWTH PARTNER — dark
+// ─────────────────────────────────────────────
+function GrowthPartner() {
+    const stats = [
+        { num: '98%', label: 'client satisfaction rate' },
+        { num: '35%+', label: 'avg. conversion lift after redesign' },
+        { num: '70+', label: 'products shipped across 15+ industries' },
+        { num: '$20M+', label: 'in client revenue attributed to design' },
+    ];
+
+    const logos = ['Techstars', 'Y Combinator', 'a16z', 'Seedcamp', 'and more'];
+
+    return (
+        <section className="bg-[#0a0a0a] py-32 px-8">
+            <div className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
+                    <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-blue-950/40 to-[#111] border border-white/8 aspect-[4/3]">
+                        <img
+                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=900"
+                            alt="Product dashboard"
+                            className="w-full h-full object-cover opacity-70"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-tr from-blue-950/60 to-transparent" />
+                        <div className="absolute bottom-6 left-6 right-6">
+                            <div className="bg-white/10 backdrop-blur rounded-2xl p-4 border border-white/10">
+                                <div className="flex items-center gap-2 mb-2">
+                                    <div className="w-2 h-2 rounded-full bg-blue-500" />
+                                    <span className="text-white text-xs font-medium">Live product — 12k active users</span>
+                                </div>
+                                <div className="w-full bg-white/10 rounded-full h-1">
+                                    <div className="bg-blue-500 h-1 rounded-full" style={{ width: '72%' }} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="lg:pl-8">
+                        <div className="flex items-center gap-2 mb-8">
+                            <span className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
+                            <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase">Growth Partner</span>
+                        </div>
+                        <h2 className="text-[36px] md:text-[52px] font-medium tracking-tighter text-white leading-[1.05] font-display mb-8">
+                            Your next growth stage starts with the right design partner — at launch, or at scale.
+                        </h2>
+                        <p className="text-gray-400 text-base font-medium leading-[1.6] tracking-tight mb-12 max-w-md">
+                            Whether you're raising a seed round or rebuilding for enterprise scale, Elux brings
+                            the design maturity your product needs at every stage.
+                        </p>
+
+                        <div>
+                            <p className="text-[10px] font-bold tracking-[0.25em] text-gray-700 uppercase mb-5">
+                                Designing for founders backed by
+                            </p>
+                            <div className="flex flex-wrap gap-6 items-center">
+                                {logos.map((l, i) => (
+                                    <span key={i} className={`font-semibold text-sm ${i === logos.length - 1 ? 'text-gray-700' : 'text-gray-400 hover:text-white transition-colors cursor-default'}`}>
+                                        {l}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="border-t border-white/8 pt-16">
+                    <p className="text-[10px] font-bold tracking-[0.25em] text-gray-700 uppercase mb-16">Elux by the numbers</p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+                        {stats.map((s, i) => (
+                            <div key={i}>
+                                <p className="text-[56px] md:text-[72px] font-bold tracking-tighter text-white leading-none mb-3">{s.num}</p>
+                                <p className="text-gray-400 text-sm font-medium leading-[1.6] tracking-tight">{s.label}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+
 // ─── CTA ──────────────────────────────────────────────────────────────────────
 function CTA() {
     return (
@@ -444,10 +628,12 @@ export default function CaseStudiesArchive() {
             <main>
                 <ArchiveHero />
                 <MarqueeTicker />
+                <ExpectationsSection />
                 <StickyFilterAndGrid />
                 <ResultsStrip />
                 <ProcessCarousel />
                 <IndustryHighlights />
+                <GrowthPartner />
                 <CTA />
             </main>
         </div>

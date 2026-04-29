@@ -18,10 +18,9 @@ export default function WebflowHome() {
     
     // FINAL FIX: Removing the '/f/' prefix because it's only for Form IDs.
     // For direct email submission, the URL must be: https://formspree.io/qisthyayleen@gmail.com
-    fetch('https://formspree.io/qisthyayleen@gmail.com', {
+    fetch('https://formspree.io/f/xgvkwpwn', {
       method: 'POST',
       body: formData,
-      mode: 'no-cors',
       headers: {
         'Accept': 'application/json'
       }
@@ -342,11 +341,13 @@ function raf(time) {
 lenisRafId = requestAnimationFrame(raf);
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
+    const href = this.getAttribute('href');
+    const target = document.querySelector(href);
     if(target){
+      e.preventDefault();
       lenis.scrollTo(target);
     }
+    // If no DOM element found, let browser handle hash change (React router picks it up)
   });
 });
 
@@ -946,7 +947,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 <h4 className="text-4xl black">You need to ship fast, but your team’s at capacity.</h4>
                 <div className="text-2xl">We step in with clear ownership from UX to build-ready UI. You get focused sprints, fast feedback, and delivery that keeps your roadmap moving without delays.</div>
               </div>
-              <a data-w-id="9548fe05-9cd8-eaeb-c4fd-e30beaddffb0" href="#" className="primary-button w-inline-block">
+              <a href="#contact" className="primary-button w-inline-block">
                 <div className="button-wrap">
                   <div className="h-flex-sm">
                     <div className="text-lg uppercase"><span className="bold uppercase">EXTEND MY TEAM</span></div>
@@ -983,7 +984,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 <h4 className="text-4xl black">You’re growing, but UX friction is holding users back.</h4>
                 <div className="text-2xl">We run an audit to identify what’s breaking the experience, then redesign the flows that matter most so users move faster and your product scales cleanly. Less friction, faster adoption, and a UX system your team can build on.</div>
               </div>
-              <a data-w-id="9548fe05-9cd8-eaeb-c4fd-e30beaddffb0" href="#" className="primary-button w-inline-block">
+              <a href="#contact" className="primary-button w-inline-block">
                 <div className="button-wrap">
                   <div className="h-flex-sm">
                     <div className="text-lg uppercase">REDESIGN MY PRODUCT</div>
@@ -1020,7 +1021,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 <h4 className="text-4xl black">You need an MVP that’s credible enough to launch, sell, or raise.</h4>
                 <div className="text-2xl">We cut scope to what matters, design for trust, and ship a launch-ready MVP without wasted cycles. Clear UX, solid UI, and build support to get you live.</div>
               </div>
-              <a data-w-id="9548fe05-9cd8-eaeb-c4fd-e30beaddffb0" href="#" className="primary-button w-inline-block">
+              <a href="#contact" className="primary-button w-inline-block">
                 <div className="button-wrap">
                   <div className="h-flex-sm">
                     <div className="text-lg uppercase">SHIP MY MVP</div>
@@ -1057,7 +1058,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 <h4 className="text-4xl black">The story is strong, but the product doesn’t feel investor-ready.</h4>
                 <div className="text-2xl">We design the surfaces that signal credibility fast, so you look ready when it counts. You get pitch-ready flows, sharper product pages, and a product experience that feels fundable.</div>
               </div>
-              <a data-w-id="9548fe05-9cd8-eaeb-c4fd-e30beaddffb0" href="#" className="primary-button w-inline-block">
+              <a href="#contact" className="primary-button w-inline-block">
                 <div className="button-wrap">
                   <div className="h-flex-sm">
                     <div className="text-lg uppercase">POLISH FOR INVESTORS</div>
@@ -1294,7 +1295,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                   <h4 className="text-4xl _w-70"><span className="reguler">End-to-end Webflow redesign and full website build shipped in 3 months.</span></h4>
                   <div className="text-lg color-inverse">We delivered a full website redesign and Webflow build with a modular page system, animations, and complex pricing interactions, optimized for performance and maintainability while elevating credibility and visual polish.</div>
                 </div>
-                <a data-w-id="9548fe05-9cd8-eaeb-c4fd-e30beaddffb0" href="#contact" className="primary-button w-inline-block">
+                <a href="#case-studies" className="primary-button w-inline-block">
                   <div className="button-wrap">
                     <div className="h-flex-sm">
                       <div className="text-lg uppercase">view case study</div>
@@ -1340,7 +1341,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                   <h4 className="text-4xl _w-80"><span className="reguler">Fast, audit-led design shipped across multiple engagements for an AI research platform.</span></h4>
                   <div className="text-lg color-inverse">Deliver through audit-led UI/UX improvements and intuitive experiences with zero delivery delays, to achieve a reliable interfaces across both their website and AI product surfaces.</div>
                 </div>
-                <a data-w-id="9548fe05-9cd8-eaeb-c4fd-e30beaddffb0" href="#contact" className="primary-button w-inline-block">
+                <a href="#case-studies" className="primary-button w-inline-block">
                   <div className="button-wrap">
                     <div className="h-flex-sm">
                       <div className="text-lg uppercase">view case study</div>
@@ -1382,7 +1383,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                   <h4 className="text-4xl _w-90"><span className="reguler">Supported a $1M+ funding raise with a conversion-ready MVP website and web app.</span></h4>
                   <div className="text-lg color-inverse">Designed and delivered an MVP website and web app focused on trust, clarity, and conversion, helping the product communicate value clearly to investors and early users at a critical stage to look credible fast ahead of fundraising.</div>
                 </div>
-                <a data-w-id="9548fe05-9cd8-eaeb-c4fd-e30beaddffb0" href="#" className="primary-button w-inline-block">
+                <a href="#case-studies" className="primary-button w-inline-block">
                   <div className="button-wrap">
                     <div className="h-flex-sm">
                       <div className="text-lg uppercase">view case study</div>
@@ -1567,7 +1568,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                       </div>
                     </div>
                     <div className="line"></div>
-                    <a data-w-id="63bfe59a-4905-c297-53f8-a5498dbf960e" href="#" className="primary-button white-button w-inline-block">
+                    <a href="#case-studies" className="primary-button white-button w-inline-block">
                       <div className="shadow-2"></div>
                       <div className="secondary-button-wrap">
                         <div className="h-flex-sm">
@@ -1712,7 +1713,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                       </div>
                     </div>
                     <div className="line"></div>
-                    <a data-w-id="268a300f-844d-d91f-5980-8753818772a7" href="#" className="primary-button white-button w-inline-block">
+                    <a href="#case-studies" className="primary-button white-button w-inline-block">
                       <div className="shadow-2"></div>
                       <div className="secondary-button-wrap">
                         <div className="h-flex-sm">
@@ -1857,7 +1858,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                       </div>
                     </div>
                     <div className="line"></div>
-                    <a data-w-id="468b3ed0-095d-e479-3658-86275603cadc" href="#" className="primary-button white-button w-inline-block">
+                    <a href="#case-studies" className="primary-button white-button w-inline-block">
                       <div className="shadow-2"></div>
                       <div className="secondary-button-wrap">
                         <div className="h-flex-sm">
@@ -1935,7 +1936,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
                 <div className="text-3xl white">We don’t want to be hired. We want to be responsible.</div>
                 <div className="text-lg color-inverse">Think like owners. Act like partners. Deliver like operators.</div>
               </div>
-              <a data-w-id="001c71eb-b423-381f-fa7f-33b8f4d8e2af" href="#" className="primary-button white-button w-inline-block">
+              <a href="#contact" className="primary-button white-button w-inline-block">
                 <div className="shadow-2"></div>
                 <div className="secondary-button-wrap">
                   <div className="h-flex-sm">
@@ -2459,46 +2460,41 @@ window.addEventListener("DOMContentLoaded", (event) => {
             </div>
           </div>
           <div className="w-layout-grid grid-2xl cta">
-            <div id="w-node-ddb07485-992f-57db-bdfb-f0a71b2709ff-a7701396" className="v-flex-xl bootm">
-              <div className="v-flex-lg">
+            <div id="w-node-ddb07485-992f-57db-bdfb-f0a71b2709ff-a7701396" className="v-flex-xl bootm flex flex-col gap-8">
+              <div className="flex flex-col gap-4">
                 <div className="text-2xl white">Have a project to discuss?</div>
-                <div className="cta-card-wrap">
-                  <div className="h-flex-md"><img src="/images/Arya-Profile.jpg" loading="lazy" alt="" className="image-10" style={{ borderRadius: "12px", objectFit: "cover", height: "120px" }} />
-                    <div className="v-flex-md _w-100">
-                      <div className="v-flex-xxs">
-                        <div className="text-2xl white">Arya Pradana</div>
-                        <div className="text-lg color-inverse">Chief Executive Officer & Founder</div>
-                      </div>
-                      <div className="line"></div>
-                      <a href="mailto:arya.pradana@elux.space" className="h-flex-xxs w-inline-block" style={{ textDecoration: "none" }}>
-                        <div className="text-lg color-inverse">arya.pradana@elux.space</div>
-                        <div className="code-embed-2 w-embed"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12.75 5.25L5.25 12.75M12.75 5.25H6M12.75 5.25V12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-                          </svg></div>
-                      </a>
+                {/* Card 1: Arya */}
+                <a href="mailto:arya.pradana@elux.space" className="bg-[#111111] p-5 rounded-2xl border border-white/5 group hover:border-white/10 transition-all flex items-start gap-5" style={{ textDecoration: 'none' }}>
+                    <img src="/images/Arya-Profile.jpg" alt="Arya Pradana" className="w-[100px] h-[100px] rounded-2xl object-cover flex-shrink-0" />
+                    <div className="flex flex-col flex-1 h-full min-h-[100px]">
+                        <p className="text-white font-medium text-[17px] mb-1">Arya Pradana</p>
+                        <p className="text-gray-400 text-[13px] leading-snug">Chief Executive Officer & Founder</p>
+                        <div className="flex items-center justify-between w-full mt-auto pt-3 border-t border-white/10">
+                            <span className="text-gray-300 text-[13px] font-medium group-hover:text-white transition-colors">arya.pradana@elux.space</span>
+                            <svg className="w-3.5 h-3.5 text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </div>
                     </div>
-                  </div>
-                </div>
+                </a>
               </div>
-              <div className="v-flex-lg">
+
+              <div className="flex flex-col gap-4">
                 <div className="text-2xl white">Have a partnership in mind?</div>
-                <div className="cta-card-wrap">
-                  <div className="h-flex-md"><img src="/images/Lintang-Profile.jpg" loading="lazy" alt="" className="image-10" style={{ borderRadius: "12px", objectFit: "cover", height: "120px" }} />
-                    <div className="v-flex-md _w-100">
-                      <div className="v-flex-xxs">
-                        <div className="text-2xl white">Lintang Fajar Utami</div>
-                        <div className="text-lg color-inverse">Project Manager</div>
-                      </div>
-                      <div className="line"></div>
-                      <a href="mailto:lintang.utami@elux.space" className="h-flex-xxs w-inline-block" style={{ textDecoration: "none" }}>
-                        <div className="text-lg color-inverse">lintang.utami@elux.space</div>
-                        <div className="code-embed-2 w-embed"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12.75 5.25L5.25 12.75M12.75 5.25H6M12.75 5.25V12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-                          </svg></div>
-                      </a>
+                {/* Card 2: Lintang */}
+                <a href="mailto:lintang.utami@elux.space" className="bg-[#111111] p-5 rounded-2xl border border-white/5 group hover:border-white/10 transition-all flex items-start gap-5" style={{ textDecoration: 'none' }}>
+                    <img src="/images/Lintang-Profile.jpg" alt="Lintang Fajar Utami" className="w-[100px] h-[100px] rounded-2xl object-cover flex-shrink-0" />
+                    <div className="flex flex-col flex-1 h-full min-h-[100px]">
+                        <p className="text-white font-medium text-[17px] mb-1">Lintang Fajar Utami</p>
+                        <p className="text-gray-400 text-[13px] leading-snug">Project Manager</p>
+                        <div className="flex items-center justify-between w-full mt-auto pt-3 border-t border-white/10">
+                            <span className="text-gray-300 text-[13px] font-medium group-hover:text-white transition-colors">lintang.utami@elux.space</span>
+                            <svg className="w-3.5 h-3.5 text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </div>
                     </div>
-                  </div>
-                </div>
+                </a>
               </div>
             </div>
             <div className="form-block w-form p-8">
@@ -2905,7 +2901,23 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   .webflow-wrapper .grid-4x2 .card-wrap.outer { transition: transform 0.4s ease; }
   .webflow-wrapper .grid-4x2 .card-content:hover .card-wrap.outer { transform: scale(1.05); }
+
+  /* ─── PASS 3 FIXES ─────────────────────────────────────────────────────── */
+
+  /* 3.5a: Service hover image — allow it to float right of the container  */
+  .webflow-wrapper .service-content-grid { overflow: visible !important; }
+  .webflow-wrapper .section.dark-2 { overflow: visible !important; }
+
+  /* 3.5b: GPU-compositing hint for smoother Lenis scroll (3.2 / 3.3) */
+  .webflow-wrapper {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: scroll-position;
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────── */
   @media (max-width: 767px) {
+
     .webflow-wrapper .section {
       padding-top: 56px !important;
       padding-bottom: 56px !important;
@@ -2931,6 +2943,12 @@ window.addEventListener("DOMContentLoaded", (event) => {
       z-index: 0 !important;
       margin-top: 0 !important;
     }
+    /* 3.5c: Key Industries — prevent overlap with "Our Teams" carousel section */
+    .webflow-wrapper .section.dark[class*="dark"] { position: relative !important; z-index: 2 !important; }
+    .webflow-wrapper .v-flex-2xl.center._1 { position: relative !important; z-index: 2 !important; overflow: visible !important; }
+    /* 3.5d: Problem to Solution — last card not cut off on mobile */
+    .webflow-wrapper .grid-2xl.card-wrapper { overflow: visible !important; }
+    .webflow-wrapper .v-flex-md:last-child { padding-bottom: 8px !important; }
     .webflow-wrapper .heading-1 {
       font-size: 52px !important;
       line-height: 1.04 !important;

@@ -206,6 +206,100 @@ function PartnershipSection() {
 }
 
 // ─────────────────────────────────────────────
+// AREAS OF EXPERTISE — white section
+// ─────────────────────────────────────────────
+function AreasOfExpertise() {
+    const areas = [
+        {
+            category: 'SaaS & Web Apps',
+            services: ['Dashboard UX Design', 'Onboarding Flow Design', 'Admin Panel Design', 'Feature UX Design'],
+            image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200',
+            desc: 'Powerful, intuitive interfaces for complex SaaS products — from onboarding to power-user dashboards.',
+        },
+        {
+            category: 'Fintech & Finance',
+            services: ['Payment Flow Design', 'Investment Platform UX', 'Banking App Design', 'KYC Flow Optimisation'],
+            image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=1200',
+            desc: 'Trust-first design for financial products where every interaction needs to be clear, secure, and friction-free.',
+        },
+        {
+            category: 'HealthTech',
+            services: ['Patient Portal UX', 'Telemedicine App Design', 'Clinical Dashboard', 'Health Tracking UI'],
+            image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200',
+            desc: 'Empathetic, accessible interfaces that bridge complex clinical workflows with everyday human needs.',
+        },
+    ];
+
+    const [activeIdx, setActiveIdx] = useState(0);
+
+    return (
+        <section className="bg-white py-32 px-8">
+            <div className="max-w-7xl mx-auto">
+                <div className="flex justify-between items-end mb-16">
+                    <div>
+                        <div className="flex items-center gap-2 mb-4">
+                            <span className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
+                            <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase">Expertise</span>
+                        </div>
+                        <h2 className="text-[40px] md:text-[56px] font-medium tracking-tighter text-gray-900 leading-[1.0] font-display">
+                            Our areas of expertise
+                        </h2>
+                    </div>
+                </div>
+
+                {/* Tab navigation */}
+                <div className="flex gap-0 border-b border-gray-200 mb-12">
+                    {areas.map((area, i) => (
+                        <button
+                            key={area.category}
+                            onClick={() => setActiveIdx(i)}
+                            className={`text-[11px] font-bold uppercase tracking-widest px-6 py-4 border-b-2 transition-all duration-200 ${activeIdx === i
+                                ? 'border-gray-900 text-gray-900'
+                                : 'border-transparent text-gray-400 hover:text-gray-600'
+                                }`}
+                        >
+                            {area.category}
+                        </button>
+                    ))}
+                </div>
+
+                {/* Active area panel */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <p className="text-gray-400 text-lg font-medium leading-[1.6] tracking-tight mb-10">
+                            {areas[activeIdx].desc}
+                        </p>
+                        <div className="grid grid-cols-2 gap-3 mb-10">
+                            {areas[activeIdx].services.map((svc) => (
+                                <div key={svc} className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3">
+                                    <span className="w-1.5 h-1.5 bg-blue-600 rounded-full shrink-0" />
+                                    <span className="text-gray-700 text-[13px] font-medium">{svc}</span>
+                                </div>
+                            ))}
+                        </div>
+                        <a
+                            href="#case-studies"
+                            className="inline-flex items-center gap-2 bg-black text-white text-[11px] font-bold uppercase tracking-widest px-6 py-3.5 rounded-full hover:bg-gray-800 transition-colors"
+                        >
+                            Explore {areas[activeIdx].category}
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </a>
+                    </div>
+                    <div className="rounded-[28px] overflow-hidden aspect-[4/3] relative">
+                        <img
+                            src={areas[activeIdx].image}
+                            alt={areas[activeIdx].category}
+                            className="w-full h-full object-cover transition-all duration-700"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+// ─────────────────────────────────────────────
 // 1.8 CHALLENGES SECTION — white, inspired by reference image
 // ─────────────────────────────────────────────
 function ChallengesSection() {
@@ -234,8 +328,7 @@ function ChallengesSection() {
                     </p>
                     <a
                         href="mailto:hello@elux.space"
-                        className="inline-flex items-center gap-2 bg-black text-white text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-4 hover:bg-gray-800 transition-colors shadow-sm"
-                        style={{ borderRadius: '6px' }}
+                        className="inline-flex items-center gap-2 bg-black text-white text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-gray-800 transition-colors shadow-sm"
                     >
                         Get In Touch
                         <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -285,178 +378,12 @@ function ChallengesSection() {
 // ─────────────────────────────────────────────
 // 2. EXPECTATIONS SHOWCASE — white, inspired by reference image
 // ─────────────────────────────────────────────
-function ExpectationsSection() {
-    const categories = [
-        'SaaS & Web Apps',
-        'Fintech Solutions',
-        'HealthTech',
-        'E-Commerce & Retail',
-        'Team Augmentation',
-    ];
-
-    const showcases = [
-        {
-            text: 'Custom web apps designed for logging complex data, managing workflows, and generating reports — paired with smart visualizations, bulk tools, and adaptive UX that keeps users engaged long-term.',
-            img: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=1200',
-        },
-        {
-            text: 'Dashboards and mobile apps that connect users and businesses through real-time data sync, secure integrations, and proactive alerts. Built to streamline reporting and reduce cognitive load.',
-            img: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80&w=1200',
-        },
-        {
-            text: 'We simplify complex platforms into modular, intuitive interfaces that reduce time-on-task. Designed for power users, administrators, and general consumers — all in one unified ecosystem.',
-            img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=1200',
-        },
-        {
-            text: 'End-to-end UX and development for diverse digital products — including specialized educational platforms, comprehensive web portals, and scalable design systems that accelerate future development cycles.',
-            img: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&q=80&w=1200',
-        }
-    ];
-
-    return (
-        <section className="bg-white py-40 px-8 border-0 shadow-none">
-            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-20 border-0 shadow-none">
-                {/* Left side fixed/sticky */}
-                <div className="w-full lg:w-[40%] border-0 shadow-none">
-                    <div className="lg:sticky lg:top-40 border-0 shadow-none">
-                        <div className="flex items-center gap-2 mb-8 border-0 shadow-none">
-                            <span className="w-1.5 h-1.5 bg-blue-600 rounded-full border-0 shadow-none"></span>
-                            <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase border-0 shadow-none">EXPERTISE</span>
-                        </div>
-                        <h2 className="text-[64px] font-medium tracking-tighter text-gray-900 leading-[1] mb-10 border-0 shadow-none font-display">
-                            What you'd expect from a world-class partner
-                        </h2>
-                        <p className="text-gray-500 text-lg font-medium mb-12 max-w-sm border-0 shadow-none leading-[1.6] tracking-tight">
-                            From ambitious startups to global enterprises, our product design studio creates digital products that do more than look good — they accelerate workflows and scale businesses.
-                        </p>
-
-                        <div className="flex flex-col border-t border-gray-100 mb-12 border-0 shadow-none">
-                            {categories.map((item, idx) => (
-                                <div key={idx} className="group flex items-center justify-between cursor-pointer border-b border-gray-100 py-6 transition-colors hover:border-black border-0 shadow-none">
-                                    <span className={`text-lg font-semibold tracking-tight transition-colors duration-300 border-0 shadow-none ${idx === 0 ? 'text-black' : 'text-gray-400 group-hover:text-black'}`}>
-                                        {item}
-                                    </span>
-                                    <svg className={`w-5 h-5 transition-all duration-300 border-0 shadow-none ${idx === 0 ? 'text-black translate-x-0' : 'text-transparent -translate-x-4 group-hover:text-black group-hover:translate-x-0'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
-                                </div>
-                            ))}
-                        </div>
-
-                        <a
-                            href="#work"
-                            onClick={(e) => { e.preventDefault(); window.location.hash = '#case-studies'; }}
-                            className="group flex items-center gap-4 bg-black text-white px-8 py-5 rounded-full hover:scale-105 transition-all duration-300 border-0 shadow-none w-fit"
-                        >
-                            <span className="text-sm font-bold uppercase tracking-widest border-0 shadow-none">See Our Work</span>
-                            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center transition-colors group-hover:bg-blue-600 border-0 shadow-none">
-                                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                {/* Right side scrolling items */}
-                <div className="w-full lg:w-[60%] flex flex-col gap-32 border-0 shadow-none pt-10 lg:pt-0">
-                    {showcases.map((showcase, i) => (
-                        <div key={i} className="flex flex-col gap-8 group border-0 shadow-none">
-                            <p className="text-gray-500 text-[20px] md:text-[24px] font-medium leading-[1.6] max-w-2xl tracking-tight border-0 shadow-none">
-                                {showcase.text}
-                            </p>
-                            <div className="w-full rounded-[32px] overflow-hidden bg-gray-100 aspect-[4/3] relative shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-0">
-                                <img
-                                    src={showcase.img}
-                                    alt={`Showcase ${i}`}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)] border-0 shadow-none"
-                                />
-                                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors duration-500 border-0 shadow-none" />
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-}
 
 
 
 
 
 
-// ─────────────────────────────────────────────
-// 10. FAQ ACCORDION — dark
-// ─────────────────────────────────────────────
-function FAQ() {
-    const [open, setOpen] = useState<number | null>(null);
-    const faqs = [
-        { q: 'Do you specialise in a particular industry?', a: "We have deep experience in tech (SaaS, AI, Web3), finance (fintech, banking, DeFi), and lifestyle (health, e-commerce, EdTech). That said, we've shipped products in many more verticals — we adapt fast." },
-        { q: 'How quickly can we get started?', a: 'Most projects kick off within a week of signing. Discovery calls are free with zero commitment. We can also start with a focused audit before committing to a full engagement.' },
-        { q: 'How long does a typical project take?', a: 'MVP scopes: 2–4 weeks. Full product design: 4–8 weeks. Audit + redesign: 3–6 weeks. We work in focused sprints and eliminate delays through tight feedback loops.' },
-        { q: 'Does industry experience affect the price?', a: "No — our pricing is scope-based, not sector-based. What you're buying is a design team that already speaks your industry's language, saving you rounds of context-setting." },
-        { q: 'What does design handoff look like?', a: "Organised Figma files, annotated components, a design system, spacing tokens, and an interactive prototype — everything your engineering team needs to build without back-and-forth." },
-    ];
-
-    return (
-        <section className="bg-[#0a0a0a] py-40 px-8">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
-                <div className="h-fit lg:sticky lg:top-32">
-                    <div className="flex items-center gap-2 mb-8">
-                        <span className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
-                        <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase">FAQ</span>
-                    </div>
-                    <h2 className="text-[64px] font-medium tracking-tighter text-white leading-[1.0] font-display mb-8">
-                        Common<br />Questions
-                    </h2>
-                    <p className="text-gray-400 text-base font-medium leading-[1.6] tracking-tight mb-12">
-                        Can't find what you're looking for?<br />
-                        Reach us at{' '}
-                        <a href="mailto:hello@elux.space" className="text-white underline underline-offset-4 hover:text-white/70 transition-colors">
-                            hello@elux.space
-                        </a>
-                    </p>
-                    <button
-                        onClick={() => { window.location.hash = '#contact'; }}
-                        className="group flex items-center gap-4 bg-white text-black px-8 py-5 rounded-full hover:scale-105 transition-all duration-300"
-                    >
-                        <span className="text-sm font-bold uppercase tracking-widest">Book a Discovery Call</span>
-                        <div className="w-8 h-8 bg-black/10 rounded-full flex items-center justify-center transition-colors group-hover:bg-blue-600 group-hover:text-white">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
-                        </div>
-                    </button>
-                </div>
-                <div className="border-t border-white/10">
-                    {faqs.map((faq, i) => (
-                        <div key={i} className="border-b border-white/10">
-                            <button
-                                onClick={() => setOpen(open === i ? null : i)}
-                                className="w-full flex items-center justify-between py-8 text-left group"
-                            >
-                                <span className={`text-lg font-medium transition-colors pr-8 ${open === i ? 'text-white' : 'text-gray-400 group-hover:text-white'}`}>
-                                    {faq.q}
-                                </span>
-                                <div className={`w-8 h-8 rounded-full border flex-shrink-0 flex items-center justify-center transition-all duration-300 ${open === i ? 'bg-white border-white rotate-45' : 'border-white/20 group-hover:border-white/40'}`}>
-                                    <svg className={`w-4 h-4 transition-colors ${open === i ? 'text-black' : 'text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                                    </svg>
-                                </div>
-                            </button>
-                            {open === i && (
-                                <div className="pb-8 pr-16">
-                                    <p className="text-gray-400 text-base font-medium leading-[1.6] tracking-tight">{faq.a}</p>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-}
 
 // ─────────────────────────────────────────────
 // 11. SERVICES BY CATEGORY — dark, left nav + 3-col rows
@@ -668,7 +595,6 @@ function TechnologyStack() {
                     <a
                         href="mailto:hello@elux.space"
                         className="inline-flex items-center gap-2 bg-black text-white text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-gray-800 transition-colors shadow-sm"
-                        style={{ borderRadius: '6px' }}
                     >
                         Get In Touch
                         <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -683,7 +609,7 @@ function TechnologyStack() {
 
                 <div className="flex flex-col border-t border-gray-200">
                     <div className="flex gap-4 md:gap-8 font-bold text-[10px] md:text-[12px] uppercase tracking-[0.15em] text-gray-900 py-6 border-b border-gray-100 overflow-x-auto no-scrollbar">
-                        <span className="bg-black text-white px-6 py-3 rounded-md shrink-0">Frontend</span>
+                        <span className="bg-black text-white px-6 py-3 rounded-full shrink-0">Frontend</span>
                         <span className="px-4 py-3 text-gray-400 hover:text-black cursor-pointer transition-colors shrink-0">Backend</span>
                         <span className="px-4 py-3 text-gray-400 hover:text-black cursor-pointer transition-colors shrink-0">CMS</span>
                         <span className="px-4 py-3 text-gray-400 hover:text-black cursor-pointer transition-colors shrink-0">Server</span>
@@ -785,8 +711,7 @@ function AdvancedTechSection() {
                         </p>
                         <a
                             href="mailto:hello@elux.space"
-                            className="inline-flex items-center gap-2 bg-black text-white text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-4 hover:bg-gray-800 transition-colors shadow-sm"
-                            style={{ borderRadius: '6px' }}
+                            className="inline-flex items-center gap-2 bg-black text-white text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-gray-800 transition-colors shadow-sm"
                         >
                             Get In Touch
                             <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -852,7 +777,6 @@ function FeaturedCases() {
                     <a
                         href="#contact"
                         className="inline-flex items-center gap-2 bg-black text-white text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-gray-800 transition-colors shadow-sm"
-                        style={{ borderRadius: '6px' }}
                     >
                         Get In Touch
                         <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -913,7 +837,7 @@ function FeaturedCases() {
                                     </ul>
 
                                     <button
-                                        className="bg-[#ff7e00] text-white text-[12px] font-bold uppercase tracking-widest px-8 py-4 rounded-full hover:bg-[#e67300] transition-colors w-fit flex items-center gap-2 shadow-sm"
+                                        className="bg-[#2563EB] text-white text-[12px] font-bold uppercase tracking-widest px-8 py-4 rounded-full hover:bg-blue-600 transition-colors w-fit flex items-center gap-2 shadow-sm"
                                     >
                                         Explore <span className="text-lg leading-none font-normal relative bottom-[1px]">→</span>
                                     </button>
@@ -927,221 +851,10 @@ function FeaturedCases() {
     );
 }
 
-// ─────────────────────────────────────────────
-// X4. WHAT OUR CLIENTS SAY
-// ─────────────────────────────────────────────
-function ClientsSaySection() {
-    const reviews = [
-        {
-            author: "Craig Tortolani",
-            role: "CPO at Dekryption Labs",
-            avatar: "https://i.pravatar.cc/150?u=craig",
-            type: "video",
-            content: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=600"
-        },
-        {
-            author: "Alex Friedman",
-            role: "CEO at Open Path",
-            avatar: "https://i.pravatar.cc/150?u=alex",
-            type: "text",
-            content: "Not only is the team extremely communicative, their work is exceptional. I have never worked with a team so talented while also being competitively priced and communicative."
-        },
-        {
-            author: "KlickEx Team",
-            role: "",
-            avatar: "https://i.pravatar.cc/150?u=klick",
-            type: "video",
-            content: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&q=80&w=600"
-        },
-        {
-            author: "George Fry",
-            role: "Founder at Neap",
-            avatar: "https://i.pravatar.cc/150?u=george",
-            type: "text",
-            content: "The quality of the designs is fantastic. Elux works at speed and is extremely punctual with timelines. They deliver top-notch outcomes with exceptional designs."
-        },
-        {
-            author: "Andre Guerra",
-            role: "Co-Owner at RADCAT Design",
-            avatar: "https://i.pravatar.cc/150?u=andre",
-            type: "video",
-            content: "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=600"
-        },
-        {
-            author: "Kevin Alvarez",
-            role: "Founder & General Partner, Predictive",
-            avatar: "https://i.pravatar.cc/150?u=kevin",
-            type: "text",
-            content: "Elux's ability to translate concepts and rough design mock-ups into high-fidelity assets, designs, and visuals was very impressive. The goal was to maintain simple elegance in the design aesthetic, and they did it very well."
-        }
-    ];
-
-    return (
-        <section className="bg-white py-32 px-8 border-t border-gray-100">
-            <div className="max-w-7xl mx-auto">
-                {/* Header Area */}
-                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-20 gap-10">
-                    <div className="max-w-2xl">
-                        <p className="text-[11px] font-bold tracking-[0.2em] text-[#888] uppercase mb-6">
-                            What Our Clients Say
-                        </p>
-                        <h2 className="text-[48px] md:text-[64px] lg:text-[72px] font-medium tracking-tight text-[#111] leading-[1.05] font-display">
-                            5.0 is our average on clutch & upwork
-                        </h2>
-                    </div>
-
-                    <div className="flex gap-4">
-                        {/* Clutch Alternative Badge */}
-                        <div className="bg-[#f8f8f8] rounded-2xl p-6 flex flex-col justify-between min-w-[200px] h-[120px]">
-                            <p className="font-bold text-2xl text-black">C</p>
-                            <div className="flex justify-between items-center w-full">
-                                <div className="flex gap-1 text-[#ff6600]">
-                                    {[1, 2, 3, 4, 5].map(i => (
-                                        <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                                    ))}
-                                </div>
-                                <span className="font-medium text-gray-500 text-sm tracking-tight">5.0</span>
-                            </div>
-                        </div>
-
-                        {/* Secondary Badge */}
-                        <div className="bg-[#f8f8f8] rounded-2xl p-6 flex flex-col justify-between min-w-[200px] h-[120px]">
-                            <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13.5h-13L12 6.5z" /></svg>
-                            <div className="flex justify-between items-center w-full">
-                                <div className="flex gap-1 text-[#ff6600]">
-                                    {[1, 2, 3, 4, 5].map(i => (
-                                        <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
-                                    ))}
-                                </div>
-                                <span className="font-medium text-gray-500 text-sm tracking-tight">4.9</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {reviews.map((r, i) => (
-                        <div key={i} className="bg-[#f8f8f8] rounded-2xl p-8 flex flex-col h-full overflow-hidden relative group">
-                            <div className="flex items-center gap-4 mb-8">
-                                <img src={r.avatar} alt={r.author} className="w-12 h-12 rounded-full object-cover" />
-                                <div>
-                                    <p className="font-medium text-gray-900 leading-snug tracking-tight">{r.author}</p>
-                                    {r.role && <p className="text-gray-500 text-sm font-medium tracking-tight">{r.role}</p>}
-                                </div>
-                            </div>
-
-                            {r.type === 'text' ? (
-                                <>
-                                    <p className="text-gray-500 text-[18px] lg:text-[20px] leading-[1.6] font-medium tracking-tight z-10">
-                                        {r.content}
-                                    </p>
-                                    <span className="absolute bottom-6 left-8 text-gray-300 text-7xl font-serif opacity-30 leading-none">
-                                        "
-                                    </span>
-                                </>
-                            ) : (
-                                <div className="relative mt-auto w-full h-[200px] rounded-xl overflow-hidden -mb-4 -mx-4 w-[calc(100%+2rem)]">
-                                    <img src={r.content} className="absolute inset-0 w-full h-full object-cover" alt="Video thumbnail" />
-                                    <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/20" />
-                                    <div className="absolute bottom-4 left-4 w-8 h-8 flex items-center justify-center bg-white/30 backdrop-blur rounded-full group-hover:scale-110 transition-transform">
-                                        <svg className="w-3 h-3 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-}
 
 // ─────────────────────────────────────────────
 // 13. GROWTH PARTNER — dark, split image + big stats
 // ─────────────────────────────────────────────
-function GrowthPartner() {
-    const stats = [
-        { num: '98%', label: 'client satisfaction rate' },
-        { num: '35%+', label: 'avg. conversion lift after redesign' },
-        { num: '70+', label: 'products shipped across 15+ industries' },
-        { num: '$20M+', label: 'in client revenue attributed to design' },
-    ];
-
-    const logos = ['Techstars', 'Y Combinator', 'a16z', 'Seedcamp', 'and more'];
-
-    return (
-        <section className="bg-[#0a0a0a] py-32 px-8">
-            <div className="max-w-7xl mx-auto">
-                {/* Split: image left, text right */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-32">
-                    {/* Screenshot / visual */}
-                    <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-blue-950/40 to-[#111] border border-white/8 aspect-[4/3]">
-                        <img
-                            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=900"
-                            alt="Product dashboard"
-                            className="w-full h-full object-cover opacity-70"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-tr from-blue-950/60 to-transparent" />
-                        <div className="absolute bottom-6 left-6 right-6">
-                            <div className="bg-white/10 backdrop-blur rounded-2xl p-4 border border-white/10">
-                                <div className="flex items-center gap-2 mb-2">
-                                    <div className="w-2 h-2 rounded-full bg-blue-500" />
-                                    <span className="text-white text-xs font-medium">Live product — 12k active users</span>
-                                </div>
-                                <div className="w-full bg-white/10 rounded-full h-1">
-                                    <div className="bg-blue-500 h-1 rounded-full" style={{ width: '72%' }} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Text block */}
-                    <div className="lg:pl-8">
-                        <div className="flex items-center gap-2 mb-8">
-                            <span className="w-1.5 h-1.5 bg-blue-600 rounded-full" />
-                            <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase">Growth Partner</span>
-                        </div>
-                        <h2 className="text-[36px] md:text-[52px] font-medium tracking-tighter text-white leading-[1.05] font-display mb-8">
-                            Your next growth stage starts with the right design partner — at launch, or at scale.
-                        </h2>
-                        <p className="text-gray-400 text-base font-medium leading-[1.6] tracking-tight mb-12 max-w-md">
-                            Whether you're raising a seed round or rebuilding for enterprise scale, Elux brings
-                            the design maturity your product needs at every stage.
-                        </p>
-
-                        {/* Client logos */}
-                        <div>
-                            <p className="text-[10px] font-bold tracking-[0.25em] text-gray-700 uppercase mb-5">
-                                Designing for founders backed by
-                            </p>
-                            <div className="flex flex-wrap gap-6 items-center">
-                                {logos.map((l, i) => (
-                                    <span key={i} className={`font-semibold text-sm ${i === logos.length - 1 ? 'text-gray-700' : 'text-gray-400 hover:text-white transition-colors cursor-default'}`}>
-                                        {l}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Big stats grid */}
-                <div className="border-t border-white/8 pt-16">
-                    <p className="text-[10px] font-bold tracking-[0.25em] text-gray-700 uppercase mb-16">Elux by the numbers</p>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-                        {stats.map((s, i) => (
-                            <div key={i}>
-                                <p className="text-[56px] md:text-[72px] font-bold tracking-tighter text-white leading-none mb-3">{s.num}</p>
-                                <p className="text-gray-400 text-sm font-medium leading-[1.6] tracking-tight">{s.label}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-}
 
 // ─────────────────────────────────────────────
 // X5. COLLABORATION MODELS (White Background)
@@ -1250,7 +963,7 @@ function CollaborationModelsSection() {
                                     <ul className="space-y-6">
                                         {active.bestFor.map((item, i) => (
                                             <li key={i} className="flex items-start gap-4">
-                                                <span className="text-[#ff6600] text-2xl mt-0.5 leading-none font-serif">*</span>
+                                                <span className="text-[#2563EB] text-2xl mt-0.5 leading-none font-serif">*</span>
                                                 <span className="text-gray-500 font-medium leading-[1.6] tracking-tight">{item}</span>
                                             </li>
                                         ))}
@@ -1265,7 +978,7 @@ function CollaborationModelsSection() {
                                     <ul className="space-y-6">
                                         {active.whatYouGet.map((item, i) => (
                                             <li key={i} className="flex items-start gap-4">
-                                                <span className="text-[#ff6600] text-2xl mt-0.5 leading-none font-serif">*</span>
+                                                <span className="text-[#2563EB] text-2xl mt-0.5 leading-none font-serif">*</span>
                                                 <span className="text-gray-500 font-medium leading-[1.6] tracking-tight">{item}</span>
                                             </li>
                                         ))}
@@ -1275,7 +988,7 @@ function CollaborationModelsSection() {
 
                             {/* Actions */}
                             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border-t border-gray-100 pt-10">
-                                <button className="bg-[#ff6600] text-white text-[12px] font-bold uppercase tracking-widest px-8 py-4 rounded-full hover:bg-[#e65c00] transition-colors flex items-center gap-2 mb-6 sm:mb-0">
+                                <button className="bg-[#2563EB] text-white text-[12px] font-bold uppercase tracking-widest px-8 py-4 rounded-full hover:bg-blue-600 transition-colors flex items-center gap-2 mb-6 sm:mb-0">
                                     Explore All <span className="text-lg leading-none">→</span>
                                 </button>
 
@@ -1514,18 +1227,15 @@ export default function Industries({ industryHash = '#industries' }: { industryH
         <div className="bg-white overflow-x-hidden">
             <Hero industryHash={industryHash !== '#industries' ? industryHash : undefined} />
             <PartnershipSection />
+            <AreasOfExpertise />
             <ChallengesSection />
-            <ExpectationsSection />
             <ServicesByCategory />
             <CapabilityGrid />
             <TechnologyStack />
             <AdvancedTechSection />
             <FeaturedCases />
-            <ClientsSaySection />
             <CollaborationModelsSection />
-            <GrowthPartner />
             <PortfolioShowcase />
-            <FAQ />
         </div>
     );
 }

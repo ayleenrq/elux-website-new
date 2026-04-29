@@ -10,10 +10,9 @@ export default function BottomCTA() {
         const form = e.currentTarget;
         const formData = new FormData(form);
         
-        fetch('https://formspree.io/qisthyayleen@gmail.com', {
+        fetch('https://formspree.io/f/qisthyayleen@gmail.com', {
             method: 'POST',
             body: formData,
-            mode: 'no-cors',
             headers: {
                 'Accept': 'application/json'
             }
@@ -247,46 +246,41 @@ export default function BottomCTA() {
                                 </div>
                             </div>
                             <div className="w-layout-grid grid-2xl cta">
-                                <div id="w-node-ddb07485-992f-57db-bdfb-f0a71b2709ff-a7701396" className="v-flex-xl bootm">
-                                    <div className="v-flex-lg">
+                                <div id="w-node-ddb07485-992f-57db-bdfb-f0a71b2709ff-a7701396" className="v-flex-xl bootm flex flex-col gap-8">
+                                    <div className="flex flex-col gap-4">
                                         <div className="text-2xl white">Have a project to discuss?</div>
-                                        <div className="cta-card-wrap">
-                                            <div className="h-flex-md"><img src="/images/Arya-Profile.jpg" loading="lazy" alt="" className="image-10" style={{ borderRadius: "12px", objectFit: "cover", height: "120px" }} />
-                                                <div className="v-flex-md _w-100">
-                                                    <div className="v-flex-xxs">
-                                                        <div className="text-2xl white">Arya Pradana</div>
-                                                        <div className="text-lg color-inverse">Chief Executive Officer & Founder</div>
-                                                    </div>
-                                                    <div className="line" style={{ height: '1px', backgroundColor: 'rgba(255,255,255,0.1)', margin: '12px 0' }}></div>
-                                                    <a href="mailto:arya.pradana@elux.space" className="h-flex-xxs w-inline-block" style={{ textDecoration: "none", display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                        <div className="text-lg color-inverse">arya.pradana@elux.space</div>
-                                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M12.75 5.25L5.25 12.75M12.75 5.25H6M12.75 5.25V12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-                                                        </svg>
-                                                    </a>
+                                        {/* Card 1: Arya */}
+                                        <a href="mailto:arya.pradana@elux.space" className="bg-[#111111] p-5 rounded-2xl border border-white/5 group hover:border-white/10 transition-all flex items-start gap-5" style={{ textDecoration: 'none' }}>
+                                            <img src="/images/Arya-Profile.jpg" alt="Arya Pradana" className="w-[100px] h-[100px] rounded-2xl object-cover flex-shrink-0" />
+                                            <div className="flex flex-col flex-1 h-full min-h-[100px]">
+                                                <p className="text-white font-medium text-[17px] mb-1">Arya Pradana</p>
+                                                <p className="text-gray-400 text-[13px] leading-snug">Chief Executive Officer & Founder</p>
+                                                <div className="flex items-center justify-between w-full mt-auto pt-3 border-t border-white/10">
+                                                    <span className="text-gray-300 text-[13px] font-medium group-hover:text-white transition-colors">arya.pradana@elux.space</span>
+                                                    <svg className="w-3.5 h-3.5 text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                                    </svg>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
-                                    <div className="v-flex-lg">
+
+                                    <div className="flex flex-col gap-4">
                                         <div className="text-2xl white">Have a partnership in mind?</div>
-                                        <div className="cta-card-wrap">
-                                            <div className="h-flex-md"><img src="/images/Lintang-Profile.jpg" loading="lazy" alt="" className="image-10" style={{ borderRadius: "12px", objectFit: "cover", height: "120px" }} />
-                                                <div className="v-flex-md _w-100">
-                                                    <div className="v-flex-xxs">
-                                                        <div className="text-2xl white">Lintang Fajar Utami</div>
-                                                        <div className="text-lg color-inverse">Project Manager</div>
-                                                    </div>
-                                                    <div className="line" style={{ height: '1px', backgroundColor: 'rgba(255,255,255,0.1)', margin: '12px 0' }}></div>
-                                                    <a href="mailto:lintang.utami@elux.space" className="h-flex-xxs w-inline-block" style={{ textDecoration: "none", display: 'flex', alignItems: 'center', gap: '8px' }}>
-                                                        <div className="text-lg color-inverse">lintang.utami@elux.space</div>
-                                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M12.75 5.25L5.25 12.75M12.75 5.25H6M12.75 5.25V12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-                                                        </svg>
-                                                    </a>
+                                        {/* Card 2: Lintang */}
+                                        <a href="mailto:lintang.utami@elux.space" className="bg-[#111111] p-5 rounded-2xl border border-white/5 group hover:border-white/10 transition-all flex items-start gap-5" style={{ textDecoration: 'none' }}>
+                                            <img src="/images/Lintang-Profile.jpg" alt="Lintang Fajar Utami" className="w-[100px] h-[100px] rounded-2xl object-cover flex-shrink-0" />
+                                            <div className="flex flex-col flex-1 h-full min-h-[100px]">
+                                                <p className="text-white font-medium text-[17px] mb-1">Lintang Fajar Utami</p>
+                                                <p className="text-gray-400 text-[13px] leading-snug">Project Manager</p>
+                                                <div className="flex items-center justify-between w-full mt-auto pt-3 border-t border-white/10">
+                                                    <span className="text-gray-300 text-[13px] font-medium group-hover:text-white transition-colors">lintang.utami@elux.space</span>
+                                                    <svg className="w-3.5 h-3.5 text-white transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                                    </svg>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                                 <div className="form-block w-form p-8">
