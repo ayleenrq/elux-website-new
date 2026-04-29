@@ -1480,7 +1480,7 @@ export const industryHighlights: Record<string, { label: string; title: string; 
     },
 };
 
-function IndustryHighlight({ industryHash }: { industryHash: string }) {
+export function IndustryHighlight({ industryHash }: { industryHash: string }) {
     const highlight = industryHighlights[industryHash];
     if (!highlight) return null;
     return (

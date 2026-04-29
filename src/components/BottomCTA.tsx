@@ -140,19 +140,19 @@ export default function BottomCTA() {
                                             <div className="grid">
                                                 <label className="radio-field w-radio">
                                                     <input id="UX" className="w-form-formradioinput hidden w-radio-input" type="radio" value="UI/UX Design" name="project-type" />
-                                                    <span className="text-xl white w-form-label" htmlFor="UX"><span className="medium">UI/UX Design</span></span>
+                                                    <span className="text-xl white w-form-label"><span className="medium">UI/UX Design</span></span>
                                                 </label>
                                                 <label className="radio-field w-radio">
                                                     <input id="Product" className="w-form-formradioinput hidden w-radio-input" type="radio" value="Product Design" name="project-type" />
-                                                    <span className="text-xl white w-form-label" htmlFor="Product">Product Design</span>
+                                                    <span className="text-xl white w-form-label">Product Design</span>
                                                 </label>
                                                 <label className="radio-field _2 w-radio">
                                                     <input id="web-dev" className="w-form-formradioinput hidden w-radio-input" type="radio" value="Webflow/Framer Development" name="project-type" />
-                                                    <span className="text-xl white w-form-label" htmlFor="web-dev">Webflow/Framer Development</span>
+                                                    <span className="text-xl white w-form-label">Webflow/Framer Development</span>
                                                 </label>
                                                 <label className="radio-field _3 w-radio">
                                                     <input id="branding" className="w-form-formradioinput hidden w-radio-input" type="radio" value="Branding Identity" name="project-type" />
-                                                    <span className="text-xl white w-form-label" htmlFor="branding">Branding Identity</span>
+                                                    <span className="text-xl white w-form-label">Branding Identity</span>
                                                 </label>
                                             </div>
                                         </div>
@@ -161,23 +161,23 @@ export default function BottomCTA() {
                                             <div className="grid budget">
                                                 <label className="radio-field w-radio">
                                                     <input id="budget-1" className="w-form-formradioinput hidden w-radio-input" type="radio" value="<$5,000" name="budget" />
-                                                    <span className="text-xl white w-form-label" htmlFor="budget-1">&lt; $5,000</span>
+                                                    <span className="text-xl white w-form-label">&lt; $5,000</span>
                                                 </label>
                                                 <label className="radio-field budget w-radio">
                                                     <input id="budget-2" className="w-form-formradioinput hidden w-radio-input" type="radio" value="$5-$10k" name="budget" />
-                                                    <span className="text-xl white w-form-label" htmlFor="budget-2">$5-$10k</span>
+                                                    <span className="text-xl white w-form-label">$5-$10k</span>
                                                 </label>
                                                 <label className="radio-field budget w-radio">
                                                     <input id="budget-3" className="w-form-formradioinput hidden w-radio-input" type="radio" value="$10-$20k" name="budget" />
-                                                    <span className="text-xl white w-form-label" htmlFor="budget-3">$10-$20k</span>
+                                                    <span className="text-xl white w-form-label">$10-$20k</span>
                                                 </label>
                                                 <label className="radio-field budget w-radio">
                                                     <input id="budget-4" className="w-form-formradioinput hidden w-radio-input" type="radio" value="$20-$50k" name="budget" />
-                                                    <span className="text-xl white w-form-label" htmlFor="budget-4">$20-$50k</span>
+                                                    <span className="text-xl white w-form-label">$20-$50k</span>
                                                 </label>
                                                 <label className="radio-field budget w-radio">
                                                     <input id="budget-5" className="w-form-formradioinput hidden w-radio-input" type="radio" value="$50k+" name="budget" />
-                                                    <span className="text-xl white w-form-label" htmlFor="budget-5">$50k+</span>
+                                                    <span className="text-xl white w-form-label">$50k+</span>
                                                 </label>
                                             </div>
                                         </div>

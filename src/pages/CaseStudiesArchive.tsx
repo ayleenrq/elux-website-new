@@ -448,6 +448,7 @@ export default function CaseStudiesArchive() {
                 <ResultsStrip />
                 <ProcessCarousel />
                 <IndustryHighlights />
+                <CTA />
             </main>
         </div>
     );

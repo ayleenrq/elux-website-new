@@ -713,6 +713,7 @@ export default function Contact() {
     return (
         <>
             <ContactHero />
+            <ContactForm />
             <CalculatorBanner onOpen={() => setCalcOpen(true)} />
             <AreasOfExpertise />
             <SocialProofLogos />
