@@ -1,78 +1,191 @@
 export default function Footer() {
     return (
-        <section className="bg-[#111111] text-white pt-24 pb-12 px-8 border-t border-white/5">
-            <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16 mb-20">
-                    {/* Brand Section */}
-                    <div className="flex flex-col border-0 shadow-none">
-                        <a href="#" className="mb-6 border-0 shadow-none inline-block">
-                            <img src="/images/Frame-117.webp" alt="Elux Space Logo" className="h-8 object-contain shadow-none border-0" />
-                        </a>
-                        <p className="text-[28px] text-gray-300 leading-snug max-w-sm border-0 shadow-none font-display">
-                            We help startups and companies design digital products people love and trust.
-                        </p>
-                    </div>
+        <div className="webflow-wrapper footer-scoped" id="footer-section">
+            <style dangerouslySetInnerHTML={{ __html: `
+                #footer-section {
+                    background-color: #111111;
+                    width: 100%;
+                    padding: 100px 0 64px 0 !important;
+                    box-sizing: border-box;
+                }
+                #footer-section * {
+                    box-sizing: border-box;
+                }
+                #footer-section .container {
+                    max-width: 1280px !important;
+                    margin: 0 auto !important;
+                    padding: 0 24px !important; /* Adjusted to match home page side padding */
+                }
+                #footer-section .v-flex-2xl {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    gap: 80px !important;
+                }
+                #footer-section .footer-link {
+                    color: rgba(255, 255, 255, 0.6) !important;
+                    text-decoration: none !important;
+                    transition: all 0.3s ease !important;
+                    font-size: 18px !important;
+                    line-height: 1.6 !important;
+                }
+                #footer-section .footer-link:hover {
+                    color: #ffffff !important;
+                    transform: translateX(4px) !important;
+                }
+                #footer-section .line {
+                    height: 1px !important;
+                    background-color: rgba(255, 255, 255, 0.1) !important;
+                    width: 100% !important;
+                }
+                #footer-section .grid-2xl.footer {
+                    display: grid !important;
+                    grid-template-columns: 1.2fr 2fr !important;
+                    gap: 100px !important;
+                }
+                #footer-section .grid-1x3 {
+                    display: grid !important;
+                    grid-template-columns: 1fr 1fr 1fr !important;
+                    gap: 112px !important; /* Pixel-perfect gap from home page */
+                }
+                #footer-section .v-flex-lg {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    gap: 32px !important; /* Adjusted to match Home */
+                }
+                #footer-section .v-flex-md {
+                    display: flex !important;
+                    flex-direction: column !important;
+                    gap: 43px !important; /* Pixel-perfect vertical link spacing */
+                }
+                #footer-section .text-2xl {
+                    font-size: 24px !important;
+                    font-weight: 500 !important;
+                    line-height: 1.4 !important;
+                }
+                #footer-section .text-lg {
+                    font-size: 18px !important;
+                    line-height: 1.6 !important;
+                }
+                #footer-section .bold {
+                    font-weight: 700 !important;
+                }
+                #footer-section .white {
+                    color: #ffffff !important;
+                }
+                #footer-section .color-neu-30 {
+                    color: rgba(255, 255, 255, 0.5) !important;
+                }
+                #footer-section .color-inverse {
+                    color: rgba(255, 255, 255, 0.4) !important;
+                }
+                #footer-section .pt-16 {
+                    padding-top: 64px !important;
+                }
+                #footer-section .h-flex-space {
+                    display: flex !important;
+                    justify-content: space-between !important;
+                    align-items: center !important;
+                }
+                #footer-section .h-flex-lg {
+                    display: flex !important;
+                    gap: 40px !important;
+                    align-items: center !important;
+                }
 
-                    {/* Links Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-12 border-0 shadow-none">
-                        <div className="flex flex-col gap-6 border-0 shadow-none">
-                            <h3 className="text-2xl font-bold text-white border-0 shadow-none">Find Us On</h3>
-                            <div className="flex flex-col gap-4 border-0 shadow-none">
-                                <a href="https://clutch.co/profile/elux-space" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Clutch</a>
-                                <a href="https://www.designrush.com/agency/profile/elux-space" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Design Rush</a>
-                                <a href="https://contra.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Contra</a>
+                @media (max-width: 991px) {
+                    #footer-section .grid-2xl.footer {
+                        grid-template-columns: 1fr !important;
+                        gap: 64px !important;
+                    }
+                    #footer-section .grid-1x3 {
+                        gap: 48px !important;
+                    }
+                }
+                @media (max-width: 767px) {
+                    #footer-section .grid-1x3 {
+                        grid-template-columns: 1fr 1fr !important;
+                    }
+                    #footer-section .h-flex-space {
+                        flex-direction: column !important;
+                        align-items: flex-start !important;
+                        gap: 32px !important;
+                    }
+                    #footer-section .v-flex-xxs {
+                        align-items: flex-start !important;
+                    }
+                }
+            ` }} />
+            <div className="section-relative border">
+                <section className="section dark-3">
+                    <div className="w-layout-blockcontainer container w-container">
+                        <div className="v-flex-2xl">
+                            <div className="w-layout-grid grid-2xl footer">
+                                <div className="v-flex-md" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                    <a href="#" className="brand footer w-nav-brand">
+                                        <img src="/images/Frame-117.webp" loading="lazy" alt="Elux Space" style={{ height: '32px' }} />
+                                    </a>
+                                    <div className="text-2xl color-neu-30">We help startups and companies design digital products people love and trust.</div>
+                                </div>
+                                <div className="w-layout-grid grid-1x3">
+                                    <div className="v-flex-lg" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                        <div className="text-2xl bold"><span className="white">Find Us On</span></div>
+                                        <div className="v-flex-md" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                            <a href="https://clutch.co/profile/elux-space" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Clutch</a>
+                                            <a href="https://www.designrush.com/agency/profile/elux-space" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Design Rush</a>
+                                            <a href="https://contra.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Contra</a>
+                                        </div>
+                                    </div>
+                                    <div className="v-flex-lg" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                        <div className="text-2xl bold"><span className="white">Product</span></div>
+                                        <div className="v-flex-md" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                            <a href="https://ui8.net/elux-space/products" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">UI8</a>
+                                            <a href="https://creativemarket.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Creative Market</a>
+                                            <a href="https://craftwork.design/" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Craftwork</a>
+                                            <a href="https://gumroad.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Gumroad</a>
+                                        </div>
+                                    </div>
+                                    <div className="v-flex-lg" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                        <div className="text-2xl bold"><span className="white">Our Social</span></div>
+                                        <div className="v-flex-md" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                            <a href="https://id.linkedin.com/company/elux-space" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Linkedin Page</a>
+                                            <a href="https://dribbble.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Dribbble</a>
+                                            <a href="https://www.behance.net/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Behance</a>
+                                            <a href="https://www.instagram.com/elux.space/" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Instagram</a>
+                                            <a href="https://layers.to/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg footer-link">Layers</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div className="flex flex-col gap-6 border-0 shadow-none">
-                            <h3 className="text-2xl font-bold text-white border-0 shadow-none">Product</h3>
-                            <div className="flex flex-col gap-4 border-0 shadow-none">
-                                <a href="https://ui8.net/elux-space/products" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">UI8</a>
-                                <a href="https://creativemarket.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Creative Market</a>
-                                <a href="https://craftwork.design/" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Craftwork</a>
-                                <a href="https://gumroad.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Gumroad</a>
-                            </div>
-                        </div>
-                        <div className="flex flex-col gap-6 border-0 shadow-none">
-                            <h3 className="text-2xl font-bold text-white border-0 shadow-none">Our Social</h3>
-                            <div className="flex flex-col gap-4 border-0 shadow-none">
-                                <a href="https://id.linkedin.com/company/elux-space" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Linkedin Page</a>
-                                <a href="https://dribbble.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Dribbble</a>
-                                <a href="https://www.behance.net/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Behance</a>
-                                <a href="https://www.instagram.com/elux.space/" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Instagram</a>
-                                <a href="https://layers.to/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Layers</a>
+                            <div className="v-flex-default">
+                                <div className="line"></div>
+                                <div className="h-flex-space pt-16" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: "wrap", rowGap: "24px" }}>
+                                    <div className="h-flex-lg" style={{ display: 'flex', flexWrap: "wrap", gap: "32px" }}>
+                                        <a href="mailto:hello@elux.space" className="link w-inline-block" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+                                            <div className="text-xl white">hello@elux.space</div>
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17 7L7 17M17 7H8M17 7V16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                                            </svg>
+                                        </a>
+                                        <a href="tel:+6285156989279" className="link w-inline-block" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+                                            <div className="text-xl white">+62 851-5698-9279</div>
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17 7L7 17M17 7H8M17 7V16" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div className="v-flex-xxs" style={{ display: 'flex', flexDirection: 'column', alignItems: "flex-end", gap: '8px' }}>
+                                        <div className="text-lg color-inverse">© 2026 eluxspace-All Rights Reserved.</div>
+                                        <div className="h-flex-xs" style={{ display: 'flex', gap: '16px' }}>
+                                            <a href="#" className="footer-link" style={{ fontSize: "14px", opacity: "0.6" }}>Privacy Policy</a>
+                                            <a href="#" className="footer-link" style={{ fontSize: "14px", opacity: "0.6" }}>Terms of Service</a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div className="flex flex-col border-0 shadow-none">
-                    <div className="w-full h-px bg-white/10 mb-12 shadow-none"></div>
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 border-0 shadow-none">
-                        <div className="flex flex-wrap items-center gap-8 border-0 shadow-none">
-                            <a href="mailto:hello@elux.space" className="flex items-center gap-3 text-xl text-white hover:text-blue-400 transition-colors shadow-none group">
-                                hello@elux.space
-                                <svg className="w-6 h-6 text-white group-hover:text-blue-400 transition-colors" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17 7L7 17M17 7H8M17 7V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                                </svg>
-                            </a>
-                            <a href="tel:+6285156989279" className="flex items-center gap-3 text-xl text-white hover:text-blue-400 transition-colors shadow-none group">
-                                +62 851-5698-9279
-                                <svg className="w-6 h-6 text-white group-hover:text-blue-400 transition-colors" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M17 7L7 17M17 7H8M17 7V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
-                                </svg>
-                            </a>
-                        </div>
-                        <div className="flex flex-col items-end gap-2 border-0 shadow-none">
-                            <div className="text-lg text-gray-400 shadow-none border-0">© 2026 eluxspace-All Rights Reserved.</div>
-                            <div className="flex items-center gap-2 shadow-none border-0">
-                                <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors opacity-60 hover:opacity-100">Privacy Policy</a>
-                                <span className="text-sm text-gray-400 opacity-40 mx-2">|</span>
-                                <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors opacity-60 hover:opacity-100">Terms of Service</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </section>
             </div>
-        </section>
+        </div>
     );
 }
