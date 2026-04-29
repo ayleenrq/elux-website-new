@@ -103,7 +103,7 @@ function ContactHero() {
                         <div className="grid grid-cols-2 gap-4">
                             <a
                                 href="mailto:hello@elux.space"
-                                className="group bg-[#111] border border-white/8 rounded-xl p-5 hover:border-blue-600/50 hover:bg-blue-600/5 transition-all duration-300"
+                                className="group bg-[#111] border border-white/8 rounded-full p-5 hover:border-blue-600/50 hover:bg-blue-600/5 transition-all duration-300"
                             >
                                 <div className="w-8 h-8 rounded-lg bg-blue-600/20 flex items-center justify-center mb-3 group-hover:bg-blue-600/30 transition-colors">
                                     <svg className="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,7 +117,7 @@ function ContactHero() {
                                 href="https://calendly.com"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group bg-[#111] border border-white/8 rounded-xl p-5 hover:border-white/20 hover:bg-white/3 transition-all duration-300"
+                                className="group bg-[#111] border border-white/8 rounded-full p-5 hover:border-white/20 hover:bg-white/3 transition-all duration-300"
                             >
                                 <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center mb-3 group-hover:bg-white/15 transition-colors">
                                     <svg className="w-4 h-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -713,7 +713,6 @@ export default function Contact() {
     return (
         <>
             <ContactHero />
-            <ContactForm />
             <CalculatorBanner onOpen={() => setCalcOpen(true)} />
             <AreasOfExpertise />
             <SocialProofLogos />

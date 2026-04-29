@@ -104,7 +104,7 @@ function App() {
       <Navbar />
       <main>
         {renderPage()}
-        {hash !== '#home' && hash !== '#contact' && <BottomCTA />}
+        {hash !== '#home' && <BottomCTA />}
       </main>
       {hash !== '#home' && <Footer />}
     </div>

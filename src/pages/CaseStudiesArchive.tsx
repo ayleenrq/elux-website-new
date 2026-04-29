@@ -3,18 +3,78 @@ import { useState, useEffect, useRef } from 'react';
 const filters = ["All", "Healthcare", "SaaS", "AI Platforms", "FinTech", "E-Commerce", "Blockchain", "EdTech"];
 
 export const caseStudies = [
-    { id: 1, title: "Novus Medical", category: "HEALTHCARE", filter: "Healthcare", tagline: "Redesigning a clinical workflow platform for 8,000+ daily active clinicians.", metric: "+120% Placement Rate", tags: ["Product Design", "Design System", "UX Research"], image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600&q=80", span: 2 },
-    { id: 2, title: "Upnova", category: "AI PLATFORMS", filter: "AI Platforms", tagline: "Turning complex AI model outputs into dashboards non-technical teams actually use.", metric: "2x Faster Workflows", tags: ["AI UX", "Dashboard Design"], image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80", span: 1 },
-    { id: 3, title: "AETERNA Labs", category: "SAAS", filter: "SaaS", tagline: "0→1 product design for a biotech SaaS that closed a $2M seed round.", metric: "$2M Seed Raised", tags: ["MVP Design", "Investor Deck"], image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=800&q=80", span: 1 },
-    { id: 4, title: "KlickEx", category: "FINTECH", filter: "FinTech", tagline: "Redesigning a cross-border payments interface handling $1B+ in annual transactions.", metric: "+40% Conversion Rate", tags: ["FinTech UX", "Mobile Design", "Payment Flows"], image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1600&q=80", span: 2 },
-    { id: 5, title: "Vitalix", category: "HEALTHCARE", filter: "Healthcare", tagline: "A telehealth MVP designed in 3 weeks that helped close a $2.4M funding round.", metric: "3-Week MVP Launch", tags: ["Telehealth", "MVP", "Prototype"], image: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800&q=80", span: 1 },
-    { id: 6, title: "CartFlow", category: "E-COMMERCE", filter: "E-Commerce", tagline: "Eliminating checkout friction for a D2C brand processing 40k+ orders monthly.", metric: "+65% Cart Completion", tags: ["E-Commerce UX", "Conversion Optimization"], image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80", span: 1 },
-    { id: 7, title: "ChainVault", category: "BLOCKCHAIN", filter: "Blockchain", tagline: "Making DeFi accessible — a non-custodial wallet UX for mainstream users.", metric: "50k+ Wallet Activations", tags: ["Web3 UX", "Wallet Design", "DeFi"], image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=1600&q=80", span: 2 },
-    { id: 8, title: "Learnify Pro", category: "EDTECH", filter: "EdTech", tagline: "Rebuilding a corporate LMS that reduced course drop-off by 55%.", metric: "-55% Drop-off Rate", tags: ["EdTech", "LMS Design", "Engagement"], image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80", span: 1 },
-    { id: 9, title: "NeuralDesk", category: "AI PLATFORMS", filter: "AI Platforms", tagline: "Designing the interface for an enterprise AI assistant used by 200+ companies.", metric: "4.9★ User Satisfaction", tags: ["Enterprise UX", "AI Interface", "B2B SaaS"], image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80", span: 1 },
-    { id: 10, title: "Dekryption Labs", category: "SAAS", filter: "SaaS", tagline: "A cybersecurity SaaS dashboard that surfaces critical threats without noise.", metric: "42% Churn Reduction", tags: ["Security UX", "Data Visualization"], image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80", span: 2 },
-    { id: 11, title: "MedConnect", category: "HEALTHCARE", filter: "Healthcare", tagline: "Patient portal redesign for 120 clinics — improving scheduling adherence.", metric: "+38% Appointment Rate", tags: ["Patient UX", "Portal Design"], image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80", span: 1 },
-    { id: 12, title: "PocketTrade", category: "FINTECH", filter: "FinTech", tagline: "A zero-commission trading app designed to feel premium for first-time investors.", metric: "280k Downloads in 3 months", tags: ["Trading UX", "Mobile App", "Onboarding"], image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80", span: 1 },
+    { 
+        id: 1, title: "Novus Medical", category: "HEALTHCARE", filter: "Healthcare", tagline: "Redesigning a clinical workflow platform for 8,000+ daily active clinicians.", metric: "+120% Placement Rate", tags: ["Product Design", "Design System", "UX Research"], image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1600&q=80", span: 2,
+        problem: "Clinicians wasted hours navigating deeply nested EHR menus, causing burnout and data entry errors.",
+        solution: "We engineered a modular dashboard with predictive charting and a command palette to minimize clicks.",
+        impact: "Reduced charting time by 35% and increased workflow completion rates by 120%."
+    },
+    { 
+        id: 2, title: "Upnova", category: "AI PLATFORMS", filter: "AI Platforms", tagline: "Turning complex AI model outputs into dashboards non-technical teams actually use.", metric: "2x Faster Workflows", tags: ["AI UX", "Dashboard Design"], image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80", span: 1,
+        problem: "Raw AI data tables alienated their primary audience: marketing and sales teams.",
+        solution: "Abstracted complexity through visual storytelling and dynamic widgets with actionable insights.",
+        impact: "Increased daily active usage by 300% among non-technical staff."
+    },
+    { 
+        id: 3, title: "AETERNA Labs", category: "SAAS", filter: "SaaS", tagline: "0→1 product design for a biotech SaaS that closed a $2M seed round.", metric: "$2M Seed Raised", tags: ["MVP Design", "Investor Deck"], image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=800&q=80", span: 1,
+        problem: "Scientists had a revolutionary algorithm but no interface to prove commercial viability to investors.",
+        solution: "A rapid 4-week design sprint to build a highly-polished, interactive prototype for investor demos.",
+        impact: "The prototype was instrumental in closing an oversubscribed $2M seed round."
+    },
+    { 
+        id: 4, title: "KlickEx", category: "FINTECH", filter: "FinTech", tagline: "Redesigning a cross-border payments interface handling $1B+ in annual transactions.", metric: "+40% Conversion Rate", tags: ["FinTech UX", "Mobile Design", "Payment Flows"], image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1600&q=80", span: 2,
+        problem: "High abandonment rates caused by a confusing fee display and multi-page checkout.",
+        solution: "Consolidated the transfer process into a single page with real-time previews and transparent fees.",
+        impact: "Transaction completion jumped by 40% and support tickets dropped by 65%."
+    },
+    { 
+        id: 5, title: "Vitalix", category: "HEALTHCARE", filter: "Healthcare", tagline: "A telehealth MVP designed in 3 weeks that helped close a $2.4M funding round.", metric: "3-Week MVP Launch", tags: ["Telehealth", "MVP", "Prototype"], image: "https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800&q=80", span: 1,
+        problem: "Needed a believable, production-ready product experience from a rough whiteboard concept in 3 weeks.",
+        solution: "Used 'Design System Lite' to assemble the core 'book-to-consult' flow with high-end micro-animations.",
+        impact: "Delivered a clickable prototype in 21 days, securing a $2.4M seed funding round."
+    },
+    { 
+        id: 6, title: "CartFlow", category: "E-COMMERCE", filter: "E-Commerce", tagline: "Eliminating checkout friction for a D2C brand processing 40k+ orders monthly.", metric: "+65% Cart Completion", tags: ["E-Commerce UX", "Conversion Optimization"], image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80", span: 1,
+        problem: "Multi-step checkout with manual data entry bled revenue on mobile devices.",
+        solution: "Redesigned into a frictionless, one-page accordion checkout with one-click express payments.",
+        impact: "Mobile checkout completion increased by 65%, adding $120k in monthly revenue."
+    },
+    { 
+        id: 7, title: "ChainVault", category: "BLOCKCHAIN", filter: "Blockchain", tagline: "Making DeFi accessible — a non-custodial wallet UX for mainstream users.", metric: "50k+ Wallet Activations", tags: ["Web3 UX", "Wallet Design", "DeFi"], image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?w=1600&q=80", span: 2,
+        problem: "Complex onboarding and seed-phrase management deterred mainstream web2 users from adopting DeFi.",
+        solution: "Introduced social logins and abstracted gas fees to create a familiar web2-like experience.",
+        impact: "Surpassed 50,000 active wallets in the first month post-launch."
+    },
+    { 
+        id: 8, title: "Learnify Pro", category: "EDTECH", filter: "EdTech", tagline: "Rebuilding a corporate LMS that reduced course drop-off by 55%.", metric: "-55% Drop-off Rate", tags: ["EdTech", "LMS Design", "Engagement"], image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80", span: 1,
+        problem: "Employees found the corporate LMS boring and overwhelming, leading to low completion rates.",
+        solution: "Gamified the learning experience with bite-sized modules, progress streaks, and clear milestones.",
+        impact: "Reduced course drop-off by 55% and increased average session length by 12 minutes."
+    },
+    { 
+        id: 9, title: "NeuralDesk", category: "AI PLATFORMS", filter: "AI Platforms", tagline: "Designing the interface for an enterprise AI assistant used by 200+ companies.", metric: "4.9★ User Satisfaction", tags: ["Enterprise UX", "AI Interface", "B2B SaaS"], image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80", span: 1,
+        problem: "The AI assistant felt disconnected from users' daily workflows and lacked contextual awareness.",
+        solution: "Integrated the assistant directly into the OS layer with a sleek, non-intrusive floating interface.",
+        impact: "Achieved a 4.9/5 user satisfaction score and expanded to 200+ enterprise clients."
+    },
+    { 
+        id: 10, title: "Dekryption Labs", category: "SAAS", filter: "SaaS", tagline: "A cybersecurity SaaS dashboard that surfaces critical threats without noise.", metric: "42% Churn Reduction", tags: ["Security UX", "Data Visualization"], image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80", span: 2,
+        problem: "Security analysts suffered from alert fatigue due to an overloaded dashboard with 100+ daily notifications.",
+        solution: "Implemented a severity-based triage view that highlights critical threats and auto-groups anomalies.",
+        impact: "Reduced mean time to resolution (MTTR) by 40% and decreased customer churn by 42%."
+    },
+    { 
+        id: 11, title: "MedConnect", category: "HEALTHCARE", filter: "Healthcare", tagline: "Patient portal redesign for 120 clinics — improving scheduling adherence.", metric: "+38% Appointment Rate", tags: ["Patient UX", "Portal Design"], image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&q=80", span: 1,
+        problem: "Elderly patients struggled to book appointments online, leading to high call center volume.",
+        solution: "Redesigned the booking flow with large typography, clear contrast, and a conversational interface.",
+        impact: "Increased online appointment bookings by 38% and reduced call center load."
+    },
+    { 
+        id: 12, title: "PocketTrade", category: "FINTECH", filter: "FinTech", tagline: "A zero-commission trading app designed to feel premium for first-time investors.", metric: "280k Downloads in 3 months", tags: ["Trading UX", "Mobile App", "Onboarding"], image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80", span: 1,
+        problem: "First-time investors felt intimidated by complex trading jargon and cluttered charts.",
+        solution: "Created a minimalist, swipe-to-trade interface with gamified educational modules.",
+        impact: "Generated 280,000 downloads in the first 3 months with a 45% daily retention rate."
+    },
 ];
 
 const stats = [
@@ -88,6 +148,92 @@ function MarqueeTicker() {
 }
 
 // ─── Filter + Grid ────────────────────────────────────────────────────────────
+// ─── Filter + Detailed Grid ────────────────────────────────────────────────────────
+function CaseStudyCard({ study }: { study: any }) {
+    const [activeTab, setActiveTab] = useState<'problem' | 'solution' | 'impact'>('problem');
+    
+    return (
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-stretch border-b border-gray-100 py-24 first:pt-12 last:border-0">
+            {/* Left: Visual & Identity */}
+            <div className="w-full lg:w-1/2 flex flex-col">
+                <div className="overflow-hidden rounded-3xl bg-gray-100 mb-8 relative aspect-[4/3] group cursor-pointer" onClick={() => window.location.hash = `#case-study-detail-${study.id}`}>
+                    <img src={study.image} alt={study.title} className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
+                    <div className="absolute top-5 left-5 flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {study.tags && study.tags.map((tag: string, i: number) => (
+                            <span key={i} className="text-[9px] font-bold uppercase tracking-widest text-white bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full">{tag}</span>
+                        ))}
+                    </div>
+                </div>
+                <div>
+                    <div className="flex items-center justify-between mb-4">
+                        <span className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase">{study.category}</span>
+                        <span className="inline-flex items-center gap-1.5 text-blue-600 font-semibold text-sm">
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />{study.metric}
+                        </span>
+                    </div>
+                    <h3 className="text-[36px] md:text-[48px] font-medium tracking-tight text-gray-900 font-display mb-4 leading-none">{study.title}</h3>
+                    <p className="text-gray-500 text-lg font-medium leading-[1.6] tracking-tight">{study.tagline}</p>
+                </div>
+            </div>
+
+            {/* Right: Rich Text Carousel / Tabs */}
+            <div className="w-full lg:w-1/2 flex flex-col justify-center bg-[#0a0a0a] rounded-3xl p-10 md:p-14 text-white">
+                <div className="flex gap-6 border-b border-white/10 mb-8 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
+                    {(['problem', 'solution', 'impact'] as const).map((tab) => (
+                        <button 
+                            key={tab} 
+                            onClick={() => setActiveTab(tab)}
+                            className={`pb-4 text-xs font-bold tracking-[0.2em] uppercase whitespace-nowrap transition-colors relative ${activeTab === tab ? 'text-white' : 'text-gray-600 hover:text-gray-300'}`}
+                        >
+                            The {tab}
+                            {activeTab === tab && (
+                                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-500" />
+                            )}
+                        </button>
+                    ))}
+                </div>
+                
+                <div className="flex-1 relative min-h-[180px]">
+                    <div className={`absolute inset-0 transition-all duration-500 ${activeTab === 'problem' ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+                        <p className="text-gray-400 text-lg md:text-xl font-medium leading-[1.7] tracking-tight">
+                            {study.problem}
+                        </p>
+                    </div>
+                    <div className={`absolute inset-0 transition-all duration-500 ${activeTab === 'solution' ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+                        <p className="text-gray-400 text-lg md:text-xl font-medium leading-[1.7] tracking-tight">
+                            {study.solution}
+                        </p>
+                    </div>
+                    <div className={`absolute inset-0 transition-all duration-500 ${activeTab === 'impact' ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+                        <p className="text-gray-400 text-lg md:text-xl font-medium leading-[1.7] tracking-tight">
+                            {study.impact}
+                        </p>
+                        <div className="mt-8 inline-flex items-center gap-3 px-6 py-4 bg-white/5 border border-white/10 rounded-2xl">
+                            <div className="w-10 h-10 rounded-full bg-blue-600/20 flex items-center justify-center">
+                                <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                            </div>
+                            <div>
+                                <p className="text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase">Key Result</p>
+                                <p className="text-lg font-bold text-white">{study.metric}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="mt-12">
+                    <a href={`#case-study-detail-${study.id}`} className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-white group">
+                        Read Full Case Study
+                        <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-blue-600 transition-colors">
+                            <svg className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
+}
+
 function StickyFilterAndGrid() {
     const [activeFilter, setActiveFilter] = useState("All");
     const filtered = activeFilter === "All" ? caseStudies : caseStudies.filter(s => s.filter === activeFilter);
@@ -95,7 +241,7 @@ function StickyFilterAndGrid() {
     return (
         <section className="bg-white text-black min-h-screen pb-32">
             <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-md py-5 px-8 border-b border-gray-100">
-                <div className="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto">
+                <div className="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
                     {filters.map(f => (
                         <button key={f} onClick={() => setActiveFilter(f)}
                             className={`px-5 py-2 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase transition-all duration-200 whitespace-nowrap flex-shrink-0 ${activeFilter === f ? 'bg-black text-white' : 'bg-gray-100 text-gray-500 hover:bg-gray-200'}`}>
@@ -108,31 +254,10 @@ function StickyFilterAndGrid() {
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-8 mt-16">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+            <div className="max-w-7xl mx-auto px-8 mt-8">
+                <div className="flex flex-col">
                     {filtered.map(study => (
-                        <a href={`#case-study-detail-${study.id}`} key={study.id}
-                            className={`flex flex-col cursor-pointer group ${study.span === 2 ? 'md:col-span-2' : ''}`}>
-                            <div className={`overflow-hidden rounded-3xl bg-gray-100 mb-6 relative ${study.span === 2 ? 'aspect-[21/9]' : 'aspect-[4/3]'}`}>
-                                <img src={study.image} alt={study.title}
-                                    className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
-                                <div className="absolute top-5 left-5 flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    {study.tags.map((tag, i) => (
-                                        <span key={i} className="text-[9px] font-bold uppercase tracking-widest text-white bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full">{tag}</span>
-                                    ))}
-                                </div>
-                                <div className="absolute bottom-5 right-5 w-10 h-10 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" /></svg>
-                                </div>
-                            </div>
-                            <span className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase mb-2">{study.category}</span>
-                            <h3 className={`font-medium tracking-tight text-gray-900 group-hover:text-blue-600 transition-colors font-display mb-2 ${study.span === 2 ? 'text-[36px] md:text-[42px]' : 'text-[28px]'}`}>{study.title}</h3>
-                            <p className="text-gray-500 text-[15px] font-medium leading-[1.6] tracking-tight max-w-xl mb-3">{study.tagline}</p>
-                            <span className="inline-flex items-center gap-1.5 text-blue-600 font-semibold text-sm">
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-600 flex-shrink-0" />{study.metric}
-                            </span>
-                        </a>
+                        <CaseStudyCard key={study.id} study={study} />
                     ))}
                 </div>
                 {filtered.length === 0 && (
@@ -323,7 +448,6 @@ export default function CaseStudiesArchive() {
                 <ResultsStrip />
                 <ProcessCarousel />
                 <IndustryHighlights />
-                <CTA />
             </main>
         </div>
     );

@@ -1,77 +1,78 @@
 export default function Footer() {
     return (
-        <footer className="bg-[#0a0a0a] text-white pt-24 pb-12 px-8 border-t border-white/5">
+        <section className="bg-[#111111] text-white pt-24 pb-12 px-8 border-t border-white/5">
             <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-16 mb-20">
                     {/* Brand Section */}
-                    <div className="md:col-span-5">
-                        <div className="flex items-center gap-3 mb-8">
-                            <div className="w-10 h-10 rounded-full bg-[#8B5CF6] flex items-center justify-center overflow-hidden">
-                                <svg className="w-6 h-6 text-black" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 14.5c-2.485 0-4.5-2.015-4.5-4.5s2.015-4.5 4.5-4.5 4.5 2.015 4.5 4.5-2.015 4.5-4.5 4.5z" fill="currentColor" />
-                                    <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" fill="#8B5CF6" />
-                                </svg>
-                            </div>
-                            <span className="text-2xl font-bold tracking-tight">eluxspace</span>
-                        </div>
-                        <p className="text-gray-400 text-lg max-w-[340px] leading-relaxed">
+                    <div className="flex flex-col border-0 shadow-none">
+                        <a href="#" className="mb-6 border-0 shadow-none inline-block">
+                            <img src="/images/Frame-117.webp" alt="Elux Space Logo" className="h-8 object-contain shadow-none border-0" />
+                        </a>
+                        <p className="text-[28px] text-gray-300 leading-snug max-w-sm border-0 shadow-none font-display">
                             We help startups and companies design digital products people love and trust.
                         </p>
                     </div>
 
-                    {/* Links Columns */}
-                    <div className="md:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8">
-                        <div>
-                            <h4 className="text-xl font-bold mb-6">Find Us On</h4>
-                            <ul className="space-y-3 text-gray-400 text-sm font-medium">
-                                <li><a href="https://clutch.co/profile/elux-space" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Clutch</a></li>
-                                <li><a href="https://www.designrush.com/agency/profile/elux-space" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Design Rush</a></li>
-                                <li><a href="https://contra.com/eluxspace" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Contra</a></li>
-                            </ul>
+                    {/* Links Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-12 border-0 shadow-none">
+                        <div className="flex flex-col gap-6 border-0 shadow-none">
+                            <h3 className="text-2xl font-bold text-white border-0 shadow-none">Find Us On</h3>
+                            <div className="flex flex-col gap-4 border-0 shadow-none">
+                                <a href="https://clutch.co/profile/elux-space" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Clutch</a>
+                                <a href="https://www.designrush.com/agency/profile/elux-space" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Design Rush</a>
+                                <a href="https://contra.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Contra</a>
+                            </div>
                         </div>
-                        <div>
-                            <h4 className="text-xl font-bold mb-6">Product</h4>
-                            <ul className="space-y-3 text-gray-400 text-sm font-medium">
-                                <li><a href="https://ui8.net/elux-space/products" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">UI8</a></li>
-                                <li><a href="https://creativemarket.com/eluxspace" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Creative Market</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Craftwork</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Gumroad</a></li>
-                            </ul>
+                        <div className="flex flex-col gap-6 border-0 shadow-none">
+                            <h3 className="text-2xl font-bold text-white border-0 shadow-none">Product</h3>
+                            <div className="flex flex-col gap-4 border-0 shadow-none">
+                                <a href="https://ui8.net/elux-space/products" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">UI8</a>
+                                <a href="https://creativemarket.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Creative Market</a>
+                                <a href="https://craftwork.design/" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Craftwork</a>
+                                <a href="https://gumroad.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Gumroad</a>
+                            </div>
                         </div>
-                        <div className="col-span-2 md:col-span-1">
-                            <h4 className="text-xl font-bold mb-6">Our Social</h4>
-                            <ul className="space-y-3 text-gray-400 text-sm font-medium">
-                                <li><a href="https://id.linkedin.com/company/elux-space" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Linkedin Page</a></li>
-                                <li><a href="https://dribbble.com/eluxspace" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Dribbble</a></li>
-                                <li><a href="https://www.behance.net/eluxspace" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Behance</a></li>
-                                <li><a href="https://www.instagram.com/elux.space/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a></li>
-                                <li><a href="https://layers.to/eluxspace" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Layers</a></li>
-                            </ul>
+                        <div className="flex flex-col gap-6 border-0 shadow-none">
+                            <h3 className="text-2xl font-bold text-white border-0 shadow-none">Our Social</h3>
+                            <div className="flex flex-col gap-4 border-0 shadow-none">
+                                <a href="https://id.linkedin.com/company/elux-space" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Linkedin Page</a>
+                                <a href="https://dribbble.com/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Dribbble</a>
+                                <a href="https://www.behance.net/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Behance</a>
+                                <a href="https://www.instagram.com/elux.space/" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Instagram</a>
+                                <a href="https://layers.to/eluxspace" target="_blank" rel="noopener noreferrer" className="text-lg text-gray-400 hover:text-white transition-colors">Layers</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="pt-12 border-t border-white/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-                    <div className="flex flex-col md:flex-row gap-8 md:gap-16">
-                        <a href="mailto:hello@elux.space" className="text-xl font-medium hover:text-blue-500 transition-colors flex items-center gap-2">
-                            hello@elux.space
-                            <svg className="w-5 h-5 transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
-                        </a>
-                        <a href="tel:+6285156989279" className="text-xl font-medium hover:text-blue-500 transition-colors flex items-center gap-2">
-                            +62 851-5698-9279
-                            <svg className="w-5 h-5 transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
-                        </a>
-                    </div>
-                    <div className="text-gray-500 text-base font-medium">
-                        © 2026 eluxspace-All Rights Reserved.
+                <div className="flex flex-col border-0 shadow-none">
+                    <div className="w-full h-px bg-white/10 mb-12 shadow-none"></div>
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 border-0 shadow-none">
+                        <div className="flex flex-wrap items-center gap-8 border-0 shadow-none">
+                            <a href="mailto:hello@elux.space" className="flex items-center gap-3 text-xl text-white hover:text-blue-400 transition-colors shadow-none group">
+                                hello@elux.space
+                                <svg className="w-6 h-6 text-white group-hover:text-blue-400 transition-colors" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 7L7 17M17 7H8M17 7V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                                </svg>
+                            </a>
+                            <a href="tel:+6285156989279" className="flex items-center gap-3 text-xl text-white hover:text-blue-400 transition-colors shadow-none group">
+                                +62 851-5698-9279
+                                <svg className="w-6 h-6 text-white group-hover:text-blue-400 transition-colors" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 7L7 17M17 7H8M17 7V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <div className="flex flex-col items-end gap-2 border-0 shadow-none">
+                            <div className="text-lg text-gray-400 shadow-none border-0">© 2026 eluxspace-All Rights Reserved.</div>
+                            <div className="flex items-center gap-2 shadow-none border-0">
+                                <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors opacity-60 hover:opacity-100">Privacy Policy</a>
+                                <span className="text-sm text-gray-400 opacity-40 mx-2">|</span>
+                                <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors opacity-60 hover:opacity-100">Terms of Service</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </footer>
+        </section>
     );
 }

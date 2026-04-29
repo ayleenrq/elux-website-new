@@ -1,166 +1,240 @@
 import { useState } from 'react';
 
 export default function BottomCTA() {
-    const [projectType, setProjectType] = useState('UI/UX Design');
-    const [budget, setBudget] = useState('$10-$20k');
+    const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+    const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setFormStatus('submitting');
+        
+        const form = e.currentTarget;
+        const formData = new FormData(form);
+        const searchParams = new URLSearchParams();
+        
+        for (const [key, value] of formData.entries()) {
+            searchParams.append(key, value as string);
+        }
+        
+        fetch('https://formspree.io/qisthyayleen@gmail.com', {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(() => {
+            setFormStatus('success');
+            form.reset();
+        }).catch((error) => {
+            console.error('Submission Catch:', error);
+            setFormStatus('error');
+        });
+    };
 
     return (
-        <section className="bg-[#0a0a0a] text-white py-32 px-8 border-0 shadow-none">
-            <div className="max-w-7xl mx-auto border-0 shadow-none">
-                {/* Header Section */}
-                <div className="flex flex-col items-center text-center mb-24 border-0 shadow-none">
-                    <div className="flex items-center gap-2 mb-8 border-0 shadow-none">
-                        <span className="w-2 h-2 bg-blue-600 border-0 shadow-none"></span>
-                        <span className="text-[10px] font-semibold tracking-[0.2em] text-gray-500 uppercase border-0 shadow-none">CALL TO ACTION</span>
-                    </div>
-                    <h2 className="text-5xl md:text-[80px] font-medium tracking-tighter leading-[1] mb-8 border-0 shadow-none font-display">
-                        Great Product dies <br />
-                        in bad interfaces and experiences
-                    </h2>
-                    <p className="text-gray-500 text-sm border-0 shadow-none">
-                        Let's start to create and fix yours. Book a discovery call today!
-                    </p>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 border-0 shadow-none">
-                    {/* Left Column: Contact Cards */}
-                    <div className="lg:col-span-4 space-y-12 border-0 shadow-none">
-                        <div className="border-0 shadow-none">
-                            <h3 className="text-xl font-medium mb-8 border-0 shadow-none">Have a project to discuss?</h3>
-                            <div className="bg-[#111111] p-6 rounded-2xl border border-white/5 flex items-center gap-4 group cursor-pointer hover:border-white/10 transition-colors shadow-none">
-                                <img
-                                    src="/assets/contact1.png"
-                                    alt="Kseniia Shalia"
-                                    className="w-16 h-16 rounded-xl object-cover grayscale group-hover:grayscale-0 transition-all border-0 shadow-none"
-                                />
-                                <div className="border-0 shadow-none flex-1">
-                                    <h4 className="font-semibold text-lg border-0 shadow-none">Kseniia Shalia</h4>
-                                    <p className="text-gray-500 text-sm border-0 shadow-none">Account Executive</p>
-                                    <div className="h-[1px] bg-white/10 my-3 border-0 shadow-none"></div>
-                                    <div className="flex items-center justify-between text-xs font-medium border-0 shadow-none">
-                                        <span className="border-0 shadow-none">hello@elux.space</span>
-                                        <svg className="w-3 h-3 transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                        </svg>
+        <div className="section-relative" style={{ backgroundColor: '#111111' }}>
+            <section className="section dark-3">
+                <div className="w-layout-blockcontainer container w-container">
+                    <div className="v-flex-2xl">
+                        <div className="v-flex-lg center">
+                            <div className="label" style={{ opacity: 1, visibility: 'visible' }}>
+                                <div className="dot"></div>
+                                <div className="label-text">CALL TO ACTION</div>
+                            </div>
+                            <div className="word-animation">
+                                <h2 className="text-7xl _100"><span className="white split-text">Great Product dies <br />in bad interfaces and experiences</span></h2>
+                            </div>
+                            <div className="v-flex-2xl">
+                                <div className="text-xl text-gray-400">Let's start to create and fix yours. Book a discovery call today!</div>
+                            </div>
+                        </div>
+                        <div className="w-layout-grid grid-2xl cta">
+                            <div id="w-node-ddb07485-992f-57db-bdfb-f0a71b2709ff-a7701396" className="v-flex-xl bootm">
+                                <div className="v-flex-lg">
+                                    <div className="text-2xl white">Have a project to discuss?</div>
+                                    <div className="cta-card-wrap">
+                                        <div className="h-flex-md"><img src="/images/Arya-Profile.jpg" loading="lazy" alt="" className="image-10" style={{ borderRadius: "12px", objectFit: "cover", height: "120px" }} />
+                                            <div className="v-flex-md _w-100">
+                                                <div className="v-flex-xxs">
+                                                    <div className="text-2xl white">Arya Pradana</div>
+                                                    <div className="text-lg color-inverse">Chief Executive Officer & Founder</div>
+                                                </div>
+                                                <div className="line"></div>
+                                                <a href="mailto:arya.pradana@elux.space" className="h-flex-xxs w-inline-block" style={{ textDecoration: "none" }}>
+                                                    <div className="text-lg color-inverse">arya.pradana@elux.space</div>
+                                                    <div className="code-embed-2 w-embed"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12.75 5.25L5.25 12.75M12.75 5.25H6M12.75 5.25V12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                                                    </svg></div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="v-flex-lg">
+                                    <div className="text-2xl white">Have a partnership in mind?</div>
+                                    <div className="cta-card-wrap">
+                                        <div className="h-flex-md"><img src="/images/Lintang-Profile.jpg" loading="lazy" alt="" className="image-10" style={{ borderRadius: "12px", objectFit: "cover", height: "120px" }} />
+                                            <div className="v-flex-md _w-100">
+                                                <div className="v-flex-xxs">
+                                                    <div className="text-2xl white">Lintang Fajar Utami</div>
+                                                    <div className="text-lg color-inverse">Project Manager</div>
+                                                </div>
+                                                <div className="line"></div>
+                                                <a href="mailto:lintang.utami@elux.space" className="h-flex-xxs w-inline-block" style={{ textDecoration: "none" }}>
+                                                    <div className="text-lg color-inverse">lintang.utami@elux.space</div>
+                                                    <div className="code-embed-2 w-embed"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M12.75 5.25L5.25 12.75M12.75 5.25H6M12.75 5.25V12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                                                    </svg></div>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="border-0 shadow-none pt-4">
-                            <h3 className="text-xl font-medium mb-8 border-0 shadow-none">Have a partnership in mind?</h3>
-                            <div className="bg-[#111111] p-6 rounded-2xl border border-white/5 flex items-center gap-4 group cursor-pointer hover:border-white/10 transition-colors shadow-none">
-                                <img
-                                    src="/assets/contact2.png"
-                                    alt="Darrell Steward"
-                                    className="w-16 h-16 rounded-xl object-cover grayscale group-hover:grayscale-0 transition-all border-0 shadow-none"
-                                />
-                                <div className="border-0 shadow-none flex-1">
-                                    <h4 className="font-semibold text-lg border-0 shadow-none">Darrell Steward</h4>
-                                    <p className="text-gray-500 text-sm border-0 shadow-none">Partnership Manager</p>
-                                    <div className="h-[1px] bg-white/10 my-3 border-0 shadow-none"></div>
-                                    <div className="flex items-center justify-between text-xs font-medium border-0 shadow-none">
-                                        <span className="border-0 shadow-none">hello@elux.space</span>
-                                        <svg className="w-3 h-3 transform -rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                        </svg>
+                            <div className="form-block w-form p-8">
+                                <iframe name="hidden_iframe" id="hidden_iframe" style={{ display: 'none' }} title="hidden_iframe" />
+                                
+                                {formStatus === 'success' ? (
+                                    <div className="success-design-wrap" style={{ 
+                                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', 
+                                        padding: '60px 20px', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '24px',
+                                        border: '1px solid rgba(255, 255, 255, 0.1)', backdropFilter: 'blur(10px)', animation: 'fadeIn 0.5s ease-out'
+                                    }}>
+                                        <div className="success-icon-wrap" style={{ width: '80px', height: '80px', borderRadius: '50%', background: '#3B6EF5', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px', boxShadow: '0 0 30px rgba(59, 110, 245, 0.4)' }}>
+                                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 13L9 17L19 7" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                        </div>
+                                        <h2 className="text-4xl white mb-4" style={{ fontFamily: '"Bricolage Grotesque", sans-serif', fontWeight: 700 }}>Message Sent!</h2>
+                                        <p className="text-lg color-inverse mb-8" style={{ maxWidth: '400px', opacity: 0.8 }}>Thank you for reaching out. We've received your inquiry and will get back to you within 24 hours.</p>
+                                        <button onClick={() => setFormStatus('idle')} className="submit w-button" style={{ backgroundColor: 'transparent', border: '1px solid #3B6EF5', padding: '12px 32px', borderRadius: '999px', fontSize: '16px', fontWeight: 600, transition: 'all 0.3s ease' }} onMouseOver={(e) => { e.currentTarget.style.backgroundColor = '#3B6EF5'; e.currentTarget.style.color = 'white'; }} onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'white'; }}>Send Another Message</button>
+                                        <style dangerouslySetInnerHTML={{ __html: `@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }` }} />
                                     </div>
-                                </div>
+                                ) : (
+                                    <form id="contact-form" onSubmit={handleFormSubmit} className="from-wrap">
+                                        <input type="hidden" name="_subject" value="New Inquiry from Elux Space Website" />
+                                        <input type="hidden" name="_gotcha" style={{ display: 'none' }} />
+                                        
+                                        <div className="w-layout-grid grid-2x2 form-grid">
+                                            <div className="v-flex-md">
+                                                <div className="text-lg color-inverse">Your Name</div>
+                                                <input className="text-form w-input" maxLength={256} name="name" placeholder="Enter Your Name" type="text" id="form-name" required />
+                                            </div>
+                                            <div className="v-flex-md">
+                                                <div className="text-lg color-inverse">Enter Your Email<br /></div>
+                                                <input className="text-form w-input" maxLength={256} name="email" placeholder="Enter Your Email" type="email" id="form-email" required />
+                                            </div>
+                                            <div className="v-flex-md">
+                                                <div className="text-lg color-inverse">Your Company Name</div>
+                                                <input className="text-form w-input" maxLength={256} name="company" placeholder="Enter Your Company Name" type="text" id="form-company" />
+                                            </div>
+                                            <div className="v-flex-md">
+                                                <div className="text-lg color-inverse">Your Title</div>
+                                                <input className="text-form w-input" maxLength={256} name="title" placeholder="Enter your Title in Company" type="text" id="form-title" />
+                                            </div>
+                                        </div>
+                                        <div className="v-flex-md pt-6">
+                                            <div className="text-lg color-inverse">Message</div>
+                                            <input className="text-form w-input" maxLength={256} name="message" placeholder="Tell us about your project" type="text" id="form-message" required />
+                                        </div>
+                                        <div className="v-flex-lg pt-6">
+                                            <div className="text-lg color-inverse">Project type</div>
+                                            <div className="grid">
+                                                <label className="radio-field w-radio">
+                                                    <input id="UX" className="w-form-formradioinput hidden w-radio-input" type="radio" value="UI/UX Design" name="project-type" />
+                                                    <span className="text-xl white w-form-label" htmlFor="UX"><span className="medium">UI/UX Design</span></span>
+                                                </label>
+                                                <label className="radio-field w-radio">
+                                                    <input id="Product" className="w-form-formradioinput hidden w-radio-input" type="radio" value="Product Design" name="project-type" />
+                                                    <span className="text-xl white w-form-label" htmlFor="Product">Product Design</span>
+                                                </label>
+                                                <label className="radio-field _2 w-radio">
+                                                    <input id="web-dev" className="w-form-formradioinput hidden w-radio-input" type="radio" value="Webflow/Framer Development" name="project-type" />
+                                                    <span className="text-xl white w-form-label" htmlFor="web-dev">Webflow/Framer Development</span>
+                                                </label>
+                                                <label className="radio-field _3 w-radio">
+                                                    <input id="branding" className="w-form-formradioinput hidden w-radio-input" type="radio" value="Branding Identity" name="project-type" />
+                                                    <span className="text-xl white w-form-label" htmlFor="branding">Branding Identity</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div className="v-flex-lg pt-6">
+                                            <div className="text-lg color-inverse">Your Budget About This Project</div>
+                                            <div className="grid budget">
+                                                <label className="radio-field w-radio">
+                                                    <input id="budget-1" className="w-form-formradioinput hidden w-radio-input" type="radio" value="<$5,000" name="budget" />
+                                                    <span className="text-xl white w-form-label" htmlFor="budget-1">&lt; $5,000</span>
+                                                </label>
+                                                <label className="radio-field budget w-radio">
+                                                    <input id="budget-2" className="w-form-formradioinput hidden w-radio-input" type="radio" value="$5-$10k" name="budget" />
+                                                    <span className="text-xl white w-form-label" htmlFor="budget-2">$5-$10k</span>
+                                                </label>
+                                                <label className="radio-field budget w-radio">
+                                                    <input id="budget-3" className="w-form-formradioinput hidden w-radio-input" type="radio" value="$10-$20k" name="budget" />
+                                                    <span className="text-xl white w-form-label" htmlFor="budget-3">$10-$20k</span>
+                                                </label>
+                                                <label className="radio-field budget w-radio">
+                                                    <input id="budget-4" className="w-form-formradioinput hidden w-radio-input" type="radio" value="$20-$50k" name="budget" />
+                                                    <span className="text-xl white w-form-label" htmlFor="budget-4">$20-$50k</span>
+                                                </label>
+                                                <label className="radio-field budget w-radio">
+                                                    <input id="budget-5" className="w-form-formradioinput hidden w-radio-input" type="radio" value="$50k+" name="budget" />
+                                                    <span className="text-xl white w-form-label" htmlFor="budget-5">$50k+</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div className="v-flex-default left">
+                                            <div className="h-flex-lg pt-16">
+                                                <input disabled={formStatus === 'submitting'} className="submit w-button rounded-full" type="submit" value={formStatus === 'submitting' ? "Sending..." : "Submit"} />
+                                                <div className="_w-50">
+                                                    <div className="text-lg color-inverse">By clicking this button you accept Terms of Service and Privacy Policy.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {formStatus === 'error' && (
+                                            <div className="w-form-fail" style={{ display: 'block', marginTop: '20px' }}>
+                                                <div className="text-lg color-inverse">Oops! Something went wrong while submitting the form. Please try again.</div>
+                                            </div>
+                                        )}
+
+                                        <div className="code-embed-3 w-embed">
+                                            <style dangerouslySetInnerHTML={{ __html: `
+                                                .text-form {
+                                                    background-color: transparent !important;
+                                                    border-top: none;
+                                                    border-left: none;
+                                                    border-right: none;
+                                                    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+                                                    color: #ffffff !important; 
+                                                    font-size: 18px; 
+                                                    font-weight: 600; 
+                                                    line-height: 1.5;
+                                                    padding-top: 12px;
+                                                    padding-bottom: 12px;
+                                                    padding-left: 0;
+                                                    outline: none;
+                                                    transition: all 0.3s ease;
+                                                }
+                                                .text-form::placeholder {
+                                                    color: #ffffff;
+                                                    opacity: 1; 
+                                                    font-size: clamp(14px, 2vw + 10px, 24px) !important;
+                                                }
+                                                .text-form:focus {
+                                                    border-bottom: 1px solid #3B6EF5; 
+                                                }
+                                                .radio-field:has(input[type="radio"]:checked) {
+                                                    background-color: #2853ff !important; 
+                                                    color: white !important; 
+                                                }
+                                            ` }} />
+                                        </div>
+                                    </form>
+                                )}
                             </div>
                         </div>
-                    </div>
-
-                    {/* Right Column: Form */}
-                    <div className="lg:col-span-8 border-0 shadow-none">
-                        <form className="space-y-12 border-0 shadow-none" onSubmit={(e) => e.preventDefault()}>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 border-0 shadow-none">
-                                <div className="flex flex-col border-0 shadow-none">
-                                    <label className="text-xs text-gray-500 uppercase font-semibold mb-4 border-0 shadow-none">Your Name</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter Your Name"
-                                        className="bg-transparent border-b border-white/20 pb-4 focus:outline-none focus:border-blue-600 transition-colors text-xl font-medium placeholder:text-gray-700 shadow-none"
-                                    />
-                                </div>
-                                <div className="flex flex-col border-0 shadow-none">
-                                    <label className="text-xs text-gray-500 uppercase font-semibold mb-4 border-0 shadow-none">Your Email</label>
-                                    <input
-                                        type="email"
-                                        placeholder="Enter Your Email"
-                                        className="bg-transparent border-b border-white/20 pb-4 focus:outline-none focus:border-blue-600 transition-colors text-xl font-medium placeholder:text-gray-700 shadow-none"
-                                    />
-                                </div>
-                                <div className="flex flex-col border-0 shadow-none">
-                                    <label className="text-xs text-gray-500 uppercase font-semibold mb-4 border-0 shadow-none">Your Company Name</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter Your Company Name"
-                                        className="bg-transparent border-b border-white/20 pb-4 focus:outline-none focus:border-blue-600 transition-colors text-xl font-medium placeholder:text-gray-700 shadow-none"
-                                    />
-                                </div>
-                                <div className="flex flex-col border-0 shadow-none">
-                                    <label className="text-xs text-gray-500 uppercase font-semibold mb-4 border-0 shadow-none">Your Title</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter your Title in Company"
-                                        className="bg-transparent border-b border-white/20 pb-4 focus:outline-none focus:border-blue-600 transition-colors text-xl font-medium placeholder:text-gray-700 shadow-none"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="flex flex-col border-0 shadow-none">
-                                <label className="text-xs text-gray-500 uppercase font-semibold mb-4 border-0 shadow-none">Message</label>
-                                <input
-                                    type="text"
-                                    placeholder="Tell us about your project"
-                                    className="bg-transparent border-b border-white/20 pb-4 focus:outline-none focus:border-blue-600 transition-colors text-xl font-medium placeholder:text-gray-700 shadow-none"
-                                />
-                            </div>
-
-                            <div className="border-0 shadow-none">
-                                <label className="text-xs text-gray-500 uppercase font-semibold mb-6 block border-0 shadow-none">Project type</label>
-                                <div className="flex flex-wrap gap-3 border-0 shadow-none">
-                                    {['UI/UX Design', 'Product Design', 'Webflow/Framer Development', 'Branding Identity'].map(type => (
-                                        <button
-                                            key={type}
-                                            type="button"
-                                            onClick={() => setProjectType(type)}
-                                            className={`px-6 py-3 rounded-full border text-sm font-medium transition-all shadow-none ${projectType === type ? 'bg-white text-black border-white' : 'bg-transparent text-gray-400 border-white/10 hover:border-white/30'}`}
-                                        >
-                                            {type}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="border-0 shadow-none">
-                                <label className="text-xs text-gray-500 uppercase font-semibold mb-6 block border-0 shadow-none">Your Budget About This Project</label>
-                                <div className="flex flex-wrap gap-3 border-0 shadow-none">
-                                    {['< $5,000', '$5-$10k', '$10-$20k', '$20-$50k', '$50k+'].map(val => (
-                                        <button
-                                            key={val}
-                                            type="button"
-                                            onClick={() => setBudget(val)}
-                                            className={`px-6 py-3 rounded-full border text-sm font-medium transition-all shadow-none ${budget === val ? 'bg-white text-black border-white' : 'bg-transparent text-gray-400 border-white/10 hover:border-white/30'}`}
-                                        >
-                                            {val}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="flex flex-col md:flex-row items-center gap-8 pt-8 border-0 shadow-none">
-                                <button className="bg-blue-600 text-white rounded-full px-12 py-4 text-sm font-bold uppercase tracking-widest hover:bg-blue-700 transition-all hover:scale-105 shadow-none">
-                                    SUBMIT
-                                </button>
-                                <p className="text-[10px] text-gray-500 max-w-[200px] border-0 shadow-none">
-                                    By clicking this button you accept Terms of Service and Privacy Policy.
-                                </p>
-                            </div>
-                        </form>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     );
 }
